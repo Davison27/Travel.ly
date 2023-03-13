@@ -1,25 +1,19 @@
 import SignInImage from '../../assets/images/signIn_image.jpg';
 import OauthGoogle from '../../assets/oauth_images/btn_google_signin_light_normal_web@2x.png'
 import './SignIn.scss';
-import Emoji from '../../components/emoji';
-import { relative } from 'path';
+import Logo from '../../components/Logo/logo';
 
 function SignIn() {
   return (
     <>
-      {/* <img src={SignInImage} className="image"></img> */}
       <div className="wrapper">
         <div className='image-wrapper'>
             <img src={SignInImage} alt="SignIn" className="image"></img>
             <div id="black-background" />
         </div>
       </div>
-      <div className="Title">
-        <div id="Name">
-          Travel.ly
-          <Emoji symbol="✈️" />
-        </div>
-        <div>Organice your travels and have fun</div>
+      <div className='logo'>
+      <Logo/>
       </div>
       <div className='Oauth'>
         <div style={{paddingBottom:"0.7rem", fontSize:"2rem"}}>

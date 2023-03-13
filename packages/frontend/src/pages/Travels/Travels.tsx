@@ -1,9 +1,16 @@
-import React from "react";
+import React from 'react';
+import Logo from '../../components/Logo/logo';
+import './Travels.scss'
 
 function Travels() {
-    return (
-        <div>Hola soy el Sign In de la aplicación</div>
-    );
+  return (
+    <>
+      <div id='logo'>
+        <Logo/>
+      </div>
+      <div></div>
+    </>
+  );
 }
 
 export default Travels;
