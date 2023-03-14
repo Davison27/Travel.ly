@@ -8,7 +8,6 @@ function Logo() {
         Travel.ly
         <Emoji symbol="✈️" />
       </div>
-      <div>Organice your travels and have fun</div>
     </div>
   );
 }

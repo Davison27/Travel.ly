@@ -1,6 +1,6 @@
 import React from 'react';
-import Logo from '../../components/Logo/logo';
 import './Travels.scss'
+import Logo from '../../components/Logo/logo';
 
 function Travels() {
   return (
@@ -8,7 +8,8 @@ function Travels() {
       <div id='logo'>
         <Logo/>
       </div>
-      <div></div>
+      <div>
+      </div>
     </>
   );
 }
