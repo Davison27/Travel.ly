@@ -4,10 +4,8 @@ import './logo.scss';
 function Logo() {
   return (
     <div id="Title">
-      <div id="Name">
-        Travel.ly
-        <Emoji symbol="✈️" />
-      </div>
+      Travel.ly
+      <Emoji symbol="✈️" />
     </div>
   );
 }

@@ -1,12 +1,9 @@
 div#logo {
-    margin-left: 1rem;
-    margin-top: 1rem;
-    background-color: gray;
-    font-size: 3rem;
-    width: 18%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    text-align: center;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  background-color: gray;
+  font-size: 3rem;
+  width: fit-content;
+  border-radius: 20px;
+  padding: 0.5rem;
 }
