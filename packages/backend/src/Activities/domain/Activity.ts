@@ -1,5 +1,5 @@
 
-export class Travel {
+export class Activity {
   constructor(
     private id: string,
     private name: string, 
