@@ -1,18 +1,23 @@
-import { UserRepository } from "../domain/UserRepository";
-import { User } from "../domain/User";
-
+import { User } from '../domain/User'
+import { UserRepository } from '../domain/UserRepository'
 
 export class CreateUser {
-  constructor(private userRepository: UserRepository) { }
+  constructor(private userRepository: UserRepository) {}
 
-  async run(userData: { id: string, name: string, ownerId: string, startDate:Date, endDate:Date }): Promise<void> {
+  async run(userData: {
+    endDate: Date
+    id: string
+    name: string
+    ownerId: string
+    startDate: Date
+  }): Promise<void> {
     const user = new User(
       userData.id,
       userData.name,
       userData.ownerId,
       userData.startDate,
-      userData.endDate
+      userData.endDate,
     )
-    await this.userRepository.save(user);
+    await this.userRepository.save(user)
   }
 }

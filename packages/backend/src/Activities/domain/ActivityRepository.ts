@@ -1,6 +1,5 @@
-import { Activity } from "./Activity";
-
+import { Activity } from './Activity'
 
 export interface ActivityRepository {
-  save(activity: Activity): Promise<void>;
+  save(activity: Activity): Promise<void>
 }

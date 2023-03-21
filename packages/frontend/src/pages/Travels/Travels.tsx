@@ -1,5 +1,6 @@
-import './Travels.scss';
-import Logo from '../../components/Logo/logo';
+import './Travels.scss'
+
+import Logo from '../../components/Logo/logo'
 
 function Travels() {
   return (
@@ -9,7 +10,7 @@ function Travels() {
       </div>
       <div></div>
     </>
-  );
+  )
 }
 
-export default Travels;
+export default Travels

@@ -1,22 +1,26 @@
-import { Request, Response } from 'express';
-import { CreateUser } from "../application/CreateUser";
+import { Request, Response } from 'express'
+
+import { CreateUser } from '../application/CreateUser'
 
 export type CreateUserControllerBody = {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }
 
 export class CreateUserController {
-  constructor(private useCase: CreateUser) { }
+  constructor(private useCase: CreateUser) {}
 
-  async handle(req: Request<unknown, unknown, CreateUserControllerBody>, res: Response) {
-    const userData = req.body;
+  async handle(
+    req: Request<unknown, unknown, CreateUserControllerBody>,
+    res: Response,
+  ) {
+    const userData = req.body
     try {
-      await this.useCase.run(userData);
+      await this.useCase.run(userData)
     } catch (error) {
-      console.log(error);
-      res.status(500).send({ message: 'Error' });
+      console.log(error)
+      res.status(500).send({ message: 'Error' })
     }
-    res.status(201).send({ message: 'Created' });
+    res.status(201).send({ message: 'Created' })
   }
 }

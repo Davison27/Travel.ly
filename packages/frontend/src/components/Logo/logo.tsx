@@ -1,5 +1,6 @@
-import Emoji from '../Emoji/emoji';
-import './logo.scss';
+import './logo.scss'
+
+import Emoji from '../Emoji/emoji'
 
 function Logo() {
   return (
@@ -7,7 +8,7 @@ function Logo() {
       Travel.ly
       <Emoji symbol="✈️" />
     </div>
-  );
+  )
 }
 
-export default Logo;
+export default Logo

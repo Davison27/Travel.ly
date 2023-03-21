@@ -1,8 +1,7 @@
-
 export class Travel {
   constructor(
     private id: string,
-    private name: string, 
+    private name: string,
     private ownerId: string,
     private startDate: Date,
     private endDate: Date,
@@ -10,7 +9,5 @@ export class Travel {
     private shared?: boolean,
     private travelers?: number,
     private expenses?: number,
-  ) { }
+  ) {}
 }
-
-

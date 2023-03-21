@@ -1,6 +1,5 @@
-import { Travel } from "./Travel";
-
+import { Travel } from './Travel'
 
 export interface TravelRepository {
-  save(travel: Travel): Promise<void>;
+  save(travel: Travel): Promise<void>
 }

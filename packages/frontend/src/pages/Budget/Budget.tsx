@@ -1,9 +1,7 @@
-import React from "react";
+import React from 'react'
 
 function Budget() {
-    return (
-        <div>Hola soy el Sign In de la aplicación</div>
-    );
+  return <div>Hola soy el Sign In de la aplicación</div>
 }
 
-export default Budget;
+export default Budget
