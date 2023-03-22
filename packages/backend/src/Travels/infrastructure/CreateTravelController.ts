@@ -3,8 +3,15 @@ import { Request, Response } from 'express'
 import { CreateTravel } from '../application/CreateTravel'
 
 export type CreateTravelControllerBody = {
+  description: string
+  endDate: Date
+  expenses: number
   id: string
   name: string
+  ownerId: string
+  shared: boolean
+  startDate: Date
+  travelers: number
 }
 
 export class CreateTravelController {

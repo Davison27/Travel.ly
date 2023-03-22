@@ -1,13 +1,7 @@
 export class User {
   constructor(
-    private id: string,
-    private name: string,
-    private ownerId: string,
-    private startDate: Date,
-    private endDate: Date,
-    private description?: string,
-    private shared?: boolean,
-    private travelers?: number,
-    private expenses?: number,
+    readonly id: string,
+    readonly fullName: string,
+    readonly profileImageUrl?: string,
   ) {}
 }

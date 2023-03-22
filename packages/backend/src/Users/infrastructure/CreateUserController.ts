@@ -3,8 +3,9 @@ import { Request, Response } from 'express'
 import { CreateUser } from '../application/CreateUser'
 
 export type CreateUserControllerBody = {
+  fullName: string
   id: string
-  name: string
+  profileImageUrl: string
 }
 
 export class CreateUserController {

@@ -5,18 +5,14 @@ export class CreateUser {
   constructor(private userRepository: UserRepository) {}
 
   async run(userData: {
-    endDate: Date
+    fullName: string
     id: string
-    name: string
-    ownerId: string
-    startDate: Date
+    profileImageUrl: string
   }): Promise<void> {
     const user = new User(
       userData.id,
-      userData.name,
-      userData.ownerId,
-      userData.startDate,
-      userData.endDate,
+      userData.fullName,
+      userData.profileImageUrl,
     )
     await this.userRepository.save(user)
   }
