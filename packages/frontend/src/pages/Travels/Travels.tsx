@@ -1,14 +1,11 @@
 import './Travels.scss'
 
-import Logo from '../../components/Logo/logo'
+import Navbar from '../../components/NavBar/Navbar'
 
 function Travels() {
   return (
     <>
-      <div id="logo">
-        <Logo />
-      </div>
-      <div></div>
+      <Navbar />
     </>
   )
 }

@@ -1,4 +1,4 @@
-import './logo.scss'
+import './Logo.scss'
 
 import Emoji from '../Emoji/emoji'
 

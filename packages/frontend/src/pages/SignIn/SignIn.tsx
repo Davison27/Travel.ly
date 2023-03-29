@@ -1,11 +1,13 @@
 import './SignIn.scss'
 
 import OauthGoogle from '../../assets/images/btn_google_signin_light_normal_web@2x.png'
-import Logo from '../../components/Logo/logo'
+import Logo from '../../components/Logo/Logo'
+import Navbar from '../../components/NavBar/Navbar'
 
 function SignIn() {
   return (
     <>
+      <Navbar />
       <div className="logo">
         <Logo />
         <div id="description">Organice your travels and have fun</div>
