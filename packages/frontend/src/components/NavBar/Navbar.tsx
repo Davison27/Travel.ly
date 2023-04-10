@@ -7,40 +7,34 @@ import Logo from '../Logo/Logo'
 
 const Navbar = () => {
   return (
-    <>
-      <img
-        src={require('../../assets/images/banner.jpg')}
-        alt="banner"
-        className="Banner"
-      ></img>
-      <div id="logo">
-        <Logo />
+    <div className="Navbar">
+      <div className="imageWrapper">
+        <img
+          src={require('../../assets/images/banner.jpg')}
+          alt="banner"
+          className="Banner"
+        />
       </div>
-      <NavLink
-        to="/user"
-        style={({ isActive }) => ({ color: isActive ? 'blue' : 'black' })}
-      >
-        User
-      </NavLink>
-      <NavLink
-        to="/travels"
-        style={({ isActive }) => ({ color: isActive ? 'blue' : 'black' })}
-      >
-        Travels
-      </NavLink>
-      <NavLink
-        to="/travelsList"
-        style={({ isActive }) => ({ color: isActive ? 'blue' : 'black' })}
-      >
-        Travels List
-      </NavLink>
-      <NavLink
-        to="/budget"
-        style={({ isActive }) => ({ color: isActive ? 'blue' : 'black' })}
-      >
-        Budgets
-      </NavLink>
-    </>
+      <div className="LogoWrapper">
+        <div id="logo">
+          <Logo />
+        </div>
+        <div className="Routes">
+          <NavLink className="NavLink" to="/user">
+            User
+          </NavLink>
+          <NavLink className="NavLink" to="/travels">
+            Travels
+          </NavLink>
+          <NavLink className="NavLink" to="/travelsList">
+            Travels List
+          </NavLink>
+          <NavLink className="NavLink" to="/budget">
+            Budgets
+          </NavLink>
+        </div>
+      </div>
+    </div>
   )
 }
 

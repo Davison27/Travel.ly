@@ -1,11 +1,9 @@
 import './Travels.scss'
 
-import Navbar from '../../components/NavBar/Navbar'
-
 function Travels() {
   return (
     <>
-      <Navbar />
+      <div>AQuí esta el travels page</div>
     </>
   )
 }
