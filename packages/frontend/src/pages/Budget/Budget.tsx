@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Budget() {
-  return <div>Hola soy el Sign In de la aplicación</div>
+  return <div>Soy la página de budgets!!</div>
 }
 
 export default Budget

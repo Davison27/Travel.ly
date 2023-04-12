@@ -20,16 +20,44 @@ const Navbar = () => {
           <Logo />
         </div>
         <div className="Routes">
-          <NavLink className="NavLink" to="/user">
+          <NavLink
+            className="navLink"
+            to="/user"
+            style={({ isActive }) => ({
+              backgroundColor: isActive ? '#c2c2c2' : '#ffffff',
+              borderRadius: '10px',
+            })}
+          >
             User
           </NavLink>
-          <NavLink className="NavLink" to="/travels">
+          <NavLink
+            className="navLink"
+            to="/travels"
+            style={({ isActive }) => ({
+              backgroundColor: isActive ? '#c2c2c2' : '#ffffff',
+              borderRadius: '10px',
+            })}
+          >
             Travels
           </NavLink>
-          <NavLink className="NavLink" to="/travelsList">
+          <NavLink
+            className="navLink"
+            to="/travelsList"
+            style={({ isActive }) => ({
+              backgroundColor: isActive ? '#c2c2c2' : '#ffffff',
+              borderRadius: '10px',
+            })}
+          >
             Travels List
           </NavLink>
-          <NavLink className="NavLink" to="/budget">
+          <NavLink
+            className="navLink"
+            to="/budget"
+            style={({ isActive }) => ({
+              backgroundColor: isActive ? '#c2c2c2' : '#ffffff',
+              borderRadius: '10px',
+            })}
+          >
             Budgets
           </NavLink>
         </div>

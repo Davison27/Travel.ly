@@ -1,7 +1,12 @@
-import React from 'react'
+import './TravelsList.scss'
 
 function TravelsList() {
-  return <div>Hola soy el Sign In de la aplicación</div>
+  return (
+    <>
+      <div className="travelsTitle">Your Travels</div>
+      <div className="travelsBody">Soy el body</div>
+    </>
+  )
 }
 
 export default TravelsList
