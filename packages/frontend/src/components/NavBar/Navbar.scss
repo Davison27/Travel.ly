@@ -1,7 +1,7 @@
 div#logo {
   margin-left: 1rem;
   margin-top: 1rem;
-  background-color: white;
+  background-color: #acacac;
   font-size: 3rem;
   width: fit-content;
   border-radius: 20px;
@@ -9,12 +9,12 @@ div#logo {
   margin-bottom: 2rem;
 }
 
-.LogoWrapper {
+.logoWrapper {
   justify-content: center;
   padding: 10px;
 }
 
-.Routes {
+.routes {
   margin-left: 1rem;
   margin-top: 1rem;
   background-color: white;
@@ -32,7 +32,7 @@ div#logo {
   color: black;
 }
 
-.Navbar {
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -40,7 +40,7 @@ div#logo {
   height: 12rem;
 }
 
-.Banner {
+.banner {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -50,4 +50,18 @@ div#logo {
   height: 100%;
   position: absolute;
   z-index: -1;
+}
+
+.avatarWrapper {
+  float: right;
+  background-color: #acacac;
+  border-radius: 20px;
+  padding: 0.5rem;
+}
+
+.welcomeMessage {
+  font-weight: 900;
+  font-size: medium;
+  padding-top: 1.5rem;
+  padding-right: 1rem;
 }

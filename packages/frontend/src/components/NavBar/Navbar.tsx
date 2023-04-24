@@ -1,25 +1,38 @@
 /* eslint-disable react/jsx-no-bind */
 import './Navbar.scss'
 
+import { Avatar, Wrap, WrapItem } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 
 import Logo from '../Logo/Logo'
 
 const Navbar = () => {
   return (
-    <div className="Navbar">
+    <div className="navbar">
       <div className="imageWrapper">
         <img
           src={require('../../assets/images/banner.jpg')}
           alt="banner"
-          className="Banner"
+          className="banner"
         />
       </div>
-      <div className="LogoWrapper">
+
+      <div className="logoWrapper">
+        <Wrap className="avatarWrapper">
+          <WrapItem>
+            <p className="welcomeMessage">Welcome, David!</p>
+            <Avatar
+              name="David"
+              boxSize="3.5em"
+              src="https://bit.ly/dan-abramov"
+            />
+          </WrapItem>
+        </Wrap>
         <div id="logo">
           <Logo />
         </div>
-        <div className="Routes">
+
+        <div className="routes">
           <NavLink
             className="navLink"
             to="/user"
