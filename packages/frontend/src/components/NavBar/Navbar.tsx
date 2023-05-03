@@ -37,7 +37,7 @@ const Navbar = () => {
             className="navLink"
             to="/user"
             style={({ isActive }) => ({
-              backgroundColor: isActive ? '#c2c2c2' : '#ffffff',
+              backgroundColor: isActive ? '#DCDCDC' : '#ffffff',
               borderRadius: '10px',
             })}
           >
@@ -47,7 +47,7 @@ const Navbar = () => {
             className="navLink"
             to="/travels"
             style={({ isActive }) => ({
-              backgroundColor: isActive ? '#c2c2c2' : '#ffffff',
+              backgroundColor: isActive ? '#DCDCDC' : '#ffffff',
               borderRadius: '10px',
             })}
           >
@@ -57,7 +57,7 @@ const Navbar = () => {
             className="navLink"
             to="/travelsList"
             style={({ isActive }) => ({
-              backgroundColor: isActive ? '#c2c2c2' : '#ffffff',
+              backgroundColor: isActive ? '#DCDCDC' : '#ffffff',
               borderRadius: '10px',
             })}
           >
@@ -67,7 +67,7 @@ const Navbar = () => {
             className="navLink"
             to="/budget"
             style={({ isActive }) => ({
-              backgroundColor: isActive ? '#c2c2c2' : '#ffffff',
+              backgroundColor: isActive ? '#DCDCDC' : '#ffffff',
               borderRadius: '10px',
             })}
           >

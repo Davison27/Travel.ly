@@ -1,10 +1,6 @@
 import express from 'express'
 import Router from 'express-promise-router'
 
-//Activity useCase imports
-import { CreateActivity } from './Activities/application/CreateActivity'
-import { CreateActivityController } from './Activities/infrastructure/CreateActivityController'
-import { InMemoryActivityRepository } from './Activities/infrastructure/InMemoryActivityRepository'
 //Travels useCase imports
 import { CreateTravel } from './Travels/application/CreateTravel'
 import { CreateTravelController } from './Travels/infrastructure/CreateTravelController'
@@ -39,8 +35,3 @@ const userRepository = new InMemoryUserRepository()
 const userUseCase = new CreateUser(userRepository)
 const createUserController = new CreateUserController(userUseCase)
 router.post('/api/users', createUserController.handle)
-
-const activityRepository = new InMemoryActivityRepository()
-const activityUseCase = new CreateActivity(activityRepository)
-const createActivityController = new CreateActivityController(activityUseCase)
-router.post('/api/activities', createActivityController.handle)

@@ -2,7 +2,7 @@ import './Logo.scss'
 
 import Emoji from '../Emoji/emoji'
 
-function Logo() {
+const Logo = () => {
   return (
     <div id="Title">
       Travel.ly

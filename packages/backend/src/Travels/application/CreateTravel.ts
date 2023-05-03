@@ -1,30 +1,23 @@
+import { Expenses } from '../domain/Expenses'
 import { Travel } from '../domain/Travel'
 import { TravelRepository } from '../domain/TravelRepository'
+import { CreateTravelDTO } from './CreateTravelDTO'
 
 export class CreateTravel {
   constructor(private travelRepository: TravelRepository) {}
 
-  async run(travelData: {
-    description: string
-    endDate: Date
-    expenses: number
-    id: string
-    name: string
-    ownerId: string
-    shared: boolean
-    startDate: Date
-    travelers: number
-  }): Promise<void> {
+  async run(createTravelDTO: CreateTravelDTO): Promise<void> {
     const travel = new Travel(
-      travelData.id,
-      travelData.name,
-      travelData.ownerId,
-      travelData.startDate,
-      travelData.endDate,
-      travelData.description,
-      travelData.shared,
-      travelData.travelers,
-      travelData.expenses,
+      createTravelDTO.id,
+      createTravelDTO.name,
+      createTravelDTO.ownerId,
+      createTravelDTO.startDate,
+      createTravelDTO.endDate,
+      [],
+      new Expenses(createTravelDTO.budget, 0, 0, 0, 0),
+      createTravelDTO.description,
+      false,
+      createTravelDTO.travelers,
     )
     await this.travelRepository.save(travel)
   }

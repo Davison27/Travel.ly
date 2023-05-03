@@ -1,3 +1,6 @@
+import { Activity } from './Activity'
+import { Expenses } from './Expenses'
+
 export class Travel {
   constructor(
     readonly id: string,
@@ -5,9 +8,10 @@ export class Travel {
     readonly ownerId: string,
     readonly startDate: Date,
     readonly endDate: Date,
+    readonly activities: Activity[],
+    readonly expenses: Expenses,
     readonly description?: string,
     readonly shared?: boolean,
     readonly travelers?: number,
-    readonly expenses?: number,
   ) {}
 }

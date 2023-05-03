@@ -1,26 +1,12 @@
 import { Request, Response } from 'express'
 
 import { CreateTravel } from '../application/CreateTravel'
-
-export type CreateTravelControllerBody = {
-  description: string
-  endDate: Date
-  expenses: number
-  id: string
-  name: string
-  ownerId: string
-  shared: boolean
-  startDate: Date
-  travelers: number
-}
+import { CreateTravelDTO } from '../application/CreateTravelDTO'
 
 export class CreateTravelController {
   constructor(private useCase: CreateTravel) {}
 
-  async handle(
-    req: Request<unknown, unknown, CreateTravelControllerBody>,
-    res: Response,
-  ) {
+  async handle(req: Request<unknown, unknown, CreateTravelDTO>, res: Response) {
     const travelData = req.body
     try {
       await this.useCase.run(travelData)
