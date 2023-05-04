@@ -3,7 +3,9 @@ import Router from 'express-promise-router'
 
 //Travels useCase imports
 import { CreateTravel } from './Travels/application/CreateTravel'
+import { BuildListTravelsView } from './Travels/infrastructure/BuildListTravelsView'
 import { CreateTravelController } from './Travels/infrastructure/CreateTravelController'
+import { GetTravelsController } from './Travels/infrastructure/GetTravelsController'
 import { InMemoryTravelRepository } from './Travels/infrastructure/InMemoryTravelRepository'
 //Users useCase imports
 import { CreateUser } from './Users/application/CreateUser'
@@ -27,9 +29,14 @@ router.get('/api/status', async (req, res) => {
 })
 
 const travelRepository = new InMemoryTravelRepository()
+
 const travelUseCase = new CreateTravel(travelRepository)
 const createTravelController = new CreateTravelController(travelUseCase)
 router.post('/api/travels', createTravelController.handle)
+
+const buildListTravelsView = new BuildListTravelsView(travelRepository)
+const getTravelsController = new GetTravelsController(buildListTravelsView)
+router.get('/api/travels', getTravelsController.handle)
 
 const userRepository = new InMemoryUserRepository()
 const userUseCase = new CreateUser(userRepository)
