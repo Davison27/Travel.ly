@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import App from './app/app'
 import Budget from './pages/Budget/Budget'
 import Travels from './pages/Travels/Travels'
+import TravelsForm from './pages/TravelsForm/TravelsForms'
 import TravelsList from './pages/TravelsList/TravelsList'
 import User from './pages/User/User'
 
@@ -19,6 +20,7 @@ root.render(
           <Route path="/user" element={<User />} />
           <Route path="/budget" element={<Budget />} />
           <Route path="/travelsList" element={<TravelsList />} />
+          <Route path="/input" element={<TravelsForm />} />
           <Route path="*" element={<Travels />} />
         </Route>
       </Routes>

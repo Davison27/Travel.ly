@@ -1,7 +1,15 @@
 /* eslint-disable react/jsx-no-bind */
 import './Navbar.scss'
 
-import { Avatar, Wrap, WrapItem } from '@chakra-ui/react'
+import { ChevronRightIcon } from '@chakra-ui/icons'
+import {
+  Avatar,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Wrap,
+  WrapItem,
+} from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 
 import Logo from '../Logo/Logo'
@@ -73,6 +81,29 @@ const Navbar = () => {
           >
             Budgets
           </NavLink>
+          <NavLink
+            className="navLink"
+            to="/input"
+            style={({ isActive }) => ({
+              backgroundColor: isActive ? '#DCDCDC' : '#ffffff',
+              borderRadius: '10px',
+            })}
+          >
+            Input
+          </NavLink>
+        </div>
+        <div className="routes">
+          <Breadcrumb
+            className="breadcumb"
+            spacing="8px"
+            separator={<ChevronRightIcon color="gray.500" />}
+          >
+            <BreadcrumbItem isCurrentPage className="breadcumbItem">
+              <BreadcrumbLink as={NavLink} to="/travels">
+                Travels
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </Breadcrumb>
         </div>
       </div>
     </div>
