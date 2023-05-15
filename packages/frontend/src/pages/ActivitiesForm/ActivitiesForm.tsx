@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-import './TravelsForms.scss'
+import './ActivitiesForm.scss'
 
 import {
   Box,
@@ -14,7 +14,7 @@ import {
 import { Field, Formik } from 'formik'
 import { useCallback } from 'react'
 
-function TravelsForm() {
+function ActivitiesForm() {
   const initialValues = {
     budget: 0,
     description: '',
@@ -109,4 +109,4 @@ function TravelsForm() {
   )
 }
 
-export default TravelsForm
+export default ActivitiesForm
