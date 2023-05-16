@@ -1,12 +1,14 @@
 import './Travels.scss'
 
+import CustomCard from '../../components/custom-card/custom-card'
+import { data } from '../../Data/Static-Data'
+
 function Travels() {
   return (
     <>
-      <>
-        <div className="travelsTitle">Madrid</div>
-        <div className="travelsBody">Soy el body</div>
-      </>
+      <div className="travelsTitle">Your Travels</div>
+
+      <CustomCard data={data} />
     </>
   )
 }

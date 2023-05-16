@@ -6,7 +6,6 @@ import App from './app/app'
 import Budget from './pages/Budget/Budget'
 import Travels from './pages/Travels/Travels'
 import TravelsForm from './pages/TravelsForm/TravelsForms'
-import TravelsList from './pages/TravelsList/TravelsList'
 import User from './pages/User/User'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
@@ -15,8 +14,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<TravelsList />} />
-          <Route path="/travels" element={<TravelsList />} />
+          <Route index element={<Travels />} />
           <Route path="/user" element={<User />} />
           <Route path="/budget" element={<Budget />} />
           <Route path="/input" element={<TravelsForm />} />

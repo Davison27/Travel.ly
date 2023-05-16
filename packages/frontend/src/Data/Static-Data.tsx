@@ -1,8 +1,10 @@
 export const data = [
   {
+    endDate: '20-05-2021',
     id: 1,
     image: '../../../assets/images/madrid_image.jpg',
     message: 'Viajecito a Madrid',
+    startDate: '16-05-2021',
   },
   {
     id: 2,

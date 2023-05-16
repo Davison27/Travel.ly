@@ -11,11 +11,12 @@ import {
   Img,
   SimpleGrid,
   Stack,
+  Text,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
-import Emoji from '../../Emoji/emoji'
 import CustomAlertDialog from '../custom-alert-dialog/custom-alert-dialog'
+import Emoji from '../Emoji/emoji'
 
 export default function CustomCard(props: any) {
   const eventData = props.data.map((event: any) => (
@@ -29,6 +30,9 @@ export default function CustomCard(props: any) {
         <Stack mt="6" spacing="3">
           <Heading size="md" className="messageGrid">
             {event.message}
+          </Heading>
+          <Heading size="md" className="messageGrid">
+            {event.startDate} - {event.endDate}
           </Heading>
         </Stack>
       </CardBody>
@@ -54,11 +58,10 @@ export default function CustomCard(props: any) {
         spacing={4}
         templateColumns="repeat(auto-fill, minmax(400px, 1rem))"
       >
-        {eventData}
         <Card maxW="sm" backgroundColor={'#DCDCDC'}>
           <CardBody>
             <Link to="/input">
-              <Button height="100%" width="100%">
+              <Button height="100%" width="100%" colorScheme="white">
                 <div className="emojiSize">
                   <Emoji symbol="🛫" />
                 </div>
@@ -73,6 +76,7 @@ export default function CustomCard(props: any) {
             </Stack>
           </CardFooter>
         </Card>
+        {eventData}
       </SimpleGrid>
     </div>
   )

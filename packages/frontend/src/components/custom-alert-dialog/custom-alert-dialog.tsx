@@ -28,11 +28,11 @@ function CustomAlertDialog() {
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Borrar Viaje
+              Erase Travel
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Estas seguro? Esta acción es irreversible.
+              Are your sure? You can't undo this action afterwards.
             </AlertDialogBody>
 
             <AlertDialogFooter>

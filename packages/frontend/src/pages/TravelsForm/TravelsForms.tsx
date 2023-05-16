@@ -27,6 +27,7 @@ function TravelsForm() {
   const handleSubmit = useCallback((values: unknown) => {
     console.log(values)
   }, [])
+
   return (
     <Box bg="white" p={6} h={800} rounded="md">
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
