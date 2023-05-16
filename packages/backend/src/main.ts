@@ -14,6 +14,7 @@ import { InMemoryUserRepository } from './Users/infrastructure/InMemoryUserRepos
 
 const app = express()
 const router = Router()
+
 app.use(router)
 
 const port = process.env.PORT || 3333
