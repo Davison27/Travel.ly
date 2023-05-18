@@ -34,7 +34,7 @@ function TravelsForm() {
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <VStack spacing={4} align="flex-start">
-              <FormControl>
+              <FormControl isRequired>
                 <FormLabel htmlFor="name">New Travel</FormLabel>
                 <Field
                   id="name"

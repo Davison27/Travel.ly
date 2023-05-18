@@ -11,6 +11,7 @@ export default function TravelsApi() {
       setPost(response.data)
     })
   }, [])
+  // IMPORTANTE DE VER: REACTQUERY
 
   const postTravel = () => {
     axios

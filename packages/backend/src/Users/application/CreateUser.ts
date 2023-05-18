@@ -1,18 +1,15 @@
 import { User } from '../domain/User'
 import { UserRepository } from '../domain/UserRepository'
+import { CreateUserDTO } from './CreateUserDTO'
 
 export class CreateUser {
   constructor(private userRepository: UserRepository) {}
 
-  async run(userData: {
-    fullName: string
-    id: string
-    profileImageUrl: string
-  }): Promise<void> {
+  async run(createUserDTO: CreateUserDTO): Promise<void> {
     const user = new User(
-      userData.id,
-      userData.fullName,
-      userData.profileImageUrl,
+      createUserDTO.id,
+      createUserDTO.fullName,
+      createUserDTO.profileImageUrl,
     )
     await this.userRepository.save(user)
   }

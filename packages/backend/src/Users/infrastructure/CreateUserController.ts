@@ -1,20 +1,12 @@
 import { Request, Response } from 'express'
 
 import { CreateUser } from '../application/CreateUser'
-
-export type CreateUserControllerBody = {
-  fullName: string
-  id: string
-  profileImageUrl: string
-}
+import { CreateUserDTO } from '../application/CreateUserDTO'
 
 export class CreateUserController {
   constructor(private useCase: CreateUser) {}
 
-  async handle(
-    req: Request<unknown, unknown, CreateUserControllerBody>,
-    res: Response,
-  ) {
+  async handle(req: Request<unknown, unknown, CreateUserDTO>, res: Response) {
     const userData = req.body
     try {
       await this.useCase.run(userData)

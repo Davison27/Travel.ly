@@ -8,4 +8,8 @@ export class InMemoryUserRepository implements UserRepository {
     this.users.push(user)
     console.log('User saved', this.users)
   }
+
+  async findAll(): Promise<User[]> {
+    return this.users
+  }
 }

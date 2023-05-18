@@ -1,3 +1,4 @@
+import cors from 'cors'
 import express from 'express'
 import Router from 'express-promise-router'
 
@@ -16,6 +17,7 @@ const app = express()
 const router = Router()
 
 app.use(router)
+app.use(cors())
 
 const port = process.env.PORT || 3333
 
@@ -36,6 +38,7 @@ const createTravelController = new CreateTravelController(travelUseCase)
 router.post('/api/travels', createTravelController.handle)
 
 const buildListTravelsView = new BuildListTravelsView(travelRepository)
+console.log(buildListTravelsView)
 const getTravelsController = new GetTravelsController(buildListTravelsView)
 router.get('/api/travels', getTravelsController.handle)
 
