@@ -16,8 +16,8 @@ import { InMemoryUserRepository } from './Users/infrastructure/InMemoryUserRepos
 const app = express()
 const router = Router()
 
-app.use(router)
 app.use(cors())
+app.use(router)
 
 const port = process.env.PORT || 3333
 
@@ -40,7 +40,7 @@ router.post('/api/travels', createTravelController.handle)
 const buildListTravelsView = new BuildListTravelsView(travelRepository)
 console.log(buildListTravelsView)
 const getTravelsController = new GetTravelsController(buildListTravelsView)
-router.get('/api/travels', getTravelsController.handle)
+router.get('/api/travels', (req, res) => getTravelsController.handle(req, res))
 
 const userRepository = new InMemoryUserRepository()
 const userUseCase = new CreateUser(userRepository)
