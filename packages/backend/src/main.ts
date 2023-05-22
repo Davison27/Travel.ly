@@ -35,7 +35,9 @@ const travelRepository = new InMemoryTravelRepository()
 
 const travelUseCase = new CreateTravel(travelRepository)
 const createTravelController = new CreateTravelController(travelUseCase)
-router.post('/api/travels', createTravelController.handle)
+router.post('/api/travels', (req, res) =>
+  createTravelController.handle(req, res),
+)
 
 const buildListTravelsView = new BuildListTravelsView(travelRepository)
 console.log(buildListTravelsView)
@@ -45,4 +47,4 @@ router.get('/api/travels', (req, res) => getTravelsController.handle(req, res))
 const userRepository = new InMemoryUserRepository()
 const userUseCase = new CreateUser(userRepository)
 const createUserController = new CreateUserController(userUseCase)
-router.post('/api/users', createUserController.handle)
+router.post('/api/users', (req, res) => createUserController.handle(req, res))
