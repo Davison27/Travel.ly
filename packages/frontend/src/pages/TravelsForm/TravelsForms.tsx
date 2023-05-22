@@ -14,18 +14,48 @@ import {
 import { Field, Formik } from 'formik'
 import { useCallback } from 'react'
 
+import api from '../../utils/api/api'
+
+interface Values {
+  description: string
+  endDate: string
+  expenses: number
+  id: string
+  name: string
+  shared: boolean
+  startDate: string
+  travelers: number
+}
+
 function TravelsForm() {
-  const initialValues = {
-    budget: 0,
+  const initialValues: Values = {
     description: '',
     endDate: '',
+    expenses: 0,
+    id: '',
     name: '',
-    people: 1,
+    shared: false,
     startDate: '',
+    travelers: 1,
   }
 
-  const handleSubmit = useCallback((values: unknown) => {
+  const handleSubmit = useCallback(async (values: Values) => {
     console.log(values)
+    try {
+      await api.postTravel(
+        values.description,
+        values.endDate,
+        values.expenses,
+        values.id,
+        values.name,
+        values.shared,
+        values.startDate,
+        values.travelers,
+      )
+      console.log('Travel created')
+    } catch (error) {
+      console.log(error)
+    }
   }, [])
 
   return (
@@ -74,20 +104,20 @@ function TravelsForm() {
                 />
               </FormControl>
               <FormControl>
-                <FormLabel htmlFor="people">People</FormLabel>
+                <FormLabel htmlFor="travelers">Travelers</FormLabel>
                 <Field
-                  id="people"
-                  name="people"
+                  id="travelers"
+                  name="travelers"
                   as={Input}
                   variant="filled"
                 ></Field>
               </FormControl>
               <FormControl>
-                <FormLabel htmlFor="budget">Budget</FormLabel>
+                <FormLabel htmlFor="expense">expense</FormLabel>
                 <InputGroup>
                   <Field
-                    id="budget"
-                    name="budget"
+                    id="expense"
+                    name="expense"
                     as={Input}
                     variant="filled"
                   />

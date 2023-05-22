@@ -6,7 +6,9 @@
   },
   "files": [
     "../../node_modules/@nrwl/react/typings/cssmodule.d.ts",
-    "../../node_modules/@nrwl/react/typings/image.d.ts"
+    "../../node_modules/@nrwl/react/typings/image.d.ts",
+    "src/utils/interfaces/Activities.tsx",
+    "src/utils/interfaces/Expenses.tsx"
   ],
   "exclude": [
     "jest.config.ts",
