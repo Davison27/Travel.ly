@@ -14,7 +14,7 @@ import {
 import { Field, Formik } from 'formik'
 import { useCallback } from 'react'
 
-import api from '../../utils/api/api'
+import api from '../../../utils/api/api'
 
 interface Values {
   description: string
