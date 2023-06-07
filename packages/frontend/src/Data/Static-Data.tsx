@@ -1,20 +1,36 @@
 export const data = [
   {
+    description: 'Viaje a Madrid',
     endDate: '20-05-2021',
+    expenses: 100,
     id: 1,
     image: '../../../assets/images/madrid_image.jpg',
     message: 'Viajecito a Madrid',
+    shared: true,
     startDate: '16-05-2021',
+    travelers: 2,
   },
   {
+    description: 'Viaje a París',
+    endDate: '20-05-2021',
+    expenses: 100,
     id: 2,
     image: '../../../assets/images/paris_image.jpg',
     message: 'De fiesta por París 🎉',
+    shared: false,
+    startDate: '16-05-2021',
+    travelers: 2,
   },
   {
+    description: 'Viaje a Córdoba',
+    endDate: '20-05-2021',
+    expenses: 100,
     id: 3,
     image:
       'https://www.hellehollis.com/blog/es/wp-content/uploads/2014/05/feria-cordoba.jpg',
     message: 'Vamonos pa la feria! 💃',
+    shared: true,
+    startDate: '16-05-2021',
+    travelers: 2,
   },
 ]

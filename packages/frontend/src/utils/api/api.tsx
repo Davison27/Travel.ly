@@ -56,14 +56,14 @@ const updateTravel = async (id: string) => {
   return request.data
 }
 
-const deleteTravels = async (id: string) => {
+const deleteTravel = async (id: string) => {
   const request = await axios.delete(`${myApi}/travels/${id}`)
   console.log(request.data)
   return request.data
 }
 
 export default {
-  deleteTravels,
+  deleteTravel,
   getStatus,
   getTravel,
   getTravels,

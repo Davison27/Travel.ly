@@ -1,6 +1,6 @@
 import './custom-card.scss'
 
-import { DeleteIcon, EditIcon, ViewIcon } from '@chakra-ui/icons'
+import { EditIcon, ViewIcon } from '@chakra-ui/icons'
 import {
   Button,
   ButtonGroup,
@@ -37,15 +37,13 @@ export default function CustomCard(props: any) {
       </CardBody>
       <CardFooter className="buttonGrid">
         <ButtonGroup spacing="3">
-          <Button leftIcon={<ViewIcon />} variant="outline" colorScheme="black">
+          <Button leftIcon={<ViewIcon />} variant="outline" colorScheme="blue">
             View
           </Button>
-          <Button leftIcon={<EditIcon />} variant="outline" colorScheme="black">
+          <Button leftIcon={<EditIcon />} variant="outline" colorScheme="green">
             Modify
           </Button>
-          <Button leftIcon={<DeleteIcon />} variant="outline" colorScheme="red">
-            <CustomAlertDialog />
-          </Button>
+          <CustomAlertDialog />
         </ButtonGroup>
       </CardFooter>
     </Card>

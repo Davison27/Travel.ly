@@ -1,3 +1,4 @@
+import { DeleteIcon } from '@chakra-ui/icons'
 import {
   AlertDialog,
   AlertDialogBody,
@@ -10,13 +11,26 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 
+import api from '../../utils/api/api'
+
 function CustomAlertDialog() {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const cancelRef = React.useRef(null)
 
+  const deleteTravel = () => {
+    console.log('delete')
+    api.deleteTravel('1')
+    onClose()
+  }
+
   return (
     <>
-      <Button colorScheme="transparent" color="red" onClick={onOpen}>
+      <Button
+        leftIcon={<DeleteIcon />}
+        colorScheme="red"
+        variant="outline"
+        onClick={onOpen}
+      >
         Delete
       </Button>
 
@@ -28,16 +42,16 @@ function CustomAlertDialog() {
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Erase Travel
+              Borrar viaje
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Are your sure? You can't undo this action afterwards.
+              ¿Estás seguro? No podrás deshacer esta acción después.
             </AlertDialogBody>
 
             <AlertDialogFooter>
               <Button onClick={onClose}>Cancel</Button>
-              <Button colorScheme="red" onClick={onClose} ml={3}>
+              <Button colorScheme="red" onClick={deleteTravel} ml={1}>
                 Delete
               </Button>
             </AlertDialogFooter>
