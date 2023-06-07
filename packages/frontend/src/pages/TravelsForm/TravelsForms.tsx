@@ -40,7 +40,6 @@ function TravelsForm() {
   }
 
   const handleSubmit = useCallback(async (values: Values) => {
-    console.log(values)
     try {
       await api.postTravel(
         values.description,
@@ -52,7 +51,6 @@ function TravelsForm() {
         values.startDate,
         values.travelers,
       )
-      console.log('Travel created')
     } catch (error) {
       console.log(error)
     }

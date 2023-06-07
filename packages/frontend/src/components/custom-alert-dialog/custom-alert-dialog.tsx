@@ -18,8 +18,7 @@ function CustomAlertDialog() {
   const cancelRef = React.useRef(null)
 
   const deleteTravel = () => {
-    console.log('delete')
-    api.deleteTravel('1')
+    api.deleteTravel('')
     onClose()
   }
 

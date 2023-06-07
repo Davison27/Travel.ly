@@ -11,7 +11,6 @@ export class CreateUserController {
     try {
       await this.useCase.run(userData)
     } catch (error) {
-      console.log(error)
       res.status(500).send({ message: 'Error' })
     }
     res.status(201).send({ message: 'Created' })

@@ -10,7 +10,6 @@ function Travels() {
   const status = useEffect(() => {
     try {
       api.getStatus()
-      console.log('Status ok')
     } catch (error) {
       console.log(error)
     }

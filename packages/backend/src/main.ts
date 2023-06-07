@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser'
 import cors from 'cors'
 import express from 'express'
 import Router from 'express-promise-router'
@@ -17,6 +18,7 @@ const app = express()
 const router = Router()
 
 app.use(cors())
+app.use(bodyParser.json())
 app.use(router)
 
 const port = process.env.PORT || 3333
@@ -35,16 +37,19 @@ const travelRepository = new InMemoryTravelRepository()
 
 const travelUseCase = new CreateTravel(travelRepository)
 const createTravelController = new CreateTravelController(travelUseCase)
-router.post('/api/travels', (req, res) =>
-  createTravelController.handle(req, res),
-)
+router.post('/api/travels', async (req, res) => {
+  return createTravelController.handle(req, res)
+})
 
 const buildListTravelsView = new BuildListTravelsView(travelRepository)
-console.log(buildListTravelsView)
 const getTravelsController = new GetTravelsController(buildListTravelsView)
-router.get('/api/travels', (req, res) => getTravelsController.handle(req, res))
+router.get('/api/travels', async (req, res) =>
+  getTravelsController.handle(req, res),
+)
 
 const userRepository = new InMemoryUserRepository()
 const userUseCase = new CreateUser(userRepository)
 const createUserController = new CreateUserController(userUseCase)
-router.post('/api/users', (req, res) => createUserController.handle(req, res))
+router.post('/api/users', async (req, res) =>
+  createUserController.handle(req, res),
+)

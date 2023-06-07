@@ -11,25 +11,18 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 
+import TravelsForm from '../../pages/TravelsForm/TravelsForms'
+
 export default function CustomModal() {
   const { isOpen, onClose, onOpen } = useDisclosure()
 
   const initialRef = React.useRef(null)
-  const finalRef = React.useRef(null)
 
   return (
     <>
       <Button onClick={onOpen}>Open Modal</Button>
-      <Button ml={4} ref={finalRef}>
-        I'll receive focus on close
-      </Button>
 
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
-      >
+      <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Create your account</ModalHeader>
@@ -44,6 +37,7 @@ export default function CustomModal() {
               <FormLabel>Last name</FormLabel>
               <Input placeholder="Last name" />
             </FormControl> */}
+            <TravelsForm />
           </ModalBody>
 
           <ModalFooter>

@@ -6,7 +6,6 @@ export class InMemoryTravelRepository implements TravelRepository {
 
   async save(travel: Travel): Promise<void> {
     this.travels.push(travel)
-    console.log('Travel saved', this.travels)
   }
 
   async findAll(): Promise<Travel[]> {
