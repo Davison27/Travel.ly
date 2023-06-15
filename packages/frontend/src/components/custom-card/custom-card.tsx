@@ -18,20 +18,20 @@ import CustomAlertDialog from '../custom-alert-dialog/custom-alert-dialog'
 import Emoji from '../Emoji/emoji'
 
 export default function CustomCard(props: any) {
-  const eventData = props.data.map((event: any) => (
+  const travelsData = props.data.map((travel: any) => (
     <Card maxW="sm" backgroundColor={'#DCDCDC'}>
       <CardBody>
         <Img
-          src={event.image}
+          src={travel.image}
           alt="Green double couch with wooden legs"
           borderRadius="lg"
         />
         <Stack mt="6" spacing="3">
           <Heading size="md" className="messageGrid">
-            {event.message}
+            {travel.message}
           </Heading>
           <Heading size="md" className="messageGrid">
-            {event.startDate} - {event.endDate}
+            {travel.startDate} - {travel.endDate}
           </Heading>
         </Stack>
       </CardBody>
@@ -57,7 +57,7 @@ export default function CustomCard(props: any) {
       >
         <Card maxW="sm" backgroundColor={'#DCDCDC'}>
           <CardBody>
-            <Link to="/input">
+            <Link to="/new-travel">
               <Button height="100%" width="100%" colorScheme="white">
                 <div className="emojiSize">
                   <Emoji symbol="🛫" />
@@ -73,7 +73,7 @@ export default function CustomCard(props: any) {
             </Stack>
           </CardFooter>
         </Card>
-        {eventData}
+        {travelsData}
       </SimpleGrid>
     </div>
   )

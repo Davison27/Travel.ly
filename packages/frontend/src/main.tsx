@@ -15,9 +15,11 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Travels />} />
-          <Route path="/user" element={<User />} />
+          <Route path="/user" element={<User />}>
+            <Route></Route>
+          </Route>
           <Route path="/budget" element={<Budget />} />
-          <Route path="/input" element={<TravelsForm />} />
+          <Route path="/new-travel" element={<TravelsForm />} />
           <Route path="*" element={<Travels />} />
         </Route>
       </Routes>
