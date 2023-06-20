@@ -8,6 +8,7 @@ function User() {
     <div>
       Soy la página de Users!!
       <CustomTimelineCard data={data} />
+      <>{console.log(data)}</>
     </div>
   )
 }

@@ -31,7 +31,7 @@ export default function CustomTimelineCard(props: any) {
           {travel.startDate} - {travel.endDate}
         </Heading>
       </Stack>
-      <CustomModal data={travel.activities} />
+      <CustomModal activities={travel.activities} />
     </button>
   ))
   return (

@@ -16,7 +16,7 @@ export default function CustomModal(props: any) {
 
   const initialRef = React.useRef(null)
 
-  const activitiesData = props.travel.map((activity: any) => (
+  const activitiesData = props.activities.map((activity: any) => (
     <div>
       <h1>{activity.name}</h1>
       <h1>{activity.description}</h1>
