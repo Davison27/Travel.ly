@@ -18,6 +18,7 @@ export class CreateTravel {
       createTravelDTO.description,
       false,
       createTravelDTO.travelers,
+      createTravelDTO.imageUrl,
     )
     await this.travelRepository.save(travel)
   }

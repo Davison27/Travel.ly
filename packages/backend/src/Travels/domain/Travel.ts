@@ -13,5 +13,6 @@ export class Travel {
     readonly description?: string,
     readonly shared?: boolean,
     readonly travelers?: number,
+    readonly imageUrl?: string,
   ) {}
 }

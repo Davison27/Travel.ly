@@ -3,6 +3,7 @@ export interface CreateTravelDTO {
   description: string
   endDate: Date
   id: string
+  imageUrl?: string
   name: string
   ownerId: string
   startDate: Date

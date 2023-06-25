@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
 import { useCallback } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
 
 import api from '../../utils/api/api'
 
@@ -22,6 +22,7 @@ interface Values {
   endDate: string
   expenses: number
   id: string
+  imageUrl: string
   name: string
   shared: boolean
   startDate: string
@@ -33,7 +34,8 @@ function TravelsForm() {
     description: '',
     endDate: '',
     expenses: 0,
-    id: '',
+    id: uuid(),
+    imageUrl: '',
     name: '',
     shared: false,
     startDate: '',
@@ -51,6 +53,7 @@ function TravelsForm() {
         values.shared,
         values.startDate,
         values.travelers,
+        values.imageUrl,
       )
     } catch (error) {
       console.log(error)
@@ -129,6 +132,15 @@ function TravelsForm() {
                       children="€"
                     />
                   </InputGroup>
+                </FormControl>
+                <FormControl>
+                  <FormLabel htmlFor="imageUrl">imageUrl</FormLabel>
+                  <Field
+                    id="imageUrl"
+                    name="imageUrl"
+                    as={Input}
+                    variant="filled"
+                  ></Field>
                 </FormControl>
                 <Button type="submit" colorScheme="blue" width="full">
                   Submit

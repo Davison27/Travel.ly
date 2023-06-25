@@ -34,6 +34,7 @@ const postTravel = async (
   shared: boolean,
   startDate: string,
   travelers: number,
+  imageUrl: string,
 ) => {
   const request = await axios.post(`${myApi}/travels`, {
     // Activities,
@@ -41,6 +42,7 @@ const postTravel = async (
     endDate,
     expenses,
     id,
+    imageUrl,
     name,
     shared,
     startDate,

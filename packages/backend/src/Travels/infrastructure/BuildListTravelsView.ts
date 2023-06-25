@@ -11,6 +11,7 @@ export class BuildListTravelsView {
         description: travel.description,
         endDate: travel.endDate,
         id: travel.id,
+        imageUrl: travel.imageUrl,
         name: travel.name,
         ownerId: travel.ownerId,
         startDate: travel.startDate,
