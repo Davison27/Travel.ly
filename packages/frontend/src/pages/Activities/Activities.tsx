@@ -1,30 +1,34 @@
-import './custom-card.scss'
+import './Activities.scss'
 
-import { EditIcon, ViewIcon } from '@chakra-ui/icons'
 import {
   Button,
-  ButtonGroup,
   Card,
   CardBody,
   CardFooter,
   Heading,
-  Img,
+  Image,
   SimpleGrid,
   Stack,
 } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import CustomAlertDialog from '../custom-alert-dialog/custom-alert-dialog'
-import Emoji from '../Emoji/emoji'
+import CustomModal from '../../components/custom-modal/custom-modal'
+import Emoji from '../../components/Emoji/emoji'
+import api from '../../utils/api/api'
 
-export default function CustomCard(props: any) {
-  const travelsData = props.data.map((travel: any) => (
-    <Card maxW="sm" backgroundColor={'#DCDCDC'}>
-      <CardBody>
-        <Img
+function Activities() {
+  const [travels, setTravels] = useState([])
+  useEffect(() => {
+    api.getTravels().then((result) => setTravels(result.travels))
+  }, [])
+  const travelsData = travels.map((travel: any) => (
+    <>
+      <button>
+        <Image
           src={travel.image}
           alt="Green double couch with wooden legs"
-          borderRadius="lg"
+          borderRadius="xl"
         />
         <Stack mt="6" spacing="3">
           <Heading size="md" className="messageGrid">
@@ -34,33 +38,24 @@ export default function CustomCard(props: any) {
             {travel.startDate} - {travel.endDate}
           </Heading>
         </Stack>
-      </CardBody>
-      <CardFooter className="buttonGrid">
-        <ButtonGroup spacing="3">
-          <Button leftIcon={<ViewIcon />} variant="outline" colorScheme="blue">
-            View
-          </Button>
-          <Button leftIcon={<EditIcon />} variant="outline" colorScheme="green">
-            Modify
-          </Button>
-          <CustomAlertDialog />
-        </ButtonGroup>
-      </CardFooter>
-    </Card>
+      </button>
+      <div>-----</div>
+    </>
   ))
   return (
     <div>
       <SimpleGrid
-        className="travelsGrid"
+        className="activitiesGrid"
         spacing={4}
-        templateColumns="repeat(auto-fill, minmax(400px, 1rem))"
+        templateColumns="repeat(auto-fill, minmax(300px, 1rem))"
       >
+        {travelsData}
         <Card maxW="sm" backgroundColor={'#DCDCDC'}>
           <CardBody>
             <Link to="/new-travel">
               <Button height="100%" width="100%" colorScheme="white">
                 <div className="emojiSize">
-                  <Emoji symbol="🛫" />
+                  <Emoji symbol="🧭" />
                 </div>
               </Button>
             </Link>
@@ -68,13 +63,15 @@ export default function CustomCard(props: any) {
           <CardFooter className="buttonGrid">
             <Stack mt="6" spacing="3">
               <Heading size="md" className="messageGrid">
-                Add new travel
+                Add new activity
               </Heading>
             </Stack>
           </CardFooter>
         </Card>
-        {travelsData}
       </SimpleGrid>
+      <CustomModal />
     </div>
   )
 }
+
+export default Activities

@@ -26,7 +26,6 @@ export default function Travels() {
     api.getTravels().then((result) => setTravels(result.travels))
   }, [])
 
-  console.log(travels)
   const travelsData = travels.map((travel: any) => (
     <Card maxW="sm" backgroundColor={'#DCDCDC'}>
       <CardBody>
@@ -50,9 +49,15 @@ export default function Travels() {
           <Button leftIcon={<ViewIcon />} variant="outline" colorScheme="blue">
             View
           </Button>
-          <Button leftIcon={<EditIcon />} variant="outline" colorScheme="green">
-            Modify
-          </Button>
+          <Link to="/new-travel">
+            <Button
+              leftIcon={<EditIcon />}
+              variant="outline"
+              colorScheme="green"
+            >
+              Modify
+            </Button>
+          </Link>
           <CustomAlertDialog id={travel.id} />
         </ButtonGroup>
       </CardFooter>

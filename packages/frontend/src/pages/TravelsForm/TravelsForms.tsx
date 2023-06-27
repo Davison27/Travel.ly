@@ -13,6 +13,7 @@ import {
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
 import { useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import api from '../../utils/api/api'
@@ -28,8 +29,8 @@ interface Values {
   startDate: string
   travelers: number
 }
-
 function TravelsForm() {
+  const navigate = useNavigate()
   const initialValues: Values = {
     description: '',
     endDate: '',
@@ -42,23 +43,27 @@ function TravelsForm() {
     travelers: 1,
   }
 
-  const handleSubmit = useCallback(async (values: Values) => {
-    try {
-      await api.postTravel(
-        values.description,
-        values.endDate,
-        values.expenses,
-        values.id,
-        values.name,
-        values.shared,
-        values.startDate,
-        values.travelers,
-        values.imageUrl,
-      )
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
+  const handleSubmit = useCallback(
+    async (values: Values) => {
+      try {
+        await api.postTravel(
+          values.description,
+          values.endDate,
+          values.expenses,
+          values.id,
+          values.name,
+          values.shared,
+          values.startDate,
+          values.travelers,
+          values.imageUrl,
+        )
+        navigate('/')
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    [navigate],
+  )
 
   return (
     <>

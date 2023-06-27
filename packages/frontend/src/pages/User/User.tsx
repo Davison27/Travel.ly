@@ -1,14 +1,12 @@
 import React from 'react'
 
-import CustomTimelineCard from '../../components/custom-timeline-card/custom-timeline-card'
-import { data } from '../../Data/Static-Data'
+import Activities from '../Activities/Activities'
 
 function User() {
   return (
     <div>
       Soy la página de Users!!
-      <CustomTimelineCard data={data} />
-      <>{console.log(data)}</>
+      <Activities />
     </div>
   )
 }
