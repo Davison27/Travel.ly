@@ -23,9 +23,11 @@ import React, { useCallback } from 'react'
 // import api from '../../../utils/api/api'
 
 interface Values {
+  category: string
   checkIn: string
   checkOut: string
   description: string
+  documentsUrl: string
   expenses: number
   id: string
   name: string
@@ -38,13 +40,15 @@ function AccomodationForm() {
 
   const initialRef = React.useRef(null)
   const initialValues: Values = {
+    category: 'Accomodation',
     checkIn: '',
     checkOut: '',
     description: '',
+    documentsUrl: '',
     expenses: 0,
     id: '',
     name: '',
-    rooms: 1,
+    rooms: 0,
     ubication: '',
   }
 
@@ -88,7 +92,7 @@ function AccomodationForm() {
                   <form onSubmit={handleSubmit}>
                     <VStack spacing={4} align="flex-start">
                       <FormControl isRequired>
-                        <FormLabel htmlFor="name">Accomodation name</FormLabel>
+                        <FormLabel htmlFor="name">Nombre</FormLabel>
                         <Field
                           id="name"
                           name="name"
@@ -98,7 +102,7 @@ function AccomodationForm() {
                         />
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="description">Description</FormLabel>
+                        <FormLabel htmlFor="description">Descripción</FormLabel>
                         <Field
                           id="description"
                           name="description"
@@ -107,7 +111,7 @@ function AccomodationForm() {
                         />
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="ubication">Ubication</FormLabel>
+                        <FormLabel htmlFor="ubication">Ubicación</FormLabel>
                         <Field
                           id="ubication"
                           name="ubication"
@@ -117,7 +121,9 @@ function AccomodationForm() {
                       </FormControl>
                       <FormControl></FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="checkIn">Check-in hour</FormLabel>
+                        <FormLabel htmlFor="checkIn">
+                          Hora de Check-in
+                        </FormLabel>
                         <Field
                           id="checkIn"
                           name="checkIn"
@@ -127,7 +133,9 @@ function AccomodationForm() {
                         />
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="checkOut">Check-out hour</FormLabel>
+                        <FormLabel htmlFor="checkOut">
+                          Hora de Check-out
+                        </FormLabel>
                         <Field
                           id="checkOut"
                           name="checkOut"
@@ -137,7 +145,7 @@ function AccomodationForm() {
                         />
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="rooms">Rooms</FormLabel>
+                        <FormLabel htmlFor="rooms">Habitaciones</FormLabel>
                         <Field
                           id="travelers"
                           name="travelers"
@@ -146,7 +154,7 @@ function AccomodationForm() {
                         ></Field>
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="expense">Expense</FormLabel>
+                        <FormLabel htmlFor="expense">Gasto</FormLabel>
                         <InputGroup>
                           <Field
                             id="expense"
@@ -161,6 +169,15 @@ function AccomodationForm() {
                             children="€"
                           />
                         </InputGroup>
+                      </FormControl>
+                      <FormControl>
+                        <FormLabel htmlFor="documentsURL">Documentos</FormLabel>
+                        <Field
+                          id="documentsURL"
+                          name="documentsURL"
+                          as={Input}
+                          variant="filled"
+                        ></Field>
                       </FormControl>
                       <Button type="submit" colorScheme="blue" width="full">
                         Submit

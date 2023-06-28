@@ -1,20 +1,9 @@
 import './Activities.scss'
 
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Heading,
-  Image,
-  SimpleGrid,
-  Stack,
-} from '@chakra-ui/react'
+import { Heading, Image, SimpleGrid, Stack } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 
 import CustomModal from '../../components/custom-modal/custom-modal'
-import Emoji from '../../components/Emoji/emoji'
 import api from '../../utils/api/api'
 
 function Activities() {
@@ -50,26 +39,8 @@ function Activities() {
         templateColumns="repeat(auto-fill, minmax(300px, 1rem))"
       >
         {travelsData}
-        <Card maxW="sm" backgroundColor={'#DCDCDC'}>
-          <CardBody>
-            <Link to="/new-travel">
-              <Button height="100%" width="100%" colorScheme="white">
-                <div className="emojiSize">
-                  <Emoji symbol="🧭" />
-                </div>
-              </Button>
-            </Link>
-          </CardBody>
-          <CardFooter className="buttonGrid">
-            <Stack mt="6" spacing="3">
-              <Heading size="md" className="messageGrid">
-                Add new activity
-              </Heading>
-            </Stack>
-          </CardFooter>
-        </Card>
+        <CustomModal />
       </SimpleGrid>
-      <CustomModal />
     </div>
   )
 }

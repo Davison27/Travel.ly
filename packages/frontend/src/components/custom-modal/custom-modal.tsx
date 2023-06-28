@@ -1,5 +1,9 @@
 import {
   Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -7,6 +11,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Stack,
   useDisclosure,
 } from '@chakra-ui/react'
 import React from 'react'
@@ -15,6 +20,7 @@ import AccomodationForm from '../../pages/ActivitiesForm/AccomodationForm/Accomo
 import EntertainmentForm from '../../pages/ActivitiesForm/EntertainmentForm/EntertainmentForm'
 import FoodForm from '../../pages/ActivitiesForm/FoodForm/FoodForm'
 import TransportForm from '../../pages/ActivitiesForm/TransportForm/TransportForm'
+import Emoji from '../Emoji/emoji'
 
 export default function CustomModal() {
   const { isOpen, onClose, onOpen } = useDisclosure()
@@ -35,7 +41,27 @@ export default function CustomModal() {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+        <CardBody>
+          <Button
+            height="100%"
+            width="100%"
+            colorScheme="white"
+            onClick={onOpen}
+          >
+            <div className="emojiSize">
+              <Emoji symbol="🧭" />
+            </div>
+          </Button>
+        </CardBody>
+        <CardFooter className="buttonGrid">
+          <Stack mt="6" spacing="3">
+            <Heading size="md" className="messageGrid">
+              Add new activity
+            </Heading>
+          </Stack>
+        </CardFooter>
+      </Card>
 
       <Modal
         initialFocusRef={initialRef}
