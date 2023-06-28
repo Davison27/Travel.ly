@@ -19,9 +19,13 @@ import { Link } from 'react-router-dom'
 import CustomAlertDialog from '../../components/custom-alert-dialog/custom-alert-dialog'
 import Emoji from '../../components/Emoji/emoji'
 import api from '../../utils/api/api'
+import { Travel } from '../../utils/interfaces/Travel'
+import TravelsForm from '../TravelsForm/TravelsForms'
 
 export default function Travels() {
-  const [travels, setTravels] = useState([])
+  const [travels, setTravels] = useState<Travel[]>([])
+  const [conferenceToModify, setConferenceToModify] = useState(null)
+
   useEffect(() => {
     api.getTravels().then((result) => setTravels(result.travels))
   }, [])
@@ -49,20 +53,38 @@ export default function Travels() {
           <Button leftIcon={<ViewIcon />} variant="outline" colorScheme="blue">
             View
           </Button>
-          <Link to="/new-travel">
-            <Button
-              leftIcon={<EditIcon />}
-              variant="outline"
-              colorScheme="green"
-            >
-              Modify
-            </Button>
-          </Link>
+          <Button
+            leftIcon={<EditIcon />}
+            variant="outline"
+            colorScheme="green"
+            onClick={() => setConferenceToModify(travel.id)}
+          >
+            Modify
+          </Button>
           <CustomAlertDialog id={travel.id} />
         </ButtonGroup>
       </CardFooter>
     </Card>
   ))
+
+  if (conferenceToModify) {
+    const travelToModify = travels.find(
+      (travel) => travel.id === conferenceToModify,
+    )!
+    return (
+      <TravelsForm
+        description={travelToModify.description}
+        endDate={travelToModify.endDate}
+        expenses={travelToModify.expenses}
+        id={travelToModify.id}
+        imageUrl={travelToModify.imageUrl}
+        name={travelToModify.name}
+        shared={travelToModify.shared}
+        startDate={travelToModify.startDate}
+        travelers={travelToModify.travelers}
+      />
+    )
+  }
 
   return (
     <>

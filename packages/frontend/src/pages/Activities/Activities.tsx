@@ -1,7 +1,7 @@
 import './Activities.scss'
 
 import { Heading, Image, SimpleGrid, Stack } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import CustomModal from '../../components/custom-modal/custom-modal'
 import api from '../../utils/api/api'

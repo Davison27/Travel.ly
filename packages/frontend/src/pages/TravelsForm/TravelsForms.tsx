@@ -29,18 +29,19 @@ interface Values {
   startDate: string
   travelers: number
 }
-function TravelsForm() {
+
+function TravelsForm(props?: Values) {
   const navigate = useNavigate()
   const initialValues: Values = {
-    description: '',
-    endDate: '',
-    expenses: 0,
-    id: uuid(),
-    imageUrl: '',
-    name: '',
-    shared: false,
-    startDate: '',
-    travelers: 1,
+    description: props?.description || '',
+    endDate: props?.endDate || '',
+    expenses: props?.expenses || 0,
+    id: props?.id || uuid(),
+    imageUrl: props?.imageUrl || '',
+    name: props?.name || '',
+    shared: props?.shared || false,
+    startDate: props?.startDate || '',
+    travelers: props?.travelers || 0,
   }
 
   const handleSubmit = useCallback(
