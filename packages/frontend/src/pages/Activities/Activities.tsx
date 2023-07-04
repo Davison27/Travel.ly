@@ -12,7 +12,6 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { ShareIcon } from 'chakra-ui-ionicons'
 
 import CustomModal from '../../components/custom-modal/custom-modal'
 import { data } from '../../Data/Static-Data'
@@ -83,7 +82,7 @@ function Activities() {
         <div className="sharedButton">
           <Button>
             <div style={{ paddingRight: '0.7rem' }}>Compartir</div>
-            <ShareIcon boxSize={5} />
+            <Icon as={ExternalLinkIcon} boxSize={5} />
           </Button>
         </div>
       </div>
