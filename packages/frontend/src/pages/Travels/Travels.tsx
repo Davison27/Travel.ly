@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom'
 
 import CustomAlertDialog from '../../components/custom-alert-dialog/custom-alert-dialog'
 import Emoji from '../../components/Emoji/emoji'
+import { data } from '../../Data/Static-Data'
 import api from '../../utils/api/api'
 import { Travel } from '../../utils/interfaces/Travel'
 import TravelsForm from '../TravelsForm/TravelsForms'
@@ -67,6 +68,49 @@ export default function Travels() {
     </Card>
   ))
 
+  const travelsStaticData = data.map((travel: any) => (
+    <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+      <CardBody>
+        <Img
+          src={travel.imageUrl}
+          alt="Green double couch with wooden legs"
+          borderRadius="lg"
+        />
+        <Stack mt="6" spacing="3">
+          <Heading size="md" className="messageGrid">
+            {travel.name}
+          </Heading>
+          <Heading size="sm" className="messageGrid">
+            {travel.startDate} - {travel.endDate}
+          </Heading>
+          <Text>{travel.description}</Text>
+        </Stack>
+      </CardBody>
+      <CardFooter className="buttonGrid">
+        <ButtonGroup spacing="3">
+          <Link to="/user">
+            <Button
+              leftIcon={<ViewIcon />}
+              variant="outline"
+              colorScheme="blue"
+            >
+              View
+            </Button>
+          </Link>
+          <Button
+            leftIcon={<EditIcon />}
+            variant="outline"
+            colorScheme="green"
+            onClick={() => setConferenceToModify(travel.id)}
+          >
+            Modify
+          </Button>
+          <CustomAlertDialog id={travel.id} />
+        </ButtonGroup>
+      </CardFooter>
+    </Card>
+  ))
+
   if (conferenceToModify) {
     const travelToModify = travels.find(
       (travel) => travel.id === conferenceToModify,
@@ -88,7 +132,7 @@ export default function Travels() {
 
   return (
     <>
-      <div className="travelsTitle">Your Travels</div>
+      <div className="travelsTitle">Tus Viajes</div>
       <div>
         <SimpleGrid
           className="travelsGrid"
@@ -114,6 +158,7 @@ export default function Travels() {
             </CardFooter>
           </Card>
           {travelsData}
+          {travelsStaticData}
         </SimpleGrid>
       </div>
     </>

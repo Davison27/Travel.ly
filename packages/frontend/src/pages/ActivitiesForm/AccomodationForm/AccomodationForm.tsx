@@ -79,7 +79,7 @@ function AccomodationForm() {
         initialFocusRef={initialRef}
         isOpen={isOpen}
         onClose={onClose}
-        size={'full'}
+        size={'xl'}
       >
         <ModalOverlay />
         <ModalContent>

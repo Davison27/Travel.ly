@@ -17,7 +17,22 @@ root.render(
           <Route index element={<Travels />} />
           <Route path="/user" element={<User />} />
           <Route path="/budget" element={<Budget />} />
-          <Route path="/new-travel" element={<TravelsForm />} />
+          <Route
+            path="/new-travel"
+            element={
+              <TravelsForm
+                description={''}
+                endDate={''}
+                expenses={0}
+                id={''}
+                imageUrl={''}
+                name={''}
+                shared={false}
+                startDate={''}
+                travelers={0}
+              />
+            }
+          />
           <Route path="*" element={<Travels />} />
         </Route>
       </Routes>

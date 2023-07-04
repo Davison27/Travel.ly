@@ -1,3 +1,5 @@
+import './custom-modal.scss'
+
 import {
   Button,
   Card,
@@ -49,7 +51,7 @@ export default function CustomModal() {
             colorScheme="white"
             onClick={onOpen}
           >
-            <div className="emojiSize">
+            <div className="emojiModalSize">
               <Emoji symbol="🧭" />
             </div>
           </Button>
@@ -57,7 +59,7 @@ export default function CustomModal() {
         <CardFooter className="buttonGrid">
           <Stack mt="6" spacing="3">
             <Heading size="md" className="messageGrid">
-              Add new activity
+              Añadir actividad
             </Heading>
           </Stack>
         </CardFooter>
@@ -80,9 +82,6 @@ export default function CustomModal() {
             <TransportForm />
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              Save
-            </Button>
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>

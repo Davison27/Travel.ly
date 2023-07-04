@@ -5,7 +5,6 @@ import Activities from '../Activities/Activities'
 function User() {
   return (
     <div>
-      Soy la página de Users!!
       <Activities />
     </div>
   )

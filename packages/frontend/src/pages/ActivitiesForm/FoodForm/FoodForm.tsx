@@ -70,7 +70,7 @@ function FoodForm() {
   return (
     <>
       {' '}
-      <Button onClick={onOpen}>Accomodation</Button>
+      <Button onClick={onOpen}>Food</Button>
       <Modal
         initialFocusRef={initialRef}
         isOpen={isOpen}

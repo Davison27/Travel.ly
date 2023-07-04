@@ -11,3 +11,32 @@
   display: grid;
   justify-content: center;
 }
+
+.ActivitiesTitle {
+  display: grid;
+  height: auto;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  font-family: 'Lobster', cursive;
+  font-size: 2.5rem;
+}
+
+.ActivitiesDate {
+  display: grid;
+  height: auto;
+  padding-left: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  font-family: 'Lobster', cursive;
+  font-size: 1.75rem;
+}
+
+.titleButton {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sharedButton {
+  padding-right: 2rem;
+  padding-top: 1.5rem;
+}
