@@ -4,8 +4,12 @@ import './AccomodationForm.scss'
 import {
   Box,
   Button,
+  Card,
+  CardBody,
   FormControl,
   FormLabel,
+  Heading,
+  Img,
   Input,
   InputGroup,
   InputRightElement,
@@ -14,6 +18,7 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
+  Stack,
   useDisclosure,
   VStack,
 } from '@chakra-ui/react'
@@ -74,12 +79,29 @@ function AccomodationForm() {
   return (
     <>
       {' '}
-      <Button onClick={onOpen}>Accomodation</Button>
+      <button onClick={onOpen}>
+        <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+          <CardBody>
+            <Img
+              src={
+                'https://elviajerofeliz.com/wp-content/uploads/2022/11/tipos-de-alojamiento.jpg'
+              }
+              alt="Green double couch with wooden legs"
+              borderRadius="lg"
+            />
+            <Stack mt="6" spacing="3">
+              <Heading size="md" className="messageGrid">
+                Alojamiento
+              </Heading>
+            </Stack>
+          </CardBody>
+        </Card>
+      </button>
       <Modal
         initialFocusRef={initialRef}
         isOpen={isOpen}
         onClose={onClose}
-        size={'xl'}
+        size={'full'}
       >
         <ModalOverlay />
         <ModalContent>

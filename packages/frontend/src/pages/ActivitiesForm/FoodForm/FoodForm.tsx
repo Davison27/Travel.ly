@@ -4,8 +4,12 @@ import './FoodForm.scss'
 import {
   Box,
   Button,
+  Card,
+  CardBody,
   FormControl,
   FormLabel,
+  Heading,
+  Img,
   Input,
   InputGroup,
   InputRightElement,
@@ -14,6 +18,7 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
+  Stack,
   useDisclosure,
   VStack,
 } from '@chakra-ui/react'
@@ -70,7 +75,24 @@ function FoodForm() {
   return (
     <>
       {' '}
-      <Button onClick={onOpen}>Food</Button>
+      <button onClick={onOpen}>
+        <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+          <CardBody>
+            <Img
+              src={
+                'https://www.upmenu.com/wp-content/uploads/2022/08/fast-casual-1200x720.jpg'
+              }
+              alt="Green double couch with wooden legs"
+              borderRadius="lg"
+            />
+            <Stack mt="6" spacing="3">
+              <Heading size="md" className="messageGrid">
+                Comida
+              </Heading>
+            </Stack>
+          </CardBody>
+        </Card>
+      </button>
       <Modal
         initialFocusRef={initialRef}
         isOpen={isOpen}

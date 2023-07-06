@@ -4,8 +4,12 @@ import './EntertainmentForm.scss'
 import {
   Box,
   Button,
+  Card,
+  CardBody,
   FormControl,
   FormLabel,
+  Heading,
+  Img,
   Input,
   InputGroup,
   InputRightElement,
@@ -14,6 +18,7 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
+  Stack,
   useDisclosure,
   VStack,
 } from '@chakra-ui/react'
@@ -70,7 +75,24 @@ function EntertainmentForm() {
   return (
     <>
       {' '}
-      <Button onClick={onOpen}>Entertainment</Button>
+      <button onClick={onOpen}>
+        <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+          <CardBody>
+            <Img
+              src={
+                'https://roams.es/images/post/es_ES_telco/companias-telefonicas-movistar-guias-television-fusion-ocio-movistar.jpg'
+              }
+              alt="Green double couch with wooden legs"
+              borderRadius="lg"
+            />
+            <Stack mt="6" spacing="3">
+              <Heading size="md" className="messageGrid">
+                Ocio
+              </Heading>
+            </Stack>
+          </CardBody>
+        </Card>
+      </button>
       <Modal
         initialFocusRef={initialRef}
         isOpen={isOpen}

@@ -72,10 +72,10 @@ export default function CustomModal() {
         size={'xl'}
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent maxW="60rem">
           <ModalHeader>Elige el tipo de actividad</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody className="alignCards">
             <AccomodationForm />
             <EntertainmentForm />
             <FoodForm />

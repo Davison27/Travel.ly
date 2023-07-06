@@ -1,7 +1,12 @@
 import './Activities.scss'
 
-import { ExternalLinkIcon } from '@chakra-ui/icons'
 import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ExternalLinkIcon,
+} from '@chakra-ui/icons'
+import {
+  Box,
   Button,
   Card,
   CardBody,
@@ -12,6 +17,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 
 import CustomModal from '../../components/custom-modal/custom-modal'
 import { data } from '../../Data/Static-Data'
@@ -78,7 +84,20 @@ function Activities() {
   return (
     <div>
       <div className="titleButton">
-        <div className="ActivitiesTitle">{title}</div>
+        <div className="backButton">
+          <Link to="/travels">
+            <Button>
+              <Icon as={ChevronLeftIcon} boxSize={5} />
+              <div style={{ paddingLeft: '0.7rem' }}>Volver</div>
+            </Button>
+          </Link>
+        </div>
+        <div>
+          <div className="ActivitiesTitle">{title}</div>
+          <div className="ActivitiesDate">
+            [{startDate} - {endDate}]
+          </div>
+        </div>
         <div className="sharedButton">
           <Button>
             <div style={{ paddingRight: '0.7rem' }}>Compartir</div>
@@ -86,8 +105,18 @@ function Activities() {
           </Button>
         </div>
       </div>
-      <div className="ActivitiesDate">
-        [{startDate} - {endDate}]
+      <div className="dateButtons">
+        <div className="alignItems">
+          <Button>
+            <Icon as={ChevronLeftIcon} boxSize={5} />
+          </Button>
+          <Box color="black" p={2}>
+            {startDate}
+          </Box>
+          <Button>
+            <Icon as={ChevronRightIcon} boxSize={5} />
+          </Button>
+        </div>
       </div>
       <SimpleGrid
         className="activitiesGrid"
@@ -97,10 +126,11 @@ function Activities() {
         {travelsData}
         <CustomModal />
       </SimpleGrid>
-      <Button>
-        <div style={{ paddingRight: '0.7rem' }}>Presupuesto</div>
-        <Icon as={ExternalLinkIcon} boxSize={5} />
-      </Button>
+      <div className="budgetButton">
+        <Button colorScheme="yellow" size="lg" variant="outline">
+          Presupuesto
+        </Button>
+      </div>
     </div>
   )
 }

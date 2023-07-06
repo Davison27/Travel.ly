@@ -1,6 +1,6 @@
 .activitiesGrid {
   justify-content: center;
-  padding-top: 1rem;
+  padding-top: 3rem;
 }
 
 .buttonGrid {
@@ -16,19 +16,19 @@
   display: grid;
   height: auto;
   padding-top: 1rem;
-  padding-left: 2rem;
   font-family: 'Lobster', cursive;
-  font-size: 2.5rem;
+  font-size: 3rem;
+  justify-content: center;
 }
 
 .ActivitiesDate {
   display: grid;
   height: auto;
-  padding-left: 2rem;
   padding-top: 0.5rem;
   padding-bottom: 1rem;
   font-family: 'Lobster', cursive;
   font-size: 1.75rem;
+  justify-content: center;
 }
 
 .titleButton {
@@ -39,4 +39,25 @@
 .sharedButton {
   padding-right: 2rem;
   padding-top: 1.5rem;
+}
+
+.backButton {
+  padding-left: 2rem;
+  padding-top: 1.5rem;
+}
+
+.budgetButton {
+  display: grid;
+  justify-content: center;
+  padding-top: 4rem;
+}
+
+.dateButtons {
+  display: grid;
+  justify-content: center;
+  padding-top: 2rem;
+
+  .alignItems {
+    display: flex;
+  }
 }
