@@ -28,28 +28,29 @@ import React, { useCallback } from 'react'
 // import api from '../../../utils/api/api'
 
 interface Values {
+  category: string
   checkIn: string
   checkOut: string
   description: string
+  documentsUrl: string
   expenses: number
   id: string
   name: string
-  rooms: number
   ubication: string
 }
-
 function EntertainmentForm() {
   const { isOpen, onClose, onOpen } = useDisclosure()
 
   const initialRef = React.useRef(null)
   const initialValues: Values = {
+    category: 'Entertainment',
     checkIn: '',
     checkOut: '',
     description: '',
+    documentsUrl: '',
     expenses: 0,
     id: '',
     name: '',
-    rooms: 1,
     ubication: '',
   }
 
@@ -97,20 +98,20 @@ function EntertainmentForm() {
         initialFocusRef={initialRef}
         isOpen={isOpen}
         onClose={onClose}
-        size={'full'}
+        size={'lg'}
       >
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
           <ModalBody>
-            <div className="travelsTitle">Selecciona el entretenimiento</div>
+            <div className="travelsTitle">Ocio</div>
             <Box bg="white" p={6} h={800} rounded="md">
               <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ handleSubmit }) => (
                   <form onSubmit={handleSubmit}>
                     <VStack spacing={4} align="flex-start">
                       <FormControl isRequired>
-                        <FormLabel htmlFor="name">Accomodation name</FormLabel>
+                        <FormLabel htmlFor="name">Nombre</FormLabel>
                         <Field
                           id="name"
                           name="name"
@@ -119,8 +120,8 @@ function EntertainmentForm() {
                           variant="filled"
                         />
                       </FormControl>
-                      <FormControl>
-                        <FormLabel htmlFor="description">Description</FormLabel>
+                      <FormControl isRequired>
+                        <FormLabel htmlFor="description">Descripción</FormLabel>
                         <Field
                           id="description"
                           name="description"
@@ -129,7 +130,7 @@ function EntertainmentForm() {
                         />
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="ubication">Ubication</FormLabel>
+                        <FormLabel htmlFor="ubication">Ubicación</FormLabel>
                         <Field
                           id="ubication"
                           name="ubication"
@@ -137,9 +138,8 @@ function EntertainmentForm() {
                           variant="filled"
                         ></Field>
                       </FormControl>
-                      <FormControl></FormControl>
-                      <FormControl>
-                        <FormLabel htmlFor="checkIn">Check-in hour</FormLabel>
+                      <FormControl isRequired>
+                        <FormLabel htmlFor="checkIn">Llegada</FormLabel>
                         <Field
                           id="checkIn"
                           name="checkIn"
@@ -148,8 +148,8 @@ function EntertainmentForm() {
                           variant="filled"
                         />
                       </FormControl>
-                      <FormControl>
-                        <FormLabel htmlFor="checkOut">Check-out hour</FormLabel>
+                      <FormControl isRequired>
+                        <FormLabel htmlFor="checkOut">Salida</FormLabel>
                         <Field
                           id="checkOut"
                           name="checkOut"
@@ -159,16 +159,7 @@ function EntertainmentForm() {
                         />
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="rooms">Rooms</FormLabel>
-                        <Field
-                          id="travelers"
-                          name="travelers"
-                          as={Input}
-                          variant="filled"
-                        ></Field>
-                      </FormControl>
-                      <FormControl>
-                        <FormLabel htmlFor="expense">Expense</FormLabel>
+                        <FormLabel htmlFor="expense">Gastos</FormLabel>
                         <InputGroup>
                           <Field
                             id="expense"
@@ -184,8 +175,17 @@ function EntertainmentForm() {
                           />
                         </InputGroup>
                       </FormControl>
+                      <FormControl>
+                        <FormLabel htmlFor="documentsUrl">Documentos</FormLabel>
+                        <Field
+                          id="documentsUrl"
+                          name="documentsUrl"
+                          as={Input}
+                          variant="filled"
+                        ></Field>
+                      </FormControl>
                       <Button type="submit" colorScheme="blue" width="full">
-                        Submit
+                        Guardar
                       </Button>
                     </VStack>
                   </form>

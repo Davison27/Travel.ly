@@ -82,7 +82,7 @@ export default function CustomModal() {
             <TransportForm />
           </ModalBody>
           <ModalFooter>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={onClose}>Cancelar</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

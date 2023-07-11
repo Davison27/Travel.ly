@@ -84,7 +84,7 @@ function AccomodationForm() {
           <CardBody>
             <Img
               src={
-                'https://elviajerofeliz.com/wp-content/uploads/2022/11/tipos-de-alojamiento.jpg'
+                'https://www.cuboshomes.com/blog/wp-content/uploads/2022/06/5-razones-para-convertir-tu-propiedad-en-un-alojamiento-turistico-1280x720.jpg'
               }
               alt="Green double couch with wooden legs"
               borderRadius="lg"
@@ -101,13 +101,13 @@ function AccomodationForm() {
         initialFocusRef={initialRef}
         isOpen={isOpen}
         onClose={onClose}
-        size={'full'}
+        size={'lg'}
       >
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
           <ModalBody>
-            <div className="travelsTitle">Selecciona el hospedaje</div>
+            <div className="travelsTitle">Alojamiento</div>
             <Box bg="white" p={6} h={800} rounded="md">
               <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ handleSubmit }) => (
@@ -123,7 +123,7 @@ function AccomodationForm() {
                           variant="filled"
                         />
                       </FormControl>
-                      <FormControl>
+                      <FormControl isRequired>
                         <FormLabel htmlFor="description">Descripción</FormLabel>
                         <Field
                           id="description"
@@ -141,11 +141,8 @@ function AccomodationForm() {
                           variant="filled"
                         ></Field>
                       </FormControl>
-                      <FormControl></FormControl>
-                      <FormControl>
-                        <FormLabel htmlFor="checkIn">
-                          Hora de Check-in
-                        </FormLabel>
+                      <FormControl isRequired>
+                        <FormLabel htmlFor="checkIn">Llegada</FormLabel>
                         <Field
                           id="checkIn"
                           name="checkIn"
@@ -154,10 +151,8 @@ function AccomodationForm() {
                           variant="filled"
                         />
                       </FormControl>
-                      <FormControl>
-                        <FormLabel htmlFor="checkOut">
-                          Hora de Check-out
-                        </FormLabel>
+                      <FormControl isRequired>
+                        <FormLabel htmlFor="checkOut">Salida</FormLabel>
                         <Field
                           id="checkOut"
                           name="checkOut"
@@ -166,7 +161,7 @@ function AccomodationForm() {
                           variant="filled"
                         />
                       </FormControl>
-                      <FormControl>
+                      <FormControl isRequired>
                         <FormLabel htmlFor="rooms">Habitaciones</FormLabel>
                         <Field
                           id="travelers"
@@ -193,16 +188,16 @@ function AccomodationForm() {
                         </InputGroup>
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="documentsURL">Documentos</FormLabel>
+                        <FormLabel htmlFor="documentsUrl">Documentos</FormLabel>
                         <Field
-                          id="documentsURL"
-                          name="documentsURL"
+                          id="documentsUrl"
+                          name="documentsUrl"
                           as={Input}
                           variant="filled"
                         ></Field>
                       </FormControl>
                       <Button type="submit" colorScheme="blue" width="full">
-                        Submit
+                        Guardar
                       </Button>
                     </VStack>
                   </form>

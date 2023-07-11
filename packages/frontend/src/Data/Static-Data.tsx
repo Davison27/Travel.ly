@@ -20,7 +20,7 @@ export const data = [
         documentUrls: [''],
         endHour: '12:00',
         image:
-          'https://www.upmenu.com/wp-content/uploads/2022/08/fast-casual-1200x720.jpg',
+          'https://fotografias.larazon.es/clipping/cmsimages02/2022/04/01/BE78C788-5591-428B-A83A-FF2CDAF27C65/98.jpg?crop=4200,2363,x0,y218&width=1900&height=1069&optimize=low&format=webply',
         name: 'vamos a comer',
         price: 20,
         startHour: '11:00',
@@ -32,7 +32,7 @@ export const data = [
         documentUrls: [''],
         endHour: '13:00',
         image:
-          'https://elviajerofeliz.com/wp-content/uploads/2022/11/tipos-de-alojamiento.jpg',
+          'https://www.cuboshomes.com/blog/wp-content/uploads/2022/06/5-razones-para-convertir-tu-propiedad-en-un-alojamiento-turistico-1280x720.jpg',
         name: 'vamos a dormir',
         price: 20,
         startHour: '12:00',
