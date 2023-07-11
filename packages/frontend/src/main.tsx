@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import App from './app/app'
+import Activities from './pages/Activities/Activities'
 import Budget from './pages/Budget/Budget'
 import Travels from './pages/Travels/Travels'
 import TravelsForm from './pages/TravelsForm/TravelsForms'
@@ -33,6 +34,7 @@ root.render(
               />
             }
           />
+          <Route path="/activities" element={<Activities />} />
           <Route path="*" element={<Travels />} />
         </Route>
       </Routes>

@@ -30,7 +30,7 @@ function CustomAlertDialog(props: any) {
         variant="outline"
         onClick={onOpen}
       >
-        Delete
+        Borrar
       </Button>
 
       <AlertDialog

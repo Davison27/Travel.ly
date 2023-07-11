@@ -52,7 +52,7 @@ export default function Travels() {
       <CardFooter className="buttonGrid">
         <ButtonGroup spacing="3">
           <Button leftIcon={<ViewIcon />} variant="outline" colorScheme="blue">
-            View
+            Ver
           </Button>
           <Button
             leftIcon={<EditIcon />}
@@ -60,7 +60,7 @@ export default function Travels() {
             colorScheme="green"
             onClick={() => setConferenceToModify(travel.id)}
           >
-            Modify
+            Modificar
           </Button>
           <CustomAlertDialog id={travel.id} />
         </ButtonGroup>
@@ -88,7 +88,7 @@ export default function Travels() {
       </CardBody>
       <CardFooter className="buttonGrid">
         <ButtonGroup spacing="3">
-          <Link to="/user">
+          <Link to="/activities">
             <Button
               leftIcon={<ViewIcon />}
               variant="outline"
@@ -152,7 +152,7 @@ export default function Travels() {
             <CardFooter className="buttonGrid">
               <Stack mt="6" spacing="3">
                 <Heading size="md" className="messageGrid">
-                  Add new travel
+                  Añadir un nuevo viaje
                 </Heading>
               </Stack>
             </CardFooter>
