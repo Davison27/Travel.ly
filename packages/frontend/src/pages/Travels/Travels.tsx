@@ -94,7 +94,7 @@ export default function Travels() {
               variant="outline"
               colorScheme="blue"
             >
-              View
+              Ver
             </Button>
           </Link>
           <Button
@@ -103,7 +103,7 @@ export default function Travels() {
             colorScheme="green"
             onClick={() => setConferenceToModify(travel.id)}
           >
-            Modify
+            Modificar
           </Button>
           <CustomAlertDialog id={travel.id} />
         </ButtonGroup>
