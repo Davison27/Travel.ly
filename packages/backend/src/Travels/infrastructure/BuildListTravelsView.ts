@@ -1,5 +1,5 @@
 import { TravelRepository } from '../domain/TravelRepository'
-import { ListTravelsView } from './ListTravelView'
+import { ListTravelsView } from './ListTravelsView'
 
 export class BuildListTravelsView {
   constructor(private travelRepository: TravelRepository) {}

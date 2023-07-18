@@ -4,13 +4,15 @@ import express from 'express'
 import Router from 'express-promise-router'
 
 import { CreateTravel } from './Travels/application/CreateTravel'
+import { GetTravelById } from './Travels/application/GetTravelById'
 import { BuildListTravelsView } from './Travels/infrastructure/BuildListTravelsView'
 import { CreateTravelController } from './Travels/infrastructure/CreateTravelController'
+import { GetTravelByIdController } from './Travels/infrastructure/GetTravelByIdController'
 import { GetTravelsController } from './Travels/infrastructure/GetTravelsController'
 import { InMemoryTravelRepository } from './Travels/infrastructure/InMemoryTravelRepository'
-import { CreateUser } from './Users/application/CreateUser'
-import { CreateUserController } from './Users/infrastructure/CreateUserController'
-import { InMemoryUserRepository } from './Users/infrastructure/InMemoryUserRepository'
+// import { CreateUser } from './Users/application/CreateUser'
+// import { CreateUserController } from './Users/infrastructure/CreateUserController'
+// import { InMemoryUserRepository } from './Users/infrastructure/InMemoryUserRepository'
 
 const app = express()
 const router = Router()
@@ -45,9 +47,15 @@ router.get('/api/travels', async (req, res) =>
   getTravelsController.handle(req, res),
 )
 
-const userRepository = new InMemoryUserRepository()
-const userUseCase = new CreateUser(userRepository)
-const createUserController = new CreateUserController(userUseCase)
-router.post('/api/users', async (req, res) =>
-  createUserController.handle(req, res),
+const travelById = new GetTravelById(travelRepository)
+const getTravelById = new GetTravelByIdController(travelById)
+router.get('/api/travels/:id', async (req, res) =>
+  getTravelById.handle(req, res),
 )
+
+// const userRepository = new InMemoryUserRepository()
+// const userUseCase = new CreateUser(userRepository)
+// const createUserController = new CreateUserController(userUseCase)
+// router.post('/api/users', async (req, res) =>
+//   createUserController.handle(req, res),
+// )

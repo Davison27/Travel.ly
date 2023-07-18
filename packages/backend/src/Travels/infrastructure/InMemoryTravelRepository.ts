@@ -11,4 +11,8 @@ export class InMemoryTravelRepository implements TravelRepository {
   async findAll(): Promise<Travel[]> {
     return this.travels
   }
+
+  async findById(id: string): Promise<Travel> {
+    return this.travels.find((travel) => travel.id === id)
+  }
 }
