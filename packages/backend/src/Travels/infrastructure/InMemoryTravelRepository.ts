@@ -15,4 +15,11 @@ export class InMemoryTravelRepository implements TravelRepository {
   async findById(id: string): Promise<Travel> {
     return this.travels.find((travel) => travel.id === id)
   }
+
+  async delete(id: string): Promise<void> {
+    const index = this.travels.findIndex((travel) => travel.id === id)
+    if (index !== -1) {
+      this.travels.splice(index, 1)
+    }
+  }
 }

@@ -4,9 +4,11 @@ import express from 'express'
 import Router from 'express-promise-router'
 
 import { CreateTravel } from './Travels/application/CreateTravel'
+import { DeleteTravelById } from './Travels/application/DeleteTravelById'
 import { GetTravelById } from './Travels/application/GetTravelById'
 import { BuildListTravelsView } from './Travels/infrastructure/BuildListTravelsView'
 import { CreateTravelController } from './Travels/infrastructure/CreateTravelController'
+import { DeleteTravelByIdController } from './Travels/infrastructure/DeleteTravelByIdController'
 import { GetTravelByIdController } from './Travels/infrastructure/GetTravelByIdController'
 import { GetTravelsController } from './Travels/infrastructure/GetTravelsController'
 import { InMemoryTravelRepository } from './Travels/infrastructure/InMemoryTravelRepository'
@@ -51,6 +53,12 @@ const travelById = new GetTravelById(travelRepository)
 const getTravelById = new GetTravelByIdController(travelById)
 router.get('/api/travels/:id', async (req, res) =>
   getTravelById.handle(req, res),
+)
+
+const travelById2 = new DeleteTravelById(travelRepository)
+const deleteTravelById = new DeleteTravelByIdController(travelById2)
+router.delete('/api/travels/:id', async (req, res) =>
+  deleteTravelById.handle(req, res),
 )
 
 // const userRepository = new InMemoryUserRepository()
