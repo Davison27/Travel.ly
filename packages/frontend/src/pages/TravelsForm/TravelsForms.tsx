@@ -151,7 +151,7 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
                   ></Field>
                 </FormControl>
                 <Button type="submit" colorScheme="blue" width="full">
-                  Submit
+                  Guardar viaje
                 </Button>
               </VStack>
             </form>

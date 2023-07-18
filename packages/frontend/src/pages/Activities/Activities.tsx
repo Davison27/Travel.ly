@@ -1,12 +1,7 @@
 import './Activities.scss'
 
+import { ChevronLeftIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ExternalLinkIcon,
-} from '@chakra-ui/icons'
-import {
-  Box,
   Button,
   Card,
   CardBody,
@@ -105,19 +100,6 @@ function Activities() {
           </Button>
         </div>
       </div>
-      <div className="dateButtons">
-        <div className="alignItems">
-          <Button>
-            <Icon as={ChevronLeftIcon} boxSize={5} />
-          </Button>
-          <Box color="black" p={2}>
-            {startDate}
-          </Box>
-          <Button>
-            <Icon as={ChevronRightIcon} boxSize={5} />
-          </Button>
-        </div>
-      </div>
       <SimpleGrid
         className="activitiesGrid"
         spacing={6}
@@ -127,9 +109,11 @@ function Activities() {
         <CustomModal />
       </SimpleGrid>
       <div className="budgetButton">
-        <Button colorScheme="yellow" size="lg" variant="outline">
-          Presupuesto
-        </Button>
+        <Link to="/budget">
+          <Button colorScheme="yellow" size="lg" variant="outline">
+            Presupuesto
+          </Button>
+        </Link>
       </div>
     </div>
   )

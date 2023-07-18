@@ -3,13 +3,11 @@ import cors from 'cors'
 import express from 'express'
 import Router from 'express-promise-router'
 
-//Travels useCase imports
 import { CreateTravel } from './Travels/application/CreateTravel'
 import { BuildListTravelsView } from './Travels/infrastructure/BuildListTravelsView'
 import { CreateTravelController } from './Travels/infrastructure/CreateTravelController'
 import { GetTravelsController } from './Travels/infrastructure/GetTravelsController'
 import { InMemoryTravelRepository } from './Travels/infrastructure/InMemoryTravelRepository'
-//Users useCase imports
 import { CreateUser } from './Users/application/CreateUser'
 import { CreateUserController } from './Users/infrastructure/CreateUserController'
 import { InMemoryUserRepository } from './Users/infrastructure/InMemoryUserRepository'

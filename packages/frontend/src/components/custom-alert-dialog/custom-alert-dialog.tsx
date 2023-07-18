@@ -49,9 +49,9 @@ function CustomAlertDialog(props: any) {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button onClick={onClose}>Cancel</Button>
+              <Button onClick={onClose}>Cancelar</Button>
               <Button colorScheme="red" onClick={deleteTravel} ml={1}>
-                Delete
+                Borrar
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
