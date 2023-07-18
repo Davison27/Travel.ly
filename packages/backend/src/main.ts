@@ -49,14 +49,16 @@ router.get('/api/travels', async (req, res) =>
   getTravelsController.handle(req, res),
 )
 
-const travelById = new GetTravelById(travelRepository)
-const getTravelById = new GetTravelByIdController(travelById)
+const getTravelById = new GetTravelByIdController(
+  new GetTravelById(travelRepository),
+)
 router.get('/api/travels/:id', async (req, res) =>
   getTravelById.handle(req, res),
 )
 
-const travelById2 = new DeleteTravelById(travelRepository)
-const deleteTravelById = new DeleteTravelByIdController(travelById2)
+const deleteTravelById = new DeleteTravelByIdController(
+  new DeleteTravelById(travelRepository),
+)
 router.delete('/api/travels/:id', async (req, res) =>
   deleteTravelById.handle(req, res),
 )
