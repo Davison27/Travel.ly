@@ -30,7 +30,7 @@ interface Values {
   travelers: number
 }
 
-function TravelsForm(props?: Values) {
+function TravelsForm(props?: Values & { onFinish?: () => void }) {
   const navigate = useNavigate()
   const initialValues: Values = {
     description: props?.description || '',
@@ -61,21 +61,23 @@ function TravelsForm(props?: Values) {
         navigate('/')
       } catch (error) {
         console.log(error)
+      } finally {
+        props?.onFinish?.()
       }
     },
-    [navigate],
+    [navigate, props],
   )
 
   return (
     <>
-      <div className="travelsTitle">Your new travel</div>
+      <div className="travelsTitle">Nuevo Viaje</div>
       <Box bg="white" p={6} h={800} rounded="md">
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <VStack spacing={4} align="flex-start">
                 <FormControl isRequired>
-                  <FormLabel htmlFor="name">New Travel</FormLabel>
+                  <FormLabel htmlFor="name">Nombre</FormLabel>
                   <Field
                     id="name"
                     name="name"
@@ -85,7 +87,7 @@ function TravelsForm(props?: Values) {
                   />
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="description">Description</FormLabel>
+                  <FormLabel htmlFor="description">Descripción</FormLabel>
                   <Field
                     id="description"
                     name="description"
@@ -94,7 +96,7 @@ function TravelsForm(props?: Values) {
                   />
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="startDate">Start Date</FormLabel>
+                  <FormLabel htmlFor="startDate">Inicio</FormLabel>
                   <Field
                     id="startDate"
                     name="startDate"
@@ -104,7 +106,7 @@ function TravelsForm(props?: Values) {
                   />
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="endDate">End Date</FormLabel>
+                  <FormLabel htmlFor="endDate">Fin</FormLabel>
                   <Field
                     id="endDate"
                     name="endDate"
@@ -114,7 +116,7 @@ function TravelsForm(props?: Values) {
                   />
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="travelers">Travelers</FormLabel>
+                  <FormLabel htmlFor="travelers">Viajeros</FormLabel>
                   <Field
                     id="travelers"
                     name="travelers"
@@ -123,7 +125,7 @@ function TravelsForm(props?: Values) {
                   ></Field>
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="expense">expense</FormLabel>
+                  <FormLabel htmlFor="expense">Presupuesto</FormLabel>
                   <InputGroup>
                     <Field
                       id="expense"
@@ -140,7 +142,7 @@ function TravelsForm(props?: Values) {
                   </InputGroup>
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="imageUrl">imageUrl</FormLabel>
+                  <FormLabel htmlFor="imageUrl">Imagen</FormLabel>
                   <Field
                     id="imageUrl"
                     name="imageUrl"

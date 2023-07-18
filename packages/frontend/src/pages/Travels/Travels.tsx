@@ -126,6 +126,7 @@ export default function Travels() {
         shared={travelToModify.shared}
         startDate={travelToModify.startDate}
         travelers={travelToModify.travelers}
+        onFinish={() => setConferenceToModify(null)}
       />
     )
   }
