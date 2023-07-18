@@ -18,9 +18,6 @@ function User() {
       <div className="avatarImage">
         <Avatar size="2xl" name="Segun Adebayo" src={data.img} />
       </div>
-      <Button colorScheme="gray" size="sm">
-        Cambiar foto
-      </Button>
       <Stack spacing={4}>
         <InputGroup>
           <InputLeftAddon children="😀 Nombre" />
@@ -39,11 +36,8 @@ function User() {
           <Input type="tel" placeholder={data.email} />
         </InputGroup>
       </Stack>
-      <Button colorScheme="blue" size="sm">
-        Guardar
-      </Button>
       <Button colorScheme="red" size="sm">
-        Eliminar cuenta
+        Cerrar Sesión
       </Button>
     </div>
   ))

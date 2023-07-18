@@ -5,6 +5,6 @@ export const userData = [
     img: 'https://bit.ly/dan-abramov',
     lastName: 'Pérez',
     name: 'David',
-    ubication: 'Spain',
+    ubication: 'España',
   },
 ]

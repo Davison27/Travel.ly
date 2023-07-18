@@ -12,9 +12,12 @@ import {
 } from '@chakra-ui/react'
 import { Link, NavLink } from 'react-router-dom'
 
+import { userData } from '../../Data/user-data'
 import Logo from '../Logo/Logo'
 
 const Navbar = () => {
+  const user = userData.map((data: any) => <>{data.name}</>)
+
   return (
     <div className="navbar">
       <div className="imageWrapper">
@@ -29,7 +32,7 @@ const Navbar = () => {
         <Link to="/user">
           <Wrap className="avatarWrapper">
             <WrapItem>
-              <p className="welcomeMessage">Welcome, David!</p>
+              <p className="welcomeMessage">Bienvenido, {user}!</p>
               <Avatar
                 name="David"
                 boxSize="3.5em"
