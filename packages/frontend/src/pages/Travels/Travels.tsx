@@ -53,9 +53,15 @@ export default function Travels() {
       </CardBody>
       <CardFooter className="buttonGrid">
         <ButtonGroup spacing="3">
-          <Button leftIcon={<ViewIcon />} variant="outline" colorScheme="blue">
-            Ver
-          </Button>
+          <Link to={`/activities/${travel.id}`}>
+            <Button
+              leftIcon={<ViewIcon />}
+              variant="outline"
+              colorScheme="blue"
+            >
+              Ver
+            </Button>
+          </Link>
           <Button
             leftIcon={<EditIcon />}
             variant="outline"

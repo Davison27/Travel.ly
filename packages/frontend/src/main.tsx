@@ -34,7 +34,7 @@ root.render(
               />
             }
           />
-          <Route path="/activities" element={<Activities />} />
+          <Route path="/activities/:id" element={<Activities />} />
           <Route path="*" element={<Travels />} />
         </Route>
       </Routes>
