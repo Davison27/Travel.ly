@@ -1,6 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import './Budget.scss'
+
 import { ChevronLeftIcon } from '@chakra-ui/icons'
-import { Button, Icon, List, ListIcon, ListItem } from '@chakra-ui/react'
-import React from 'react'
+import {
+  AbsoluteCenter,
+  Box,
+  Button,
+  Card,
+  Divider,
+  Heading,
+  Icon,
+  SimpleGrid,
+  Stack,
+} from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
 import { data } from '../../Data/Static-Data'
@@ -11,30 +23,82 @@ function Budget() {
   )!
 
   const title = BudgetData?.name
-  const startDate = BudgetData?.startDate
-  const endDate = BudgetData?.endDate
+  const totalExpenses = BudgetData?.expenses?.map(
+    (spent) =>
+      spent.transportPrice +
+      spent.accomodationPrice +
+      spent.entertainmentPrice +
+      spent.foodPrice,
+  )
 
-  const travelsData = BudgetData?.expenses?.map((budget: any) => (
+  const spentData = BudgetData?.expenses?.map((spent) => (
     <>
-      <List spacing={3}>
-        <ListItem>
-          <ListIcon as={ChevronLeftIcon} color="green.500" />
-          {budget.accomodationPrice}
-        </ListItem>
-        <ListItem>
-          <ListIcon as={ChevronLeftIcon} color="green.500" />
-          {budget.entertainmentPrice}
-        </ListItem>
-        <ListItem>
-          <ListIcon as={ChevronLeftIcon} color="green.500" />
-          {budget.foodPrice}
-        </ListItem>
-        {/* You can also use custom icons from react-icons */}
-        <ListItem>
-          <ListIcon as={ChevronLeftIcon} color="green.500" />
-          {budget.transportPrice}
-        </ListItem>
-      </List>
+      <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+        <Stack mt="3" spacing="1">
+          <Heading size="md" className="messageGrid">
+            🚗 Transporte 🚗 
+          </Heading>
+          <Heading size="md" className="messageGrid">
+            {spent.transportPrice} €
+          </Heading>
+        </Stack>
+      </Card>
+      <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+        <Stack mt="3" spacing="1">
+          <Heading size="md" className="messageGrid">
+            🏠  Alojamiento 🏠 
+          </Heading>
+          <Heading size="md" className="messageGrid">
+            {spent.accomodationPrice} €
+          </Heading>
+        </Stack>
+      </Card>
+      <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+        <Stack mt="3" spacing="1">
+          <Heading size="md" className="messageGrid">
+            ⚽  Ocio ⚽ 
+          </Heading>
+          <Heading size="md" className="messageGrid">
+            {spent.entertainmentPrice} €
+          </Heading>
+        </Stack>
+      </Card>
+      <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+        <Stack mt="3" spacing="1">
+          <Heading size="md" className="messageGrid">
+            🍩  Comida 🍩 
+          </Heading>
+          <Heading size="md" className="messageGrid">
+            {spent.foodPrice} €
+          </Heading>
+        </Stack>
+      </Card>
+    </>
+  ))
+
+  const budgetData = BudgetData?.expenses?.map((budget) => (
+    <>
+      {' '}
+      <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+        <Stack mt="3" spacing="1">
+          <Heading size="md" className="messageGrid">
+            Presupuesto
+          </Heading>
+          <Heading size="md" className="messageGrid">
+            {budget.budget} €
+          </Heading>
+        </Stack>
+      </Card>
+      <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+        <Stack mt="3" spacing="1">
+          <Heading size="md" className="messageGrid">
+            Gastado
+          </Heading>
+          <Heading size="md" className="messageGrid">
+            {totalExpenses} €
+          </Heading>
+        </Stack>
+      </Card>
     </>
   ))
 
@@ -50,13 +114,38 @@ function Budget() {
           </Link>
         </div>
         <div>
-          <div className="ActivitiesTitle">{title}</div>
-          <div className="ActivitiesDate">
-            [{startDate} - {endDate}]
-          </div>
+          <div className="ActivitiesTitle">Presupuesto de "{title}"</div>
+        </div>
+        <div className="sharedButton">
+          <Button>
+            <div>Dividir entre viajeros</div>
+          </Button>
         </div>
       </div>
-      {travelsData}
+      <div className="budgetWrapper">
+        <SimpleGrid
+          className="travelsGrid"
+          spacing={4}
+          templateColumns="repeat(auto-fill, minmax(400px, 1rem))"
+        >
+          {spentData}
+        </SimpleGrid>
+      </div>
+      <Box position="relative" padding="10">
+        <Divider />
+        <AbsoluteCenter bg="white" px="10" color="black">
+          Total gastado
+        </AbsoluteCenter>
+      </Box>
+      <div className="budgetWrapper">
+        <SimpleGrid
+          className="travelsGrid"
+          spacing={4}
+          templateColumns="repeat(auto-fill, minmax(400px, 1rem))"
+        >
+          {budgetData}
+        </SimpleGrid>
+      </div>
     </div>
   )
 }

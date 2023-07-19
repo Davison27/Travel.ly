@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import { DeleteIcon } from '@chakra-ui/icons'
 import {
   AlertDialog,
@@ -13,7 +14,7 @@ import React from 'react'
 
 import api from '../../utils/api/api'
 
-function CustomAlertDialog(props: any) {
+function CustomAlertDialog(props: { id: string }) {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const cancelRef = React.useRef(null)
 

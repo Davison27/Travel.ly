@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable react/jsx-no-bind */
 import './Travels.scss'
 
 import { EditIcon, ViewIcon } from '@chakra-ui/icons'
