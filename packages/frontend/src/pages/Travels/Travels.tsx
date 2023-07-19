@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable react/jsx-no-bind */
 import './Travels.scss'
@@ -20,18 +21,17 @@ import { Link } from 'react-router-dom'
 
 import CustomAlertDialog from '../../components/custom-alert-dialog/custom-alert-dialog'
 import Emoji from '../../components/Emoji/emoji'
-import { data } from '../../Data/Static-Data'
 import api from '../../utils/api/api'
-import { Travel } from '../../utils/interfaces/Travel'
+import { Travels } from '../../utils/interfaces/Travels'
 import TravelsForm from '../TravelsForm/TravelsForms'
 
-export default function Travels() {
-  const [travels, setTravels] = useState<Travel[]>([])
-  const [conferenceToModify, setConferenceToModify] = useState(null)
+export default function TravelsView() {
+  const [travels, setTravels] = useState<Travels[]>([])
+  const [travelToModify, settravelToModify] = useState(null)
 
   useEffect(() => {
     api.getTravels().then((result) => setTravels(result.travels))
-  }, [])
+  }, [travelToModify])
 
   const travelsData = travels.map((travel: any) => (
     <Card maxW="sm" backgroundColor={'#DCDCDC'}>
@@ -53,7 +53,7 @@ export default function Travels() {
       </CardBody>
       <CardFooter className="buttonGrid">
         <ButtonGroup spacing="3">
-          <Link to={`/activities/${travel.id}`}>
+          <Link to={`/travels/${travel.id}`}>
             <Button
               leftIcon={<ViewIcon />}
               variant="outline"
@@ -66,75 +66,37 @@ export default function Travels() {
             leftIcon={<EditIcon />}
             variant="outline"
             colorScheme="green"
-            onClick={() => setConferenceToModify(travel.id)}
+            onClick={() => settravelToModify(travel.id)}
           >
             Modificar
           </Button>
-          <CustomAlertDialog id={travel.id} />
+          <CustomAlertDialog
+            id={travel.id}
+            onDelete={() => {
+              setTravels(
+                travels.filter((travelId) => travelId.id !== travel.id),
+              )
+            }}
+          />
         </ButtonGroup>
       </CardFooter>
     </Card>
   ))
 
-  const travelsStaticData = data.map((travel: any) => (
-    <Card maxW="sm" backgroundColor={'#DCDCDC'}>
-      <CardBody>
-        <Img
-          src={travel.imageUrl}
-          alt="Green double couch with wooden legs"
-          borderRadius="lg"
-        />
-        <Stack mt="6" spacing="3">
-          <Heading size="md" className="messageGrid">
-            {travel.name}
-          </Heading>
-          <Heading size="sm" className="messageGrid">
-            {travel.startDate} - {travel.endDate}
-          </Heading>
-          <Text>{travel.description}</Text>
-        </Stack>
-      </CardBody>
-      <CardFooter className="buttonGrid">
-        <ButtonGroup spacing="3">
-          <Link to="/activities">
-            <Button
-              leftIcon={<ViewIcon />}
-              variant="outline"
-              colorScheme="blue"
-            >
-              Ver
-            </Button>
-          </Link>
-          <Button
-            leftIcon={<EditIcon />}
-            variant="outline"
-            colorScheme="green"
-            onClick={() => setConferenceToModify(travel.id)}
-          >
-            Modificar
-          </Button>
-          <CustomAlertDialog id={travel.id} />
-        </ButtonGroup>
-      </CardFooter>
-    </Card>
-  ))
-
-  if (conferenceToModify) {
-    const travelToModify = travels.find(
-      (travel) => travel.id === conferenceToModify,
-    )!
+  if (travelToModify) {
+    const travel = travels.find((travelId) => travelId.id === travelToModify)!
     return (
       <TravelsForm
-        description={travelToModify.description}
-        endDate={travelToModify.endDate}
-        expenses={travelToModify.expenses}
-        id={travelToModify.id}
-        imageUrl={travelToModify.imageUrl}
-        name={travelToModify.name}
-        shared={travelToModify.shared}
-        startDate={travelToModify.startDate}
-        travelers={travelToModify.travelers}
-        onFinish={() => setConferenceToModify(null)}
+        description={travel.description}
+        endDate={travel.endDate}
+        budget={travel.budget}
+        id={travel.id}
+        imageUrl={travel.imageUrl}
+        name={travel.name}
+        shared={travel.shared}
+        startDate={travel.startDate}
+        travelers={travel.travelers}
+        onFinish={() => settravelToModify(null)}
       />
     )
   }
@@ -167,7 +129,6 @@ export default function Travels() {
             </CardFooter>
           </Card>
           {travelsData}
-          {travelsStaticData}
         </SimpleGrid>
       </div>
     </>

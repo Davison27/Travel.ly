@@ -19,9 +19,9 @@ import { v4 as uuid } from 'uuid'
 import api from '../../utils/api/api'
 
 interface Values {
+  budget: number
   description: string
   endDate: string
-  expenses: number
   id: string
   imageUrl: string
   name: string
@@ -33,9 +33,9 @@ interface Values {
 function TravelsForm(props?: Values & { onFinish?: () => void }) {
   const navigate = useNavigate()
   const initialValues: Values = {
+    budget: props?.budget || 0,
     description: props?.description || '',
     endDate: props?.endDate || '',
-    expenses: props?.expenses || 0,
     id: props?.id || uuid(),
     imageUrl: props?.imageUrl || '',
     name: props?.name || '',
@@ -50,7 +50,7 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
         await api.postTravel(
           values.description,
           values.endDate,
-          values.expenses,
+          values.budget,
           values.id,
           values.name,
           values.shared,
@@ -125,11 +125,11 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
                   ></Field>
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="expense">Presupuesto</FormLabel>
+                  <FormLabel htmlFor="budget">Presupuesto</FormLabel>
                   <InputGroup>
                     <Field
-                      id="expense"
-                      name="expense"
+                      id="budget"
+                      name="budget"
                       as={Input}
                       variant="filled"
                     />

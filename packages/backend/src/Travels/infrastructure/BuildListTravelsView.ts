@@ -8,6 +8,7 @@ export class BuildListTravelsView {
     const travels = await this.travelRepository.findAll()
     return {
       travels: travels.map((travel) => ({
+        budget: travel.expenses.budget,
         description: travel.description,
         endDate: travel.endDate,
         id: travel.id,

@@ -1,6 +1,8 @@
 /* eslint-disable no-shadow */
 import axios from 'axios'
 
+import { Travel } from '../interfaces/Travel'
+
 // import { Activities } from '../interfaces/Activities'
 // import { Expenses } from '../interfaces/Expenses'
 
@@ -18,7 +20,7 @@ const getTravels = async () => {
 
 const getTravel = async (id: string) => {
   const response = await axios.get(`${myApi}/travels/${id}`)
-  return response.data
+  return response.data as Travel
 }
 
 const postTravel = async (

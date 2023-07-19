@@ -12,46 +12,27 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 import CustomModal from '../../components/custom-modal/custom-modal'
-import { data } from '../../Data/Static-Data'
+import api from '../../utils/api/api'
 import { Travel } from '../../utils/interfaces/Travel'
 
 function Activities() {
-  // useEffect(() => {
-  //   api.getTravels().then((result) => setTravels(result.travels))
-  // }, [])
-  // const travelsData = travels.map((travel: any) => (
-  //   <>
-  //     <button>
-  //       <Image
-  //         src={travel.image}
-  //         alt="Green double couch with wooden legs"
-  //         borderRadius="xl"
-  //       />
-  //       <Stack mt="6" spacing="3">
-  //         <Heading size="md" className="messageGrid">
-  //           {travel.message}
-  //         </Heading>
-  //         <Heading size="md" className="messageGrid">
-  //           {travel.startDate} - {travel.endDate}
-  //         </Heading>
-  //       </Stack>
-  //     </button>
-  //     <div>-----</div>
-  //   </>
-  // )
+  const [travel, setTravel] = useState<Travel>()
+  const { id } = useParams<{ id: string }>()
+  useEffect(() => {
+    api.getTravel(id!).then((response) => setTravel(response))
+  }, [id])
 
-  const ActivitiesData = data.find(
-    (travel) => travel.id === '7c26e870-caa7-48db-bffb-445d8fb3e577',
-  )!
+  const title = travel?.name
+  const startDate = travel?.startDate
+  const endDate = travel?.endDate
 
-  const title = ActivitiesData?.name
-  const startDate = ActivitiesData?.startDate
-  const endDate = ActivitiesData?.endDate
+  console.log(travel)
 
-  const travelsData = ActivitiesData?.activities?.map((activity: any) => (
+  const travelData = travel?.activities.map((activity: any) => (
     <>
       <button>
         <Card maxW="sm" backgroundColor={'#DCDCDC'}>
@@ -75,6 +56,35 @@ function Activities() {
       </button>
     </>
   ))
+
+  // const ActivitiesData = data.find(
+  //   (travel) => travel.id === '7c26e870-caa7-48db-bffb-445d8fb3e577',
+  // )!
+
+  // const travelsData = ActivitiesData?.activities?.map((activity: any) => (
+  //   <>
+  //     <button>
+  //       <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+  //         <CardBody>
+  //           <Img
+  //             src={activity.image}
+  //             alt="Green double couch with wooden legs"
+  //             borderRadius="lg"
+  //           />
+  //           <Stack mt="6" spacing="3">
+  //             <Heading size="md" className="messageGrid">
+  //               {activity.category}
+  //             </Heading>
+  //             <Heading size="md" className="messageGrid">
+  //               {activity.startHour} - {activity.endHour}
+  //             </Heading>
+  //             <Text>{activity.description}</Text>
+  //           </Stack>
+  //         </CardBody>
+  //       </Card>
+  //     </button>
+  //   </>
+  // ))
 
   return (
     <div>
@@ -105,7 +115,7 @@ function Activities() {
         spacing={6}
         templateColumns="repeat(auto-fill, minmax(250px, 1rem))"
       >
-        {travelsData}
+        {travelData}
         <CustomModal />
       </SimpleGrid>
       <div className="budgetButton">
