@@ -17,6 +17,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import CustomModal from '../../components/custom-modal/custom-modal'
 import api from '../../utils/api/api'
+import { eraseT } from '../../utils/functions/globalFunctions'
 import { Travel } from '../../utils/interfaces/Travel'
 
 function Activities() {
@@ -27,8 +28,8 @@ function Activities() {
   }, [id])
 
   const title = travel?.name
-  const startDate = travel?.startDate
-  const endDate = travel?.endDate
+  let startDate = travel?.startDate
+  let endDate = travel?.endDate
 
   console.log(travel)
 
@@ -100,7 +101,7 @@ function Activities() {
         <div>
           <div className="ActivitiesTitle">{title}</div>
           <div className="ActivitiesDate">
-            [{startDate} - {endDate}]
+            [{(startDate = eraseT(startDate))} - {(endDate = eraseT(endDate))}]
           </div>
         </div>
         <div className="sharedButton">

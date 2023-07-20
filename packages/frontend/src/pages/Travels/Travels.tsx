@@ -22,6 +22,7 @@ import { Link } from 'react-router-dom'
 import CustomAlertDialog from '../../components/custom-alert-dialog/custom-alert-dialog'
 import Emoji from '../../components/Emoji/emoji'
 import api from '../../utils/api/api'
+import { eraseT } from '../../utils/functions/globalFunctions'
 import { Travels } from '../../utils/interfaces/Travels'
 import TravelsForm from '../TravelsForm/TravelsForms'
 
@@ -46,7 +47,8 @@ export default function TravelsView() {
             {travel.name}
           </Heading>
           <Heading size="sm" className="messageGrid">
-            {travel.startDate} - {travel.endDate}
+            {(travel.startDate = eraseT(travel.startDate))} -{' '}
+            {(travel.endDate = eraseT(travel.endDate))}
           </Heading>
           <Text>{travel.description}</Text>
         </Stack>
