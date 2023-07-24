@@ -1,13 +1,11 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import './Budget.scss'
 
 import { ChevronLeftIcon } from '@chakra-ui/icons'
 import {
-  AbsoluteCenter,
-  Box,
   Button,
   Card,
-  Divider,
   Heading,
   Icon,
   SimpleGrid,
@@ -29,6 +27,11 @@ function Budget() {
   const navigate = useNavigate()
 
   const title = budget?.name
+  const totalExpeses =
+    budget?.expenses.accomodatePrice! +
+    budget?.expenses.entertainmentPrice! +
+    budget?.expenses.foodPrice! +
+    budget?.expenses.transportPrice!
 
   const spentData = (
     <>
@@ -94,9 +97,7 @@ function Budget() {
             Gastado
           </Heading>
           <Heading size="md" className="messageGrid">
-            {budget?.expenses.accomodatePrice} +
-            {budget?.expenses.entertainmentPrice} + {budget?.expenses.foodPrice}
-            + +{budget?.expenses.transportPrice} €
+            {totalExpeses} €
           </Heading>
         </Stack>
       </Card>
@@ -130,12 +131,6 @@ function Budget() {
           {spentData}
         </SimpleGrid>
       </div>
-      <Box position="relative" padding="10">
-        <Divider />
-        <AbsoluteCenter bg="white" px="10" color="black">
-          Total gastado
-        </AbsoluteCenter>
-      </Box>
       <div className="budgetWrapper">
         <SimpleGrid
           className="travelsGrid"
@@ -144,6 +139,9 @@ function Budget() {
         >
           {budgetData}
         </SimpleGrid>
+        <div className="image">
+          <img alt="congrats" src="../../assets/images/congrats.jpg" />
+        </div>
       </div>
     </div>
   )
