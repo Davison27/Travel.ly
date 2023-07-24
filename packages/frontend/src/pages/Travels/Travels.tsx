@@ -47,8 +47,7 @@ export default function TravelsView() {
             {travel.name}
           </Heading>
           <Heading size="sm" className="messageGrid">
-            {(travel.startDate = eraseT(travel.startDate))} -{' '}
-            {(travel.endDate = eraseT(travel.endDate))}
+            {eraseT(travel.startDate)} - {eraseT(travel.endDate)}
           </Heading>
           <Text>{travel.description}</Text>
         </Stack>

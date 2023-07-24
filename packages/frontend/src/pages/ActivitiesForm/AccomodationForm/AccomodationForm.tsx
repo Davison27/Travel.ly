@@ -29,14 +29,13 @@ import React, { useCallback } from 'react'
 
 interface Values {
   category: string
-  checkIn: string
-  checkOut: string
   description: string
   documentsUrl: string
-  expenses: number
-  id: string
+  endDate: string
   name: string
+  price: number
   rooms: number
+  startDate: string
   ubication: string
 }
 
@@ -46,14 +45,13 @@ function AccomodationForm() {
   const initialRef = React.useRef(null)
   const initialValues: Values = {
     category: 'Accomodation',
-    checkIn: '',
-    checkOut: '',
     description: '',
     documentsUrl: '',
-    expenses: 0,
-    id: '',
+    endDate: '',
     name: '',
+    price: 0,
     rooms: 0,
+    startDate: '',
     ubication: '',
   }
 
@@ -142,20 +140,20 @@ function AccomodationForm() {
                         ></Field>
                       </FormControl>
                       <FormControl isRequired>
-                        <FormLabel htmlFor="checkIn">Llegada</FormLabel>
+                        <FormLabel htmlFor="startDate">Llegada</FormLabel>
                         <Field
-                          id="checkIn"
-                          name="checkIn"
+                          id="startDate"
+                          name="startDate"
                           as={Input}
                           type="datetime-local"
                           variant="filled"
                         />
                       </FormControl>
                       <FormControl isRequired>
-                        <FormLabel htmlFor="checkOut">Salida</FormLabel>
+                        <FormLabel htmlFor="endDate">Salida</FormLabel>
                         <Field
-                          id="checkOut"
-                          name="checkOut"
+                          id="endDate"
+                          name="endDate"
                           as={Input}
                           type="datetime-local"
                           variant="filled"
@@ -171,11 +169,11 @@ function AccomodationForm() {
                         ></Field>
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="expense">Gasto</FormLabel>
+                        <FormLabel htmlFor="price">Gasto</FormLabel>
                         <InputGroup>
                           <Field
-                            id="expense"
-                            name="expense"
+                            id="price"
+                            name="price"
                             as={Input}
                             variant="filled"
                           />

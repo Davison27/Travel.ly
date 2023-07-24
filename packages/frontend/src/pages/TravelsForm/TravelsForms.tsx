@@ -47,17 +47,39 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
   const handleSubmit = useCallback(
     async (values: Values) => {
       try {
-        await api.postTravel(
-          values.description,
-          values.endDate,
-          values.budget,
-          values.id,
-          values.name,
-          values.shared,
-          values.startDate,
-          values.travelers,
-          values.imageUrl,
-        )
+        if (props?.id) {
+          await api.updateTravel(
+            values.description,
+            [],
+            values.endDate,
+            {
+              accomodatePrice: 0,
+              budget: values.budget,
+              entertainmentPrice: 0,
+              foodPrice: 0,
+              transportPrice: 0,
+            },
+            values.id,
+            values.name,
+            values.shared,
+            values.startDate,
+            values.travelers,
+            values.imageUrl,
+          )
+          console.log(values)
+        } else {
+          await api.postTravel(
+            values.description,
+            values.endDate,
+            values.budget,
+            values.id,
+            values.name,
+            values.shared,
+            values.startDate,
+            values.travelers,
+            values.imageUrl,
+          )
+        }
         navigate('/')
       } catch (error) {
         console.log(error)

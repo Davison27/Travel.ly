@@ -23,20 +23,18 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
-import api from 'packages/frontend/src/utils/api/api'
 import React, { useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 // import api from '../../../utils/api/api'
 
 interface Values {
   category: string
-  checkIn: string
-  checkOut: string
   description: string
   documentsUrl: string
-  expenses: number
-  id: string
+  endDate: string
   name: string
+  price: number
+  startDate: string
   ubication: string
 }
 
@@ -47,24 +45,34 @@ function FoodForm() {
   console.log(id)
   const initialValues: Values = {
     category: 'Food',
-    checkIn: '',
-    checkOut: '',
     description: '',
     documentsUrl: '',
-    expenses: 0,
-    id: '',
+    endDate: '',
     name: '',
+    price: 0,
+    startDate: '',
     ubication: '',
   }
 
   const handleSubmit = useCallback(async (values: Values) => {
     console.log(values)
-    try {
-      // await api.updateTravel()
-      console.log('Travel created')
-    } catch (error) {
-      console.log(error)
-    }
+    // try {
+    //   await api.updateTravel(
+    //     values.description,
+    //     values.activities,
+    //     values.endDate,
+    //     values.expenses,
+    //     values.id,
+    //     values.name,
+    //     values.shared,
+    //     values.startDate,
+    //     values.travelers,
+    //     values.imageUrl,
+    //   )
+    //   console.log('Travel created')
+    // } catch (error) {
+    //   console.log(error)
+    // }
   }, [])
 
   return (
@@ -133,31 +141,31 @@ function FoodForm() {
                         ></Field>
                       </FormControl>
                       <FormControl isRequired>
-                        <FormLabel htmlFor="checkIn">Llegada</FormLabel>
+                        <FormLabel htmlFor="startDate">Llegada</FormLabel>
                         <Field
-                          id="checkIn"
-                          name="checkIn"
+                          id="startDate"
+                          name="startDate"
                           as={Input}
                           type="datetime-local"
                           variant="filled"
                         />
                       </FormControl>
                       <FormControl isRequired>
-                        <FormLabel htmlFor="checkOut">Salida</FormLabel>
+                        <FormLabel htmlFor="endDate">Salida</FormLabel>
                         <Field
-                          id="checkOut"
-                          name="checkOut"
+                          id="endDate"
+                          name="endDate"
                           as={Input}
                           type="datetime-local"
                           variant="filled"
                         />
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="expense">Gastos</FormLabel>
+                        <FormLabel htmlFor="price">Gastos</FormLabel>
                         <InputGroup>
                           <Field
-                            id="expense"
-                            name="expense"
+                            id="price"
+                            name="price"
                             as={Input}
                             variant="filled"
                           />

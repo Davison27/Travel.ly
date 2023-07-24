@@ -7,5 +7,8 @@ export class Activity {
     readonly price?: boolean,
     readonly documentUrls?: string,
     readonly description?: string,
+    readonly location?: string,
+    readonly rooms?: number,
+    readonly transportType?: string,
   ) {}
 }

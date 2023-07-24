@@ -31,8 +31,8 @@ function Activities() {
   const navigate = useNavigate()
 
   const title = travel?.name
-  let startDate = travel?.startDate
-  let endDate = travel?.endDate
+  const startDate = travel?.startDate
+  const endDate = travel?.endDate
   const travelId = travel?.id
 
   const travelData = travel?.activities.map((activity: any) => (
@@ -101,7 +101,7 @@ function Activities() {
         <div>
           <div className="ActivitiesTitle">{title}</div>
           <div className="ActivitiesDate">
-            [{(startDate = eraseT(startDate))} - {(endDate = eraseT(endDate))}]
+            [{eraseT(startDate)} - {eraseT(endDate)}]
           </div>
         </div>
         <div className="sharedButton">

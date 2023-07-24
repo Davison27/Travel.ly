@@ -16,6 +16,7 @@ export class BuildListTravelsView {
         name: travel.name,
         ownerId: travel.ownerId,
         startDate: travel.startDate,
+        travelers: travel.travelers,
       })),
     }
   }

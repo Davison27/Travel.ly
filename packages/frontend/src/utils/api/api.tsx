@@ -62,7 +62,7 @@ const updateTravel = async (
   travelers: number,
   imageUrl: string,
 ) => {
-  const request = await axios.put(`${myApi}/travels/`, {
+  const request = await axios.put(`${myApi}/travels/${id}`, {
     activities,
     description,
     endDate,
@@ -74,7 +74,6 @@ const updateTravel = async (
     startDate,
     travelers,
   })
-
   return request.data
 }
 
