@@ -28,7 +28,7 @@ const getTravel = async (id: string) => {
 const postTravel = async (
   description: string,
   endDate: string,
-  expenses: number,
+  budget: number,
   id: string,
   name: string,
   shared: boolean,
@@ -37,9 +37,9 @@ const postTravel = async (
   imageUrl: string,
 ) => {
   const request = await axios.post(`${myApi}/travels`, {
+    budget,
     description,
     endDate,
-    expenses,
     id,
     imageUrl,
     name,

@@ -66,7 +66,6 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
             values.travelers,
             values.imageUrl,
           )
-          console.log(values)
         } else {
           await api.postTravel(
             values.description,
