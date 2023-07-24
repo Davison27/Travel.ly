@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { GetTravelById } from '../application/GetTravelById'
+import { GetTravelById } from '../../application/GetTravelById'
 
 export class GetTravelByIdController {
   constructor(private travel: GetTravelById) {}

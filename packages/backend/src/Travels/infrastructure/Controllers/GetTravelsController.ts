@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { BuildListTravelsView } from './BuildListTravelsView'
+import { BuildListTravelsView } from '../BuildListTravelsView'
 
 export class GetTravelsController {
   constructor(private readonly buildListTravelsView: BuildListTravelsView) {}

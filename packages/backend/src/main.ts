@@ -6,11 +6,13 @@ import Router from 'express-promise-router'
 import { CreateTravel } from './Travels/application/CreateTravel'
 import { DeleteTravelById } from './Travels/application/DeleteTravelById'
 import { GetTravelById } from './Travels/application/GetTravelById'
+import { UpdateTravel } from './Travels/application/UpdateTravel'
 import { BuildListTravelsView } from './Travels/infrastructure/BuildListTravelsView'
-import { CreateTravelController } from './Travels/infrastructure/CreateTravelController'
-import { DeleteTravelByIdController } from './Travels/infrastructure/DeleteTravelByIdController'
-import { GetTravelByIdController } from './Travels/infrastructure/GetTravelByIdController'
-import { GetTravelsController } from './Travels/infrastructure/GetTravelsController'
+import { CreateTravelController } from './Travels/infrastructure/Controllers/CreateTravelController'
+import { DeleteTravelByIdController } from './Travels/infrastructure/Controllers/DeleteTravelByIdController'
+import { GetTravelByIdController } from './Travels/infrastructure/Controllers/GetTravelByIdController'
+import { GetTravelsController } from './Travels/infrastructure/Controllers/GetTravelsController'
+import { UpdateTravelController } from './Travels/infrastructure/Controllers/UpdateTravel'
 import { InMemoryTravelRepository } from './Travels/infrastructure/InMemoryTravelRepository'
 // import { CreateUser } from './Users/application/CreateUser'
 // import { CreateUserController } from './Users/infrastructure/CreateUserController'
@@ -61,6 +63,13 @@ const deleteTravelById = new DeleteTravelByIdController(
 )
 router.delete('/api/travels/:id', async (req, res) =>
   deleteTravelById.handle(req, res),
+)
+
+const updateTravel = new UpdateTravelController(
+  new UpdateTravel(travelRepository),
+)
+router.put('/api/travels/:id', async (req, res) =>
+  updateTravel.handle(req, res),
 )
 
 // const userRepository = new InMemoryUserRepository()

@@ -17,7 +17,6 @@ root.render(
         <Route path="/" element={<App />}>
           <Route index element={<TravelsView />} />
           <Route path="/user" element={<User />} />
-          <Route path="/budget" element={<Budget />} />
           <Route
             path="/new-travel"
             element={
@@ -34,7 +33,8 @@ root.render(
               />
             }
           />
-          <Route path="/travels/:id" element={<Activities />} />
+          <Route path="/travel/:id" element={<Activities />} />
+          <Route path="/budget/:id" element={<Budget />} />
           <Route path="*" element={<TravelsView />} />
         </Route>
       </Routes>

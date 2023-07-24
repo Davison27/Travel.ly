@@ -1,6 +1,8 @@
 /* eslint-disable no-shadow */
 import axios from 'axios'
 
+import { Activities } from '../interfaces/Activities'
+import { Expenses } from '../interfaces/Expenses'
 import { Travel } from '../interfaces/Travel'
 
 // import { Activities } from '../interfaces/Activities'
@@ -24,7 +26,6 @@ const getTravel = async (id: string) => {
 }
 
 const postTravel = async (
-  // Activities: Activities,
   description: string,
   endDate: string,
   expenses: number,
@@ -36,7 +37,6 @@ const postTravel = async (
   imageUrl: string,
 ) => {
   const request = await axios.post(`${myApi}/travels`, {
-    // Activities,
     description,
     endDate,
     expenses,
@@ -50,8 +50,31 @@ const postTravel = async (
   return request.data
 }
 
-const updateTravel = async (id: string) => {
-  const request = await axios.put(`${myApi}/travels/${id}`)
+const updateTravel = async (
+  description: string,
+  activities: Activities[],
+  endDate: string,
+  expenses: Expenses,
+  id: string,
+  name: string,
+  shared: boolean,
+  startDate: string,
+  travelers: number,
+  imageUrl: string,
+) => {
+  const request = await axios.put(`${myApi}/travels/`, {
+    activities,
+    description,
+    endDate,
+    expenses,
+    id,
+    imageUrl,
+    name,
+    shared,
+    startDate,
+    travelers,
+  })
+
   return request.data
 }
 

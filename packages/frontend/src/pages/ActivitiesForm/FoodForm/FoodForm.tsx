@@ -23,8 +23,9 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
+import api from 'packages/frontend/src/utils/api/api'
 import React, { useCallback } from 'react'
-
+import { useParams } from 'react-router-dom'
 // import api from '../../../utils/api/api'
 
 interface Values {
@@ -41,8 +42,9 @@ interface Values {
 
 function FoodForm() {
   const { isOpen, onClose, onOpen } = useDisclosure()
-
   const initialRef = React.useRef(null)
+  const { id } = useParams<{ id: string }>()
+  console.log(id)
   const initialValues: Values = {
     category: 'Food',
     checkIn: '',
@@ -58,16 +60,7 @@ function FoodForm() {
   const handleSubmit = useCallback(async (values: Values) => {
     console.log(values)
     try {
-      // await api.postTravel(
-      //   values.description,
-      //   values.checkOut,
-      //   values.expenses,
-      //   values.id,
-      //   values.name,
-      //   values.ubication,
-      //   values.checkIn,
-      //   values.rooms,
-      // )
+      // await api.updateTravel()
       console.log('Travel created')
     } catch (error) {
       console.log(error)

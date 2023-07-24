@@ -55,7 +55,7 @@ export default function TravelsView() {
       </CardBody>
       <CardFooter className="buttonGrid">
         <ButtonGroup spacing="3">
-          <Link to={`/travels/${travel.id}`}>
+          <Link to={`/travel/${travel.id}`}>
             <Button
               leftIcon={<ViewIcon />}
               variant="outline"

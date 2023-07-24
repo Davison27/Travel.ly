@@ -13,25 +13,24 @@ import {
   SimpleGrid,
   Stack,
 } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import { data } from '../../Data/Static-Data'
+import api from '../../utils/api/api'
+import { Travel } from '../../utils/interfaces/Travel'
 
 function Budget() {
-  const BudgetData = data.find(
-    (travel) => travel.id === '7c26e870-caa7-48db-bffb-445d8fb3e577',
-  )!
+  const [budget, setBudget] = useState<Travel>()
+  const { id } = useParams<{ id: string }>()
+  useEffect(() => {
+    api.getTravel(id!).then((response) => setBudget(response))
+  }, [id])
 
-  const title = BudgetData?.name
-  const totalExpenses = BudgetData?.expenses?.map(
-    (spent) =>
-      spent.transportPrice +
-      spent.accomodationPrice +
-      spent.entertainmentPrice +
-      spent.foodPrice,
-  )
+  const navigate = useNavigate()
 
-  const spentData = BudgetData?.expenses?.map((spent) => (
+  const title = budget?.name
+
+  const spentData = (
     <>
       <Card maxW="sm" backgroundColor={'#DCDCDC'}>
         <Stack mt="3" spacing="1">
@@ -39,7 +38,7 @@ function Budget() {
             🚗 Transporte 🚗 
           </Heading>
           <Heading size="md" className="messageGrid">
-            {spent.transportPrice} €
+            {budget?.expenses.transportPrice} €
           </Heading>
         </Stack>
       </Card>
@@ -49,7 +48,7 @@ function Budget() {
             🏠  Alojamiento 🏠 
           </Heading>
           <Heading size="md" className="messageGrid">
-            {spent.accomodationPrice} €
+            {budget?.expenses.accomodatePrice} €
           </Heading>
         </Stack>
       </Card>
@@ -59,7 +58,7 @@ function Budget() {
             ⚽  Ocio ⚽ 
           </Heading>
           <Heading size="md" className="messageGrid">
-            {spent.entertainmentPrice} €
+            {budget?.expenses.entertainmentPrice} €
           </Heading>
         </Stack>
       </Card>
@@ -69,14 +68,14 @@ function Budget() {
             🍩  Comida 🍩 
           </Heading>
           <Heading size="md" className="messageGrid">
-            {spent.foodPrice} €
+            {budget?.expenses.foodPrice} €
           </Heading>
         </Stack>
       </Card>
     </>
-  ))
+  )
 
-  const budgetData = BudgetData?.expenses?.map((budget) => (
+  const budgetData = (
     <>
       {' '}
       <Card maxW="sm" backgroundColor={'#DCDCDC'}>
@@ -85,7 +84,7 @@ function Budget() {
             Presupuesto
           </Heading>
           <Heading size="md" className="messageGrid">
-            {budget.budget} €
+            {budget?.expenses.budget} €
           </Heading>
         </Stack>
       </Card>
@@ -95,23 +94,23 @@ function Budget() {
             Gastado
           </Heading>
           <Heading size="md" className="messageGrid">
-            {totalExpenses} €
+            {budget?.expenses.accomodatePrice} +
+            {budget?.expenses.entertainmentPrice} + {budget?.expenses.foodPrice}
+            + +{budget?.expenses.transportPrice} €
           </Heading>
         </Stack>
       </Card>
     </>
-  ))
+  )
 
   return (
     <div>
       <div className="titleButton">
         <div className="backButton">
-          <Link to="/activities">
-            <Button>
-              <Icon as={ChevronLeftIcon} boxSize={5} />
-              <div style={{ paddingLeft: '0.7rem' }}>Volver</div>
-            </Button>
-          </Link>
+          <Button onClick={() => navigate(-1)}>
+            <Icon as={ChevronLeftIcon} boxSize={5} />
+            <div style={{ paddingLeft: '0.7rem' }}>Volver</div>
+          </Button>
         </div>
         <div>
           <div className="ActivitiesTitle">Presupuesto de "{title}"</div>

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
-import { CreateTravel } from '../application/CreateTravel'
-import { CreateTravelDTO } from '../application/CreateTravelDTO'
+import { CreateTravel } from '../../application/CreateTravel'
+import { CreateTravelDTO } from '../../application/CreateTravelDTO'
 
 export class CreateTravelController {
   constructor(private useCase: CreateTravel) {}

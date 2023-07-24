@@ -22,4 +22,11 @@ export class InMemoryTravelRepository implements TravelRepository {
       this.travels.splice(index, 1)
     }
   }
+
+  async update(travel: Travel): Promise<void> {
+    const index = this.travels.findIndex((t) => t.id === travel.id)
+    if (index !== -1) {
+      this.travels[index] = travel
+    }
+  }
 }

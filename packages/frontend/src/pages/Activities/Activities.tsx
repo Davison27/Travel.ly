@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import './Activities.scss'
 
 import { ChevronLeftIcon, ExternalLinkIcon } from '@chakra-ui/icons'
@@ -13,7 +15,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import CustomModal from '../../components/custom-modal/custom-modal'
 import api from '../../utils/api/api'
@@ -26,12 +28,12 @@ function Activities() {
   useEffect(() => {
     api.getTravel(id!).then((response) => setTravel(response))
   }, [id])
+  const navigate = useNavigate()
 
   const title = travel?.name
   let startDate = travel?.startDate
   let endDate = travel?.endDate
-
-  console.log(travel)
+  const travelId = travel?.id
 
   const travelData = travel?.activities.map((activity: any) => (
     <>
@@ -91,12 +93,10 @@ function Activities() {
     <div>
       <div className="titleButton">
         <div className="backButton">
-          <Link to="/travels">
-            <Button>
-              <Icon as={ChevronLeftIcon} boxSize={5} />
-              <div style={{ paddingLeft: '0.7rem' }}>Volver</div>
-            </Button>
-          </Link>
+          <Button onClick={() => navigate(-1)}>
+            <Icon as={ChevronLeftIcon} boxSize={5} />
+            <div style={{ paddingLeft: '0.7rem' }}>Volver</div>
+          </Button>
         </div>
         <div>
           <div className="ActivitiesTitle">{title}</div>
@@ -120,7 +120,7 @@ function Activities() {
         <CustomModal />
       </SimpleGrid>
       <div className="budgetButton">
-        <Link to="/budget">
+        <Link to={`/budget/${travelId}`}>
           <Button colorScheme="yellow" size="lg" variant="outline">
             Presupuesto
           </Button>
