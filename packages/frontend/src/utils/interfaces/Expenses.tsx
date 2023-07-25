@@ -1,5 +1,5 @@
 export interface Expenses {
-  accomodatePrice: number
+  accomodationPrice: number
   budget: number
   entertainmentPrice: number
   foodPrice: number

@@ -41,7 +41,7 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
     name: props?.name || '',
     shared: props?.shared || false,
     startDate: props?.startDate || '',
-    travelers: props?.travelers || 0,
+    travelers: props?.travelers || 1,
   }
 
   const handleSubmit = useCallback(
@@ -53,7 +53,7 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
             [],
             values.endDate,
             {
-              accomodatePrice: 0,
+              accomodationPrice: 0,
               budget: values.budget,
               entertainmentPrice: 0,
               foodPrice: 0,

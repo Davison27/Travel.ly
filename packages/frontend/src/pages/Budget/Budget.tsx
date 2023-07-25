@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import './Budget.scss'
@@ -8,6 +9,11 @@ import {
   Card,
   Heading,
   Icon,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
   SimpleGrid,
   Stack,
 } from '@chakra-ui/react'
@@ -23,15 +29,44 @@ function Budget() {
   useEffect(() => {
     api.getTravel(id!).then((response) => setBudget(response))
   }, [id])
-
   const navigate = useNavigate()
 
   const title = budget?.name
   const totalExpeses =
-    budget?.expenses.accomodatePrice! +
+    budget?.expenses.accomodationPrice! +
     budget?.expenses.entertainmentPrice! +
     budget?.expenses.foodPrice! +
     budget?.expenses.transportPrice!
+  const travelerSpent = totalExpeses / budget?.travelers!
+  const spent = () => {
+    if (totalExpeses > budget?.expenses.budget!) {
+      return (
+        <div className="messageGrid">
+          <div>Has gastado {totalExpeses} €</div>
+          <div>
+            Has superado el presupuesto en{' '}
+            {totalExpeses - budget?.expenses.budget!} € 😥
+          </div>
+        </div>
+      )
+    }
+    if (totalExpeses < budget?.expenses.budget!) {
+      return (
+        <div className="messageGrid">
+          <div>Has gastado {totalExpeses} €</div>
+          <div>Te quedan {budget?.expenses.budget! - totalExpeses} € 😄</div>
+        </div>
+      )
+    }
+    if (totalExpeses === budget?.expenses.budget!) {
+      return (
+        <div className="messageGrid">
+          <div>Has gastado {totalExpeses} €</div>
+          <div>Has gastado todo el presupuesto 😅</div>
+        </div>
+      )
+    }
+  }
 
   const spentData = (
     <>
@@ -51,7 +86,7 @@ function Budget() {
             🏠  Alojamiento 🏠 
           </Heading>
           <Heading size="md" className="messageGrid">
-            {budget?.expenses.accomodatePrice} €
+            {budget?.expenses.accomodationPrice} €
           </Heading>
         </Stack>
       </Card>
@@ -101,6 +136,13 @@ function Budget() {
           </Heading>
         </Stack>
       </Card>
+      <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+        <Stack mt="3" spacing="1">
+          <Heading size="md" className="messageGrid">
+            {spent()}
+          </Heading>
+        </Stack>
+      </Card>
     </>
   )
 
@@ -114,12 +156,21 @@ function Budget() {
           </Button>
         </div>
         <div>
-          <div className="ActivitiesTitle">Presupuesto de "{title}"</div>
+          <div className="ActivitiesTitle">Contabilidad de "{title}"</div>
         </div>
         <div className="sharedButton">
-          <Button>
-            <div>Dividir entre viajeros</div>
-          </Button>
+          <Popover placement="left-start">
+            <PopoverTrigger>
+              <Button>Dividir entre {budget?.travelers} viajeros</Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverArrow />
+              <PopoverBody>
+                <div>Cada viajero deberá de pagar un total de:</div>
+                <div className="popover">{travelerSpent} €</div>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
       <div className="budgetWrapper">
