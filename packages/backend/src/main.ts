@@ -2,6 +2,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import express from 'express'
 import Router from 'express-promise-router'
+import mongoose from 'mongoose'
 
 import { CreateTravel } from './Travels/application/CreateTravel'
 import { DeleteTravelById } from './Travels/application/DeleteTravelById'
@@ -13,7 +14,7 @@ import { DeleteTravelByIdController } from './Travels/infrastructure/Controllers
 import { GetTravelByIdController } from './Travels/infrastructure/Controllers/GetTravelByIdController'
 import { GetTravelsController } from './Travels/infrastructure/Controllers/GetTravelsController'
 import { UpdateTravelController } from './Travels/infrastructure/Controllers/UpdateTravel'
-import { InMemoryTravelRepository } from './Travels/infrastructure/InMemoryTravelRepository'
+import { MongoTravelRepository } from './Travels/infrastructure/repository/MongoTravelRepository'
 // import { CreateUser } from './Users/application/CreateUser'
 // import { CreateUserController } from './Users/infrastructure/CreateUserController'
 // import { InMemoryUserRepository } from './Users/infrastructure/InMemoryUserRepository'
@@ -27,17 +28,11 @@ app.use(router)
 
 const port = process.env.PORT || 3333
 
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`)
-})
-
-server.on('error', console.error)
-
 router.get('/api/status', async (req, res) => {
   res.status(200).send({ message: 'OK' })
 })
 
-const travelRepository = new InMemoryTravelRepository()
+const travelRepository = new MongoTravelRepository()
 
 const travelUseCase = new CreateTravel(travelRepository)
 const createTravelController = new CreateTravelController(travelUseCase)
@@ -71,6 +66,20 @@ const updateTravel = new UpdateTravelController(
 router.put('/api/travels/:id', async (req, res) =>
   updateTravel.handle(req, res),
 )
+
+const start = async () => {
+  try {
+    await mongoose.connect('mongodb://localhost:27017')
+    app.listen(port, () => {
+      console.log(`Listening at http://localhost:${port}/api`)
+    })
+  } catch (error) {
+    console.error(error)
+    process.exit(1)
+  }
+}
+
+start()
 
 // const userRepository = new InMemoryUserRepository()
 // const userUseCase = new CreateUser(userRepository)

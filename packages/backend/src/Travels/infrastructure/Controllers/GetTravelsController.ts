@@ -9,7 +9,7 @@ export class GetTravelsController {
       const listTravelsView = await this.buildListTravelsView.run()
       res.status(200).send(listTravelsView)
     } catch (error) {
-      res.status(500).send({ message: 'Error' })
+      return res.status(500).send({ message: 'Error' })
     }
   }
 }

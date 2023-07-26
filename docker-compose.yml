@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  # React App
+  web:
+    extends:
+      file: docker-compose.base.yml
+      service: nx-app-base
+    command: npx nx run frontend:serve
+    ports:
+      - 4201:4200
+
+volumes:
+  node-modules: null

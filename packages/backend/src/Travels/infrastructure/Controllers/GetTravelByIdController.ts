@@ -9,7 +9,7 @@ export class GetTravelByIdController {
       const travel = await this.travel.run(req.params.id)
       res.status(200).send(travel)
     } catch (error) {
-      res.status(500).send({ message: 'Error' })
+      return res.status(500).send({ message: 'Error' })
     }
   }
 }

@@ -9,7 +9,7 @@ export class DeleteTravelByIdController {
       await this.travel.run(req.params.id)
       res.status(201).send({ message: 'Deleted' })
     } catch (error) {
-      res.status(500).send({ message: 'Error' })
+      return res.status(500).send({ message: 'Error' })
     }
   }
 }

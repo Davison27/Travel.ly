@@ -11,7 +11,7 @@ export class CreateTravelController {
     try {
       await this.useCase.run(travelData)
     } catch (error) {
-      res.status(500).send({ message: 'Error' })
+      return res.status(500).send({ message: 'Error' })
     }
     res.status(201).send({ message: 'Created' })
   }

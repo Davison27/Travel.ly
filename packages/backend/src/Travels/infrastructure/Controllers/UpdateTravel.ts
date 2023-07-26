@@ -9,7 +9,7 @@ export class UpdateTravelController {
     try {
       await this.useCase.run(req.params.id, req.body)
     } catch (error) {
-      res.status(500).send({ message: 'Error' })
+      return res.status(500).send({ message: 'Error' })
     }
     res.status(201).send({ message: 'Updated' })
   }
