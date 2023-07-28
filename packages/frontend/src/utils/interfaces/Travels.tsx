@@ -1,12 +1,12 @@
 export interface Travels {
   budget: number
   description: string
-  endDate: string
-  id: string
+  endDate: Date
+  id: any
   image: string
   imageUrl: string
   name: string
   shared: boolean
-  startDate: string
+  startDate: Date
   travelers: number
 }

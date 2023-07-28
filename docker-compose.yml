@@ -1,14 +1,14 @@
 version: '3'
 
 services:
-  # React App
-  web:
+  travel.ly:
     extends:
       file: docker-compose.base.yml
       service: nx-app-base
-    command: npx nx run frontend:serve
+    command: npx nx run frontend:serve && npx nx run backend:serve
     ports:
-      - 4201:4200
+      - 4200:4200
+      - 3333:3333
 
 volumes:
   node-modules: null

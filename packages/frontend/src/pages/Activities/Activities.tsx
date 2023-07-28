@@ -20,10 +20,11 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import CustomModal from '../../components/custom-modal/custom-modal'
 import api from '../../utils/api/api'
-import { eraseT } from '../../utils/functions/globalFunctions'
+import { formatDate } from '../../utils/functions/globalFunctions'
+import { Activities } from '../../utils/interfaces/Activities'
 import { Travel } from '../../utils/interfaces/Travel'
 
-function Activities() {
+function ActivitiesPage() {
   const [travel, setTravel] = useState<Travel>()
   const { id } = useParams<{ id: string }>()
   useEffect(() => {
@@ -36,7 +37,7 @@ function Activities() {
   const endDate = travel?.endDate
   const travelId = travel?.id
 
-  const travelData = travel?.activities.map((activity: any) => (
+  const travelData = travel?.activities.map((activity: Activities) => (
     <>
       <button>
         <Card maxW="sm" backgroundColor={'#DCDCDC'}>
@@ -51,7 +52,8 @@ function Activities() {
                 {activity.category}
               </Heading>
               <Heading size="md" className="messageGrid">
-                {activity.startHour} - {activity.endHour}
+                {activity.startDate.toDateString()} -{' '}
+                {activity.endDate.toDateString()}
               </Heading>
               <Text>{activity.description}</Text>
             </Stack>
@@ -102,7 +104,7 @@ function Activities() {
         <div>
           <div className="ActivitiesTitle">{title}</div>
           <div className="ActivitiesDate">
-            [{eraseT(startDate)} - {eraseT(endDate)}]
+            [{formatDate(startDate)} - {formatDate(endDate)}]
           </div>
         </div>
         <div className="sharedButton">
@@ -131,4 +133,4 @@ function Activities() {
   )
 }
 
-export default Activities
+export default ActivitiesPage

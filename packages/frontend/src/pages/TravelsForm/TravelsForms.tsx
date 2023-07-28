@@ -21,12 +21,12 @@ import api from '../../utils/api/api'
 interface Values {
   budget: number
   description: string
-  endDate: string
+  endDate: Date
   id: string
   imageUrl: string
   name: string
   shared: boolean
-  startDate: string
+  startDate: Date
   travelers: number
 }
 
@@ -35,12 +35,12 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
   const initialValues: Values = {
     budget: props?.budget || 0,
     description: props?.description || '',
-    endDate: props?.endDate || '',
+    endDate: props?.endDate || new Date(),
     id: props?.id || uuid(),
     imageUrl: props?.imageUrl || '',
     name: props?.name || '',
     shared: props?.shared || false,
-    startDate: props?.startDate || '',
+    startDate: props?.startDate || new Date(),
     travelers: props?.travelers || 1,
   }
 

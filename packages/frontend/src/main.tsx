@@ -22,13 +22,13 @@ root.render(
             element={
               <TravelsForm
                 description={''}
-                endDate={''}
+                endDate={new Date()}
                 budget={0}
                 id={''}
                 imageUrl={''}
                 name={''}
                 shared={false}
-                startDate={''}
+                startDate={new Date()}
                 travelers={0}
               />
             }

@@ -27,12 +27,12 @@ const getTravel = async (id: string) => {
 
 const postTravel = async (
   description: string,
-  endDate: string,
+  endDate: Date,
   budget: number,
   id: string,
   name: string,
   shared: boolean,
-  startDate: string,
+  startDate: Date,
   travelers: number,
   imageUrl: string,
 ) => {
@@ -53,12 +53,12 @@ const postTravel = async (
 const updateTravel = async (
   description: string,
   activities: Activities[],
-  endDate: string,
+  endDate: Date,
   expenses: Expenses,
   id: string,
   name: string,
   shared: boolean,
-  startDate: string,
+  startDate: Date,
   travelers: number,
   imageUrl: string,
 ) => {
