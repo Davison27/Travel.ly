@@ -7,6 +7,12 @@ export class CreateTravel {
   constructor(private travelRepository: TravelRepository) {}
 
   async run(createTravelDTO: CreateTravelDTO): Promise<void> {
+    if (createTravelDTO.imageUrl === '') {
+      createTravelDTO.imageUrl =
+        'https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/07/31141652/vacaciones-1920-1.jpg'
+    } else {
+      createTravelDTO.imageUrl
+    }
     const travel = new Travel(
       createTravelDTO.id,
       createTravelDTO.name,

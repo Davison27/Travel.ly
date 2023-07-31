@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-shadow */
 import './TravelsForms.scss'
 
@@ -17,6 +18,7 @@ import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import api from '../../utils/api/api'
+import travelFormValidation from '../../utils/functions/formsValidations'
 
 interface Values {
   budget: number
@@ -93,8 +95,12 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
     <>
       <div className="travelsTitle">Nuevo Viaje</div>
       <Box bg="white" p={6} h={800} rounded="md">
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-          {({ handleSubmit }) => (
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validationSchema={travelFormValidation}
+        >
+          {({ errors, handleSubmit, touched }) => (
             <form onSubmit={handleSubmit}>
               <VStack spacing={4} align="flex-start">
                 <FormControl isRequired>
@@ -106,6 +112,9 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
                     as={Input}
                     variant="filled"
                   />
+                  {errors.name && touched.name ? (
+                    <div style={{ color: 'red' }}>{errors.name}</div>
+                  ) : null}
                 </FormControl>
                 <FormControl>
                   <FormLabel htmlFor="description">Descripción</FormLabel>
@@ -115,8 +124,11 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
                     as={Input}
                     variant="filled"
                   />
+                  {errors.description && touched.description ? (
+                    <div style={{ color: 'red' }}>{errors.description}</div>
+                  ) : null}
                 </FormControl>
-                <FormControl>
+                <FormControl isRequired>
                   <FormLabel htmlFor="startDate">Inicio</FormLabel>
                   <Field
                     id="startDate"
@@ -126,7 +138,7 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
                     variant="filled"
                   />
                 </FormControl>
-                <FormControl>
+                <FormControl isRequired>
                   <FormLabel htmlFor="endDate">Fin</FormLabel>
                   <Field
                     id="endDate"
@@ -143,7 +155,10 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
                     name="travelers"
                     as={Input}
                     variant="filled"
-                  ></Field>
+                  />
+                  {errors.travelers && touched.travelers ? (
+                    <div style={{ color: 'red' }}>{errors.travelers}</div>
+                  ) : null}
                 </FormControl>
                 <FormControl>
                   <FormLabel htmlFor="budget">Presupuesto</FormLabel>
@@ -154,6 +169,9 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
                       as={Input}
                       variant="filled"
                     />
+                    {errors.budget && touched.budget ? (
+                      <div style={{ color: 'red' }}>{errors.budget}</div>
+                    ) : null}
                     <InputRightElement
                       pointerEvents="none"
                       color="gray.300"

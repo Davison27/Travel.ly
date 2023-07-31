@@ -31,10 +31,10 @@ interface Values {
   category: string
   description: string
   documentsUrl: string
-  endDate: string
+  endDate: Date
   name: string
   price: number
-  startDate: string
+  startDate: Date
   transportType: string
   ubication: string
 }
@@ -47,10 +47,10 @@ function TransportForm() {
     category: 'Transport',
     description: '',
     documentsUrl: '',
-    endDate: '',
+    endDate: new Date(),
     name: '',
     price: 0,
-    startDate: '',
+    startDate: new Date(),
     transportType: '',
     ubication: '',
   }

@@ -32,39 +32,49 @@ function Budget() {
   const navigate = useNavigate()
 
   const title = budget?.name
-  const totalExpeses =
+  const totalExpenses =
     budget?.expenses.accomodationPrice! +
     budget?.expenses.entertainmentPrice! +
     budget?.expenses.foodPrice! +
     budget?.expenses.transportPrice!
-  const travelerSpent = totalExpeses / budget?.travelers!
+  const travelerSpent = totalExpenses / budget?.travelers!
+
   const spent = () => {
-    if (totalExpeses > budget?.expenses.budget!) {
+    if (budget?.expenses.budget === 0) {
       return (
         <div className="messageGrid">
-          <div>Has gastado {totalExpeses} €</div>
-          <div>
-            Has superado el presupuesto en{' '}
-            {totalExpeses - budget?.expenses.budget!} € 😥
+          <div>Has gastado {totalExpenses} €</div>
+          <div>No has puesto un presupuesto 😅</div>
+        </div>
+      )
+    } else {
+      if (totalExpenses > budget?.expenses.budget!) {
+        return (
+          <div className="messageGrid">
+            <div>Has gastado {totalExpenses} €</div>
+            <div>
+              Has superado el presupuesto en{' '}
+              {totalExpenses - budget?.expenses.budget!} € 😥
+            </div>
           </div>
-        </div>
-      )
-    }
-    if (totalExpeses < budget?.expenses.budget!) {
-      return (
-        <div className="messageGrid">
-          <div>Has gastado {totalExpeses} €</div>
-          <div>Te quedan {budget?.expenses.budget! - totalExpeses} € 😄</div>
-        </div>
-      )
-    }
-    if (totalExpeses === budget?.expenses.budget!) {
-      return (
-        <div className="messageGrid">
-          <div>Has gastado {totalExpeses} €</div>
-          <div>Has gastado todo el presupuesto 😅</div>
-        </div>
-      )
+        )
+      }
+      if (totalExpenses < budget?.expenses.budget!) {
+        return (
+          <div className="messageGrid">
+            <div>Has gastado {totalExpenses} €</div>
+            <div>Te quedan {budget?.expenses.budget! - totalExpenses} € 😄</div>
+          </div>
+        )
+      }
+      if (totalExpenses === budget?.expenses.budget!) {
+        return (
+          <div className="messageGrid">
+            <div>Has gastado {totalExpenses} €</div>
+            <div>Has gastado todo el presupuesto 😅</div>
+          </div>
+        )
+      }
     }
   }
 
@@ -132,7 +142,7 @@ function Budget() {
             Gastado
           </Heading>
           <Heading size="md" className="messageGrid">
-            {totalExpeses} €
+            {totalExpenses} €
           </Heading>
         </Stack>
       </Card>

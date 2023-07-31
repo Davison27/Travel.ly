@@ -31,10 +31,10 @@ interface Values {
   category: string
   description: string
   documentsUrl: string
-  endDate: string
+  endDate: Date
   name: string
   price: number
-  startDate: string
+  startDate: Date
   ubication: string
 }
 function EntertainmentForm() {
@@ -45,10 +45,10 @@ function EntertainmentForm() {
     category: 'Entertainment',
     description: '',
     documentsUrl: '',
-    endDate: '',
+    endDate: new Date(),
     name: '',
     price: 0,
-    startDate: '',
+    startDate: new Date(),
     ubication: '',
   }
 

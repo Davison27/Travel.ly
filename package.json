@@ -5,7 +5,9 @@
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint --fix .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "backend": "npx nx run backend:serve",
+    "frontend": "npx nx run frontend:serve"
   },
   "private": true,
   "dependencies": {
@@ -25,7 +27,8 @@
     "react-dom": "18.2.0",
     "react-router-dom": "6.8.1",
     "tslib": "2.3.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@babel/preset-react": "7.14.5",

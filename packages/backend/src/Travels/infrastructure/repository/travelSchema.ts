@@ -63,7 +63,7 @@ const travelSchema = new mongoose.Schema(
     id: {
       type: String,
     },
-    image: {
+    imageUrl: {
       type: String,
     },
     name: {
