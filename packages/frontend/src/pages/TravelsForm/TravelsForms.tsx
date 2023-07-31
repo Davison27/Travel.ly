@@ -2,11 +2,13 @@
 /* eslint-disable no-shadow */
 import './TravelsForms.scss'
 
+import { ChevronLeftIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
   FormControl,
   FormLabel,
+  Icon,
   Input,
   InputGroup,
   InputRightElement,
@@ -93,7 +95,13 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
 
   return (
     <>
-      <div className="travelsTitle">Nuevo Viaje</div>
+      <div className="backButton2">
+        <Button onClick={() => navigate(-1)}>
+          <Icon as={ChevronLeftIcon} boxSize={5} />
+          <div style={{ paddingLeft: '0.7rem' }}>Volver</div>
+        </Button>
+      </div>
+      <div className="newTravelsTitle">Nuevo Viaje</div>
       <Box bg="white" p={6} h={800} rounded="md">
         <Formik
           initialValues={initialValues}
