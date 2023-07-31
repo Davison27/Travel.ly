@@ -7,7 +7,8 @@ export class CreateUser {
 
   async run(createUserDTO: CreateUserDTO): Promise<void> {
     const user = new User(
-      createUserDTO.id,
+      createUserDTO.ownerId,
+      createUserDTO.email,
       createUserDTO.fullName,
       createUserDTO.profileImageUrl,
     )

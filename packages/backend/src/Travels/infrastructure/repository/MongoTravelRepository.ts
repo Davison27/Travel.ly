@@ -76,4 +76,19 @@ export class MongoTravelRepository implements TravelRepository {
         console.log(error)
       })
   }
+
+  async patchUpdate(id: string, patch: string): Promise<void> {
+    const travel = await this.model.find({}).then((travels: Travel[]) => {
+      return travels.find((findTravel) => findTravel.id === id)
+    })
+
+    return await this.model
+      .findOneAndUpdate(travel, { $set: { patch: patch } })
+      .then(() => {
+        console.log('Travel updated')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 }

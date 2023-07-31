@@ -63,35 +63,6 @@ function ActivitiesPage() {
     </>
   ))
 
-  // const ActivitiesData = data.find(
-  //   (travel) => travel.id === '7c26e870-caa7-48db-bffb-445d8fb3e577',
-  // )!
-
-  // const travelsData = ActivitiesData?.activities?.map((activity: any) => (
-  //   <>
-  //     <button>
-  //       <Card maxW="sm" backgroundColor={'#DCDCDC'}>
-  //         <CardBody>
-  //           <Img
-  //             src={activity.image}
-  //             alt="Green double couch with wooden legs"
-  //             borderRadius="lg"
-  //           />
-  //           <Stack mt="6" spacing="3">
-  //             <Heading size="md" className="messageGrid">
-  //               {activity.category}
-  //             </Heading>
-  //             <Heading size="md" className="messageGrid">
-  //               {activity.startHour} - {activity.endHour}
-  //             </Heading>
-  //             <Text>{activity.description}</Text>
-  //           </Stack>
-  //         </CardBody>
-  //       </Card>
-  //     </button>
-  //   </>
-  // ))
-
   return (
     <div>
       <div className="titleButton">

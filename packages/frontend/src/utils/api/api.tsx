@@ -77,6 +77,13 @@ const updateTravel = async (
   return request.data
 }
 
+const updateTravelActivities = async (activities: Activities[], id: string) => {
+  const request = await axios.patch(`${myApi}/travels/${id}`, {
+    activities,
+  })
+  return request.data
+}
+
 const deleteTravel = async (id: string) => {
   const request = await axios.delete(`${myApi}/travels/${id}`)
   return request.data
@@ -89,4 +96,5 @@ export default {
   getTravels,
   postTravel,
   updateTravel,
+  updateTravelActivities,
 }

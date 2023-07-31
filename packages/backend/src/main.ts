@@ -1,7 +1,9 @@
 import bodyParser from 'body-parser'
 import cors from 'cors'
+import dotenv from 'dotenv'
 import express from 'express'
 import Router from 'express-promise-router'
+import { GoogleAuth } from 'google-auth-library'
 import mongoose from 'mongoose'
 
 import { CreateTravel } from './Travels/application/CreateTravel'
@@ -15,10 +17,8 @@ import { GetTravelByIdController } from './Travels/infrastructure/Controllers/Ge
 import { GetTravelsController } from './Travels/infrastructure/Controllers/GetTravelsController'
 import { UpdateTravelController } from './Travels/infrastructure/Controllers/UpdateTravel'
 import { MongoTravelRepository } from './Travels/infrastructure/repository/MongoTravelRepository'
-// import { CreateUser } from './Users/application/CreateUser'
-// import { CreateUserController } from './Users/infrastructure/CreateUserController'
-// import { InMemoryUserRepository } from './Users/infrastructure/InMemoryUserRepository'
 
+dotenv.config()
 const app = express()
 const router = Router()
 
@@ -67,9 +67,16 @@ router.put('/api/travels/:id', async (req, res) =>
   updateTravel.handle(req, res),
 )
 
+const updateActivity = new UpdateTravelController(
+  new UpdateTravel(travelRepository),
+)
+router.patch('/api/travels/:id', async (req, res) =>
+  updateActivity.handle(req, res),
+)
+
 const start = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017')
+    await mongoose.connect(`${process.env.MONGO_URI}`)
     app.listen(port, () => {
       console.log(`Listening at http://localhost:${port}/api`)
     })

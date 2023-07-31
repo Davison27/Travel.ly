@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-shadow */
 import './TravelsForms.scss'

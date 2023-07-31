@@ -1,5 +1,6 @@
 export interface CreateUserDTO {
+  email: string
   fullName: string
-  id: string
+  ownerId: string
   profileImageUrl: string
 }

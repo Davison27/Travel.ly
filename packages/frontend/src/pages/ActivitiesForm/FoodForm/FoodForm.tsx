@@ -25,54 +25,69 @@ import {
 import { Field, Formik } from 'formik'
 import React, { useCallback } from 'react'
 import { useParams } from 'react-router-dom'
-// import api from '../../../utils/api/api'
 
 interface Values {
   category: string
   description: string
   documentsUrl: string
   endDate: Date
+  location: string
   name: string
   price: number
   startDate: Date
-  ubication: string
 }
 
 function FoodForm() {
   const { isOpen, onClose, onOpen } = useDisclosure()
-  const initialRef = React.useRef(null)
   const { id } = useParams<{ id: string }>()
-  console.log(id)
+  const initialRef = React.useRef(null)
   const initialValues: Values = {
     category: 'Food',
     description: '',
     documentsUrl: '',
     endDate: new Date(),
+    location: '',
     name: '',
     price: 0,
     startDate: new Date(),
-    ubication: '',
   }
 
   const handleSubmit = useCallback(async (values: Values) => {
     console.log(values)
-    // try {
-    //   await api.updateTravel(
-    //     values.description,
-    //     values.activities,
-    //     values.endDate,
-    //     values.expenses,
-    //     values.id,
-    //     values.name,
-    //     values.shared,
-    //     values.startDate,
-    //     values.travelers,
-    //     values.imageUrl,
-    //   )
-    //   console.log('Travel created')
-    // } catch (error) {
-    //   console.log(error)
-    // }
+    //   try {
+    //     travel? (
+    //       async (travel: Travel) =>
+    //         await api.updateTravel(
+    //           travel.description,
+    //           [
+    //             values.category,
+    //             values.description,
+    //             values.documentsUrl,
+    //             values.endDate,
+    //             values.location,
+    //             values.name,
+    //             values.price,
+    //             values.startDate,
+    //           ],
+    //           travel.endDate,
+    //           {
+    //             accomodationPrice: travel.expenses.accomodationPrice,
+    //             budget: travel.expenses.budget,
+    //             entertainmentPrice: travel.expenses.entertainmentPrice,
+    //             foodPrice: travel.expenses.foodPrice + values.price,
+    //             transportPrice: travel.expenses.transportPrice,
+    //           },
+    //           travel.id,
+    //           travel.name,
+    //           travel.shared,
+    //           travel.startDate,
+    //           travel.travelers,
+    //           travel.imageUrl,
+    //         ),
+    //     )
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
   }, [])
 
   return (
@@ -132,10 +147,10 @@ function FoodForm() {
                         />
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="ubication">Ubicación</FormLabel>
+                        <FormLabel htmlFor="location">Ubicación</FormLabel>
                         <Field
-                          id="ubication"
-                          name="ubication"
+                          id="location"
+                          name="location"
                           as={Input}
                           variant="filled"
                         ></Field>
