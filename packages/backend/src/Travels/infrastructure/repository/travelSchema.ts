@@ -17,6 +17,9 @@ const travelSchema = new mongoose.Schema(
         endDate: {
           type: Date,
         },
+        id: {
+          type: String,
+        },
         location: {
           type: String,
         },

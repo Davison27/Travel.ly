@@ -12,6 +12,9 @@ export class MongoUserRepository implements UserRepository {
   constructor() {
     this.model = require('./userSchema')
   }
+  findByEmail(email: string): Promise<User> {
+    throw new Error('Method not implemented.')
+  }
 
   async save(user: User): Promise<void> {
     throw new Error()
@@ -30,13 +33,13 @@ export class MongoUserRepository implements UserRepository {
   //}
 
   googleClient = new OAuth2Client({
-    clientId: `${process.env.GOOGLE_CLIENT_ID}`,
+    clientId: `${process.env.CLIENT_ID}`,
   })
 
   authenticateUser = async (req: Request, res: Response) => {
     const { token } = req.body
     const ticket = await this.googleClient.verifyIdToken({
-      audience: `${process.env.GOOGLE_CLIENT_ID}`,
+      audience: `${process.env.CLIENT_ID}`,
       idToken: token,
     })
     const payload = ticket.getPayload()

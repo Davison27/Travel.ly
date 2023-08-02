@@ -1,30 +1,21 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable react/jsx-no-bind */
 import './SignIn.scss'
 
-import { gapi } from 'gapi-script'
-import { useEffect } from 'react'
-import GoogleLogin, { GoogleLogout } from 'react-google-login'
+import { GoogleLogin, googleLogout } from '@react-oauth/google'
+// eslint-disable-next-line camelcase
+import jwt_decode from 'jwt-decode'
 
 import Logo from '../../components/Logo/Logo'
 
 function SignIn() {
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId: 'id',
-        scope: '',
-      })
-    }
-
-    gapi.load('client:auth2', start)
-  }, [])
-
-  const onSuccess = (res: any) => {
-    console.log('[Login Success] currentUser:', res.profileObj)
+  const response = (credentialResponse: any) => {
+    const decoded = jwt_decode(credentialResponse.credential!)
+    console.log(decoded)
   }
 
-  const onFailure = (res: any) => {
-    console.log('[Login failed] res:', res)
+  const error = () => {
+    console.log('Login Failed, please try again with another account')
   }
 
   return (
@@ -32,18 +23,8 @@ function SignIn() {
       <div className="logo">
         <Logo />
         <div id="description">Organice your travels and have fun</div>
-      </div>
-      <div className="oauth">
-        <div style={{ fontSize: '2rem', paddingBottom: '0.7rem' }}>Sign In</div>
-        <GoogleLogin
-          clientId={'id'}
-          buttonText="Acceder"
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-          cookiePolicy={'single_host_origin'}
-          isSignedIn={true}
-        />
-        <GoogleLogout clientId={'id'} buttonText="Logout" />
+        <GoogleLogin onSuccess={response} onError={error} />
+        <button onClick={() => googleLogout()}>LogOut</button>
       </div>
     </>
   )
