@@ -14,13 +14,21 @@ import React from 'react'
 
 import api from '../../utils/api/api'
 
-function CustomAlertDialog(props: { id: string; onDelete: () => void }) {
+function CustomAlertDialog(props: {
+  activityId?: string
+  onDelete?: () => void
+  travelId: string
+}) {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const cancelRef = React.useRef(null)
 
   const deleteTravel = () => {
-    api.deleteTravel(props.id)
-    props.onDelete()
+    if (props.activityId && !props.onDelete) {
+      api.deleteActivity(props.activityId, props.travelId)
+    } else {
+      api.deleteTravel(props.travelId)
+      props.onDelete!()
+    }
     onClose()
   }
 

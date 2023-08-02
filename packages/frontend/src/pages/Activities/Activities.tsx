@@ -18,9 +18,10 @@ import {
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
+import CustomAlertDialog from '../../components/custom-alert-dialog/custom-alert-dialog'
 import CustomModal from '../../components/custom-modal/custom-modal'
 import api from '../../utils/api/api'
-import { formatDate } from '../../utils/functions/globalFunctions'
+import { formatDate, formatHour } from '../../utils/functions/globalFunctions'
 import { Activities } from '../../utils/interfaces/Activities'
 import { Travel } from '../../utils/interfaces/Travel'
 
@@ -43,7 +44,7 @@ function ActivitiesPage() {
         <Card maxW="sm" backgroundColor={'#DCDCDC'}>
           <CardBody>
             <Img
-              src={activity.image}
+              src={activity.imageUrl}
               alt="Green double couch with wooden legs"
               borderRadius="lg"
             />
@@ -52,10 +53,14 @@ function ActivitiesPage() {
                 {activity.category}
               </Heading>
               <Heading size="md" className="messageGrid">
-                {activity.startDate.toDateString()} -{' '}
-                {activity.endDate.toDateString()}
+                {formatHour(activity.startDate)} -{' '}
+                {formatHour(activity.endDate)}
               </Heading>
               <Text>{activity.description}</Text>
+              <CustomAlertDialog
+                activityId={activity.activityId}
+                travelId={activity.travelId}
+              />
             </Stack>
           </CardBody>
         </Card>

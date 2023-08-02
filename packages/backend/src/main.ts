@@ -3,14 +3,15 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import express from 'express'
 import Router from 'express-promise-router'
-import { GoogleAuth } from 'google-auth-library'
 import mongoose from 'mongoose'
 
+import { CreateActivity } from './Travels/application/CreateActivity'
 import { CreateTravel } from './Travels/application/CreateTravel'
 import { DeleteTravelById } from './Travels/application/DeleteTravelById'
 import { GetTravelById } from './Travels/application/GetTravelById'
 import { UpdateTravel } from './Travels/application/UpdateTravel'
 import { BuildListTravelsView } from './Travels/infrastructure/BuildListTravelsView'
+import { CreateActivityController } from './Travels/infrastructure/Controllers/CreateActivityController '
 import { CreateTravelController } from './Travels/infrastructure/Controllers/CreateTravelController'
 import { DeleteTravelByIdController } from './Travels/infrastructure/Controllers/DeleteTravelByIdController'
 import { GetTravelByIdController } from './Travels/infrastructure/Controllers/GetTravelByIdController'
@@ -67,11 +68,18 @@ router.put('/api/travels/:id', async (req, res) =>
   updateTravel.handle(req, res),
 )
 
-const updateActivity = new UpdateTravelController(
-  new UpdateTravel(travelRepository),
+const saveActivity = new CreateActivityController(
+  new CreateActivity(travelRepository),
 )
-router.patch('/api/travels/:id', async (req, res) =>
-  updateActivity.handle(req, res),
+router.post('/api/travels/:id/activities', async (req, res) =>
+  saveActivity.handle(req, res),
+)
+
+const deleteActivity = new DeleteTravelByIdController(
+  new DeleteTravelById(travelRepository),
+)
+router.delete('/api/travels/:id/activities/:activityId', async (req, res) =>
+  deleteActivity.handle(req, res),
 )
 
 const start = async () => {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-shadow */
 import './FoodForm.scss'
 
@@ -23,14 +24,17 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
+import api from 'packages/frontend/src/utils/api/api'
 import React, { useCallback } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
 
 interface Values {
   category: string
   description: string
   documentsUrl: string
   endDate: Date
+  id: string
   location: string
   name: string
   price: number
@@ -40,55 +44,46 @@ interface Values {
 function FoodForm() {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
   const initialRef = React.useRef(null)
   const initialValues: Values = {
     category: 'Food',
     description: '',
     documentsUrl: '',
     endDate: new Date(),
+    id: uuid(),
     location: '',
     name: '',
     price: 0,
     startDate: new Date(),
   }
 
-  const handleSubmit = useCallback(async (values: Values) => {
-    console.log(values)
-    //   try {
-    //     travel? (
-    //       async (travel: Travel) =>
-    //         await api.updateTravel(
-    //           travel.description,
-    //           [
-    //             values.category,
-    //             values.description,
-    //             values.documentsUrl,
-    //             values.endDate,
-    //             values.location,
-    //             values.name,
-    //             values.price,
-    //             values.startDate,
-    //           ],
-    //           travel.endDate,
-    //           {
-    //             accomodationPrice: travel.expenses.accomodationPrice,
-    //             budget: travel.expenses.budget,
-    //             entertainmentPrice: travel.expenses.entertainmentPrice,
-    //             foodPrice: travel.expenses.foodPrice + values.price,
-    //             transportPrice: travel.expenses.transportPrice,
-    //           },
-    //           travel.id,
-    //           travel.name,
-    //           travel.shared,
-    //           travel.startDate,
-    //           travel.travelers,
-    //           travel.imageUrl,
-    //         ),
-    //     )
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-  }, [])
+  const handleSubmit = useCallback(
+    async (values: Values) => {
+      console.log(values)
+      try {
+        await api.postActivity(
+          values.id,
+          values.category,
+          values.endDate,
+          values.name,
+          values.startDate,
+          'https://fotografias.larazon.es/clipping/cmsimages02/2022/04/01/BE78C788-5591-428B-A83A-FF2CDAF27C65/98.jpg?crop=4200,2363,x0,y218&width=1900&height=1069&optimize=low&format=webply',
+          id!,
+          values.description,
+          values.documentsUrl,
+          values.location,
+          values.price,
+          0,
+          '',
+        )
+        navigate(`/travel/${id}`)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    [id, navigate],
+  )
 
   return (
     <>

@@ -5,6 +5,9 @@ const travelSchema = new mongoose.Schema(
   {
     activities: [
       {
+        activityId: {
+          type: String,
+        },
         category: {
           type: String,
         },
@@ -17,7 +20,7 @@ const travelSchema = new mongoose.Schema(
         endDate: {
           type: Date,
         },
-        id: {
+        imageUrl: {
           type: String,
         },
         location: {
@@ -36,6 +39,9 @@ const travelSchema = new mongoose.Schema(
           type: Date,
         },
         transportType: {
+          type: String,
+        },
+        travelId: {
           type: String,
         },
       },

@@ -77,24 +77,58 @@ const updateTravel = async (
   return request.data
 }
 
-const updateTravelActivities = async (activities: Activities[], id: string) => {
-  const request = await axios.patch(`${myApi}/travels/${id}`, {
-    activities,
-  })
-  return request.data
-}
-
 const deleteTravel = async (id: string) => {
   const request = await axios.delete(`${myApi}/travels/${id}`)
   return request.data
 }
 
+const postActivity = async (
+  activityId: string,
+  category: string,
+  endDate: Date,
+  name: string,
+  startDate: Date,
+  imageUrl: string,
+  travelId: string,
+  description?: string,
+  documentUrls?: string,
+  location?: string,
+  price?: number,
+  rooms?: number,
+  transportType?: string,
+) => {
+  const request = await axios.post(`${myApi}/travels/${travelId}/activities`, {
+    activityId,
+    category,
+    description,
+    documentUrls,
+    endDate,
+    imageUrl,
+    location,
+    name,
+    price,
+    rooms,
+    startDate,
+    transportType,
+    travelId,
+  })
+  return request.data
+}
+
+const deleteActivity = async (activityId: string, travelId: string) => {
+  const request = await axios.delete(
+    `${myApi}/travels/${travelId}/activities/${activityId}`,
+  )
+  return request.data
+}
+
 export default {
+  deleteActivity,
   deleteTravel,
   getStatus,
   getTravel,
   getTravels,
+  postActivity,
   postTravel,
   updateTravel,
-  updateTravelActivities,
 }

@@ -84,7 +84,7 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
             values.imageUrl,
           )
         }
-        navigate('/')
+        navigate('/travel')
       } catch (error) {
         console.log(error)
       } finally {
@@ -107,7 +107,7 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
-          validationSchema={travelFormValidation}
+          // validationSchema={travelFormValidation}
         >
           {({ errors, handleSubmit, touched }) => (
             <form onSubmit={handleSubmit}>

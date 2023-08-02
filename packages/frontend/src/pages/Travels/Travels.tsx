@@ -72,7 +72,7 @@ export default function TravelsView() {
             Modificar
           </Button>
           <CustomAlertDialog
-            id={travel.id}
+            travelId={travel.id}
             onDelete={() => {
               setTravels(
                 travels.filter((travelId) => travelId.id !== travel.id),
