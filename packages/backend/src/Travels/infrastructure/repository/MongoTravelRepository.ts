@@ -13,21 +13,6 @@ export class MongoTravelRepository implements TravelRepository {
     this.model = require('./travelSchema')
   }
 
-  async delete(id: string): Promise<void> {
-    const travel = await this.model.find({}).then((travels: Travel[]) => {
-      return travels.find((findTravel) => findTravel.id === id)
-    })
-
-    return await this.model
-      .findOneAndRemove(travel)
-      .then(() => {
-        console.log('Travel deleted')
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
-
   async findAll(): Promise<Travel[]> {
     const travels = await this.model.find({})
     if (!travels) {
@@ -39,9 +24,6 @@ export class MongoTravelRepository implements TravelRepository {
   async findById(id: string): Promise<Travel> {
     const travel = await this.model.find({ id: id })
     const travelFound = travel[0]
-    if (!travelFound) {
-      return null
-    }
     return travelMapper.travelDocumentToTravel(travelFound)
   }
 
@@ -49,34 +31,19 @@ export class MongoTravelRepository implements TravelRepository {
     await new this.model(travel).save()
   }
 
-  async update(travel: Travel): Promise<void> {
-    const oldTravel = await this.model.find({}).then((travels: Travel[]) => {
-      return travels.find((findTravel) => findTravel === travel)
-    })
-
-    return await this.model
-      .findOneAndReplace(oldTravel, travel)
-      .then(() => {
-        console.log('Travel updated')
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+  async delete(travel: Travel): Promise<void> {
+    return await this.model.findOneAndRemove(travel)
   }
 
-  async saveActivity(activity: Activity): Promise<void> {
-    const travel = await this.model.findOne({ id: activity.travelId })
-    if (!travel) {
-      throw new Error('Travel not found')
-    }
+  async update(oldTravel: Travel, newTravel: Travel): Promise<void> {
+    return await this.model.findOneAndReplace(oldTravel, newTravel)
+  }
 
-    travel.activities.push(activity)
-
+  async saveActivity(activity: Activity, travel: Travel): Promise<void> {
     await this.model.findOneAndUpdate(
       { id: activity.travelId },
       { $set: { activities: travel.activities } },
     )
-    console.log('Activity saved')
   }
 
   async deleteActivity(travelId: string, activityId: string): Promise<void> {

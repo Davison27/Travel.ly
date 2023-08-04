@@ -2,12 +2,12 @@ import { Activity } from './Activity'
 import { Travel } from './Travel'
 
 export interface TravelRepository {
-  delete(travelId: string): Promise<void>
+  delete(travel: Travel): Promise<void>
   deleteActivity(travelId: string, activityId: string): Promise<void>
   findAll(): Promise<Travel[]>
   findById(id: string): Promise<Travel>
   save(travel: Travel): Promise<void>
-  saveActivity(activity: Activity): Promise<void>
-  update(travel: Travel): Promise<void>
+  saveActivity(activity: Activity, travel: Travel): Promise<void>
+  update(oldTravel: Travel, newTravel: Travel): Promise<void>
   updateActivity(activity: Activity): Promise<void>
 }

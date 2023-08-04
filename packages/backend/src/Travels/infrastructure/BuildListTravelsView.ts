@@ -6,6 +6,10 @@ export class BuildListTravelsView {
 
   async run(): Promise<ListTravelsView> {
     const travels = await this.travelRepository.findAll()
+    if (!travels) {
+      console.log('No travels found')
+      return null
+    }
     return {
       travels: travels.map((travel) => ({
         budget: travel.expenses.budget,

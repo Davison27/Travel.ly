@@ -6,7 +6,8 @@ export class GetTravelById {
   async run(travelId: string) {
     const travel = await this.travelRepository.findById(travelId)
     if (!travel) {
-      throw new Error('Travel not found')
+      console.log('No travel found')
+      return null
     }
     return travel
   }

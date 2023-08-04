@@ -5,6 +5,7 @@ export class UpdateTravel {
   constructor(private travelRepository: TravelRepository) {}
 
   async run(travelId: string, travel: Travel): Promise<void> {
+    const oldTravel = await this.travelRepository.findById(travelId)
     const updateTravel = new Travel(
       travelId,
       travel.name,
@@ -19,6 +20,6 @@ export class UpdateTravel {
       travel.imageUrl,
     )
 
-    await this.travelRepository.update(updateTravel)
+    await this.travelRepository.update(oldTravel, updateTravel)
   }
 }

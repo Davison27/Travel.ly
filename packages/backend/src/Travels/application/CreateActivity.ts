@@ -6,6 +6,9 @@ export class CreateActivity {
   constructor(private travelRepository: TravelRepository) {}
 
   async run(createActivityDTO: CreateActivityDTO): Promise<void> {
+    const travel = await this.travelRepository.findById(
+      createActivityDTO.travelId,
+    )
     const activity = new Activity(
       createActivityDTO.travelId,
       createActivityDTO.activityId,
@@ -21,6 +24,7 @@ export class CreateActivity {
       createActivityDTO.rooms,
       createActivityDTO.transportType,
     )
-    await this.travelRepository.saveActivity(activity)
+    travel.activities.push(activity)
+    await this.travelRepository.saveActivity(activity, travel)
   }
 }
