@@ -10,6 +10,7 @@ import { CreateTravel } from './Travels/application/CreateTravel'
 import { DeleteActivityById } from './Travels/application/DeleteActivityById '
 import { DeleteTravelById } from './Travels/application/DeleteTravelById'
 import { GetTravelById } from './Travels/application/GetTravelById'
+import { UpdateActivityById } from './Travels/application/UpdateActivityById'
 import { UpdateTravel } from './Travels/application/UpdateTravel'
 import { BuildListTravelsView } from './Travels/infrastructure/BuildListTravelsView'
 import { CreateActivityController } from './Travels/infrastructure/Controllers/CreateActivityController '
@@ -18,6 +19,7 @@ import { DeleteActivityByIdController } from './Travels/infrastructure/Controlle
 import { DeleteTravelByIdController } from './Travels/infrastructure/Controllers/DeleteTravelByIdController'
 import { GetTravelByIdController } from './Travels/infrastructure/Controllers/GetTravelByIdController'
 import { GetTravelsController } from './Travels/infrastructure/Controllers/GetTravelsController'
+import { UpdateActivityByIdController } from './Travels/infrastructure/Controllers/UpdateActivityByIdController'
 import { UpdateTravelController } from './Travels/infrastructure/Controllers/UpdateTravel'
 import { MongoTravelRepository } from './Travels/infrastructure/repository/MongoTravelRepository'
 
@@ -85,6 +87,13 @@ router.delete(
   async (req, res) => deleteActivity.handle(req, res),
 )
 
+const updateActivity = new UpdateActivityByIdController(
+  new UpdateActivityById(travelRepository),
+)
+router.put('/api/travels/:travelId/activities/:activityId', async (req, res) =>
+  updateActivity.handle(req, res),
+)
+
 const start = async () => {
   try {
     await mongoose.connect(`${process.env.MONGO_URI}`)
@@ -98,10 +107,3 @@ const start = async () => {
 }
 
 start()
-
-// const userRepository = new InMemoryUserRepository()
-// const userUseCase = new CreateUser(userRepository)
-// const createUserController = new CreateUserController(userUseCase)
-// router.post('/api/users', async (req, res) =>
-//   createUserController.handle(req, res),
-// )

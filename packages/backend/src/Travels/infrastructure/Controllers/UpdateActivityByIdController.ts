@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 
 import { UpdateActivityById } from '../../application/UpdateActivityById'
 
-export class DeleteActivityByIdController {
+export class UpdateActivityByIdController {
   constructor(private activity: UpdateActivityById) {}
   async handle(req: Request, res: Response) {
     try {
