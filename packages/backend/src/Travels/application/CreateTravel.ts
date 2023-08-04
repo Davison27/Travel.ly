@@ -1,7 +1,7 @@
 import { Expenses } from '../domain/Expenses'
 import { Travel } from '../domain/Travel'
 import { TravelRepository } from '../domain/TravelRepository'
-import { CreateTravelDTO } from './CreateTravelDTO'
+import { CreateTravelDTO } from './DTOs/UseCasesDTO/CreateTravelDTO'
 
 export class CreateTravel {
   constructor(private travelRepository: TravelRepository) {}

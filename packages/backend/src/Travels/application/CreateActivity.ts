@@ -1,6 +1,6 @@
 import { Activity } from '../domain/Activity'
 import { TravelRepository } from '../domain/TravelRepository'
-import { CreateActivityDTO } from './CreateActivityDTO '
+import { CreateActivityDTO } from './DTOs/UseCasesDTO/CreateActivityDTO '
 
 export class CreateActivity {
   constructor(private travelRepository: TravelRepository) {}

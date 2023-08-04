@@ -1,13 +1,13 @@
 import { Document } from 'mongoose'
 
-import { Activity } from '../domain/Activity'
-import { Expenses } from '../domain/Expenses'
+import { ActivityDTO } from '../application/DTOs/ActivityDTO'
+import { ExpensesDTO } from '../application/DTOs/ExpensesDTO'
 
 export interface travelModel extends Document {
-  activities: Activity[]
+  activities: ActivityDTO[]
   description?: string
   endDate: Date
-  expenses: Expenses
+  expenses: ExpensesDTO
   id: string
   imageUrl?: string
   name: string

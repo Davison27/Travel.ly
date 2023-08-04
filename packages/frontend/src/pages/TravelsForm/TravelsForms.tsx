@@ -21,7 +21,7 @@ import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import api from '../../utils/api/api'
-import travelFormValidation from '../../utils/functions/formsValidations'
+import { travelFormValidation } from '../../utils/functions/formsValidations'
 
 interface Values {
   budget: number
@@ -107,7 +107,7 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
-          // validationSchema={travelFormValidation}
+          validationSchema={travelFormValidation}
         >
           {({ errors, handleSubmit, touched }) => (
             <form onSubmit={handleSubmit}>
@@ -156,6 +156,11 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
                     type="datetime-local"
                     variant="filled"
                   />
+                  {errors.endDate && touched.endDate ? (
+                    <div style={{ color: 'red' }}>
+                      {'La fecha de fin no puede ser anterior a la de inicio'}
+                    </div>
+                  ) : null}
                 </FormControl>
                 <FormControl>
                   <FormLabel htmlFor="travelers">Viajeros</FormLabel>

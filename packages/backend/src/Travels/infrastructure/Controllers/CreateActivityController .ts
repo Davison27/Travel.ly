@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 import { CreateActivity } from '../../application/CreateActivity'
-import { CreateActivityDTO } from '../../application/CreateActivityDTO '
+import { CreateActivityDTO } from '../../application/DTOs/UseCasesDTO/CreateActivityDTO '
 
 export class CreateActivityController {
   constructor(private useCase: CreateActivity) {}

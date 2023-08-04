@@ -10,4 +10,10 @@ const formatHour = (newDate: Date | undefined) => {
   return formattedDate
 }
 
-export { formatDate, formatHour }
+const formatZ = (newDate: Date | undefined) => {
+  const date = new Date(newDate!)
+  const formattedDate = date.toISOString().replace('Z', '')
+  return formattedDate
+}
+
+export { formatDate, formatHour, formatZ }
