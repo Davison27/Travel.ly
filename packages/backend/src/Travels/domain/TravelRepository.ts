@@ -3,11 +3,11 @@ import { Travel } from './Travel'
 
 export interface TravelRepository {
   delete(travel: Travel): Promise<void>
-  deleteActivity(travelId: string, activityId: string): Promise<void>
+  deleteActivity(activity: Activity[], travelId: string): Promise<void>
   findAll(): Promise<Travel[]>
   findById(id: string): Promise<Travel>
   save(travel: Travel): Promise<void>
   saveActivity(activity: Activity, travel: Travel): Promise<void>
   update(oldTravel: Travel, newTravel: Travel): Promise<void>
-  updateActivity(activity: Activity): Promise<void>
+  updateActivity(activities: Activity[], travelId: string): Promise<void>
 }

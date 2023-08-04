@@ -7,12 +7,14 @@ import mongoose from 'mongoose'
 
 import { CreateActivity } from './Travels/application/CreateActivity'
 import { CreateTravel } from './Travels/application/CreateTravel'
+import { DeleteActivityById } from './Travels/application/DeleteActivityById '
 import { DeleteTravelById } from './Travels/application/DeleteTravelById'
 import { GetTravelById } from './Travels/application/GetTravelById'
 import { UpdateTravel } from './Travels/application/UpdateTravel'
 import { BuildListTravelsView } from './Travels/infrastructure/BuildListTravelsView'
 import { CreateActivityController } from './Travels/infrastructure/Controllers/CreateActivityController '
 import { CreateTravelController } from './Travels/infrastructure/Controllers/CreateTravelController'
+import { DeleteActivityByIdController } from './Travels/infrastructure/Controllers/DeleteActivityByIdController'
 import { DeleteTravelByIdController } from './Travels/infrastructure/Controllers/DeleteTravelByIdController'
 import { GetTravelByIdController } from './Travels/infrastructure/Controllers/GetTravelByIdController'
 import { GetTravelsController } from './Travels/infrastructure/Controllers/GetTravelsController'
@@ -75,11 +77,12 @@ router.post('/api/travels/:id/activities', async (req, res) =>
   saveActivity.handle(req, res),
 )
 
-const deleteActivity = new DeleteTravelByIdController(
-  new DeleteTravelById(travelRepository),
+const deleteActivity = new DeleteActivityByIdController(
+  new DeleteActivityById(travelRepository),
 )
-router.delete('/api/travels/:id/activities/:activityId', async (req, res) =>
-  deleteActivity.handle(req, res),
+router.delete(
+  '/api/travels/:travelId/activities/:activityId',
+  async (req, res) => deleteActivity.handle(req, res),
 )
 
 const start = async () => {

@@ -8,7 +8,7 @@ export class Travel {
     readonly ownerId: string,
     readonly startDate: Date,
     readonly endDate: Date,
-    readonly activities: Activity[],
+    public activities: Activity[],
     readonly expenses: Expenses,
     readonly description?: string,
     readonly shared?: boolean,

@@ -46,28 +46,23 @@ export class MongoTravelRepository implements TravelRepository {
     )
   }
 
-  async deleteActivity(travelId: string, activityId: string): Promise<void> {
-    const travel = await this.model.find({}).then((travels: Travel[]) => {
-      return travels.find((findTravel) => findTravel.id === travelId)
-    })
-
-    const activity = travel.activities.find(
-      (findActivity) => findActivity.activityId === activityId,
+  async deleteActivity(
+    activities: Activity[],
+    travelId: string,
+  ): Promise<void> {
+    await this.model.findOneAndUpdate(
+      { id: travelId },
+      { $set: { activities: activities } },
     )
-
-    return await this.model
-      .findOneAndRemove(activity)
-      .then(() => {
-        console.log('Activity deleted')
-      })
-      .catch((error) => {
-        console.log(error)
-      })
   }
 
-  // me llega un travelId y un activityId y usando el repo me traigo el trvel entero, borro el viaje y modifico el viaje entero
-
-  async updateActivity(activity: Activity): Promise<void> {
-    throw new Error('Method not implemented.')
+  async updateActivity(
+    activities: Activity[],
+    travelId: string,
+  ): Promise<void> {
+    await this.model.findOneAndUpdate(
+      { id: travelId },
+      { $set: { activities: activities } },
+    )
   }
 }
