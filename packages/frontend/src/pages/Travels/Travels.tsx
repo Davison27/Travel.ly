@@ -35,7 +35,7 @@ export default function TravelsView() {
   }, [travelToModify])
 
   const travelsData = travels.map((travel: Travels) => (
-    <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+    <Card key={travel.id} maxW="sm" backgroundColor={'#DCDCDC'}>
       <CardBody>
         <Img
           src={travel.imageUrl}

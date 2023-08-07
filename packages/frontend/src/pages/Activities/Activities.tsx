@@ -18,7 +18,6 @@ import {
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
-import CustomAlertDialog from '../../components/custom-alert-dialog/custom-alert-dialog'
 import CustomModal from '../../components/custom-modal/custom-modal'
 import api from '../../utils/api/api'
 import { formatDate, formatHour } from '../../utils/functions/globalFunctions'
@@ -33,40 +32,42 @@ function ActivitiesPage() {
   }, [id])
   const navigate = useNavigate()
 
-  const title = travel?.name
-  const startDate = travel?.startDate
-  const endDate = travel?.endDate
+  const travelTitle = travel?.name
+  const travelStartDate = travel?.startDate
+  const travelEndDate = travel?.endDate
   const travelId = travel?.id
 
-  const travelData = travel?.activities.map((activity: Activities) => (
-    <>
-      <button>
+  const travelData = travel?.activities.map(
+    ({
+      activityId,
+      category,
+      description,
+      endDate,
+      imageUrl,
+      startDate,
+    }: Activities) => (
+      <button key={activityId}>
         <Card maxW="sm" backgroundColor={'#DCDCDC'}>
           <CardBody>
             <Img
-              src={activity.imageUrl}
+              src={imageUrl}
               alt="Green double couch with wooden legs"
               borderRadius="lg"
             />
             <Stack mt="6" spacing="3">
               <Heading size="md" className="messageGrid">
-                {activity.category}
+                {category}
               </Heading>
               <Heading size="md" className="messageGrid">
-                {formatHour(activity.startDate)} -{' '}
-                {formatHour(activity.endDate)}
+                {formatHour(startDate)} - {formatHour(endDate)}
               </Heading>
-              <Text>{activity.description}</Text>
-              <CustomAlertDialog
-                activityId={activity.activityId}
-                travelId={activity.travelId}
-              />
+              <Text>{description}</Text>
             </Stack>
           </CardBody>
         </Card>
       </button>
-    </>
-  ))
+    ),
+  )
 
   return (
     <div>
@@ -78,9 +79,9 @@ function ActivitiesPage() {
           </Button>
         </div>
         <div>
-          <div className="ActivitiesTitle">{title}</div>
+          <div className="ActivitiesTitle">{travelTitle}</div>
           <div className="ActivitiesDate">
-            [{formatDate(startDate)} - {formatDate(endDate)}]
+            [{formatDate(travelStartDate)} - {formatDate(travelEndDate)}]
           </div>
         </div>
         <div className="sharedButton">
