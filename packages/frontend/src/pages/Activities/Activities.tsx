@@ -3,9 +3,15 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import './Activities.scss'
 
-import { ChevronLeftIcon, ExternalLinkIcon } from '@chakra-ui/icons'
+import {
+  ChevronLeftIcon,
+  EditIcon,
+  ExternalLinkIcon,
+  ViewIcon,
+} from '@chakra-ui/icons'
 import {
   Button,
+  ButtonGroup,
   Card,
   CardBody,
   Heading,
@@ -13,11 +19,11 @@ import {
   Img,
   SimpleGrid,
   Stack,
-  Text,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
+import CustomAlertDialog from '../../components/custom-alert-dialog/custom-alert-dialog'
 import CustomModal from '../../components/custom-modal/custom-modal'
 import api from '../../utils/api/api'
 import { formatDate, formatHour } from '../../utils/functions/globalFunctions'
@@ -38,14 +44,7 @@ function ActivitiesPage() {
   const travelId = travel?.id
 
   const travelData = travel?.activities.map(
-    ({
-      activityId,
-      category,
-      description,
-      endDate,
-      imageUrl,
-      startDate,
-    }: Activities) => (
+    ({ activityId, category, endDate, imageUrl, startDate }: Activities) => (
       <button key={activityId}>
         <Card maxW="sm" backgroundColor={'#DCDCDC'}>
           <CardBody>
@@ -61,9 +60,19 @@ function ActivitiesPage() {
               <Heading size="md" className="messageGrid">
                 {formatHour(startDate)} - {formatHour(endDate)}
               </Heading>
-              <Text>{description}</Text>
             </Stack>
           </CardBody>
+          <ButtonGroup spacing="3" className="buttonGrid">
+            <Link to={`/travel/${travel.id}`}>
+              <Button variant="outline" colorScheme="blue">
+                <ViewIcon />
+              </Button>
+            </Link>
+            <Button variant="outline" colorScheme="green">
+              <EditIcon />
+            </Button>
+            <CustomAlertDialog travelId={travel.id} activityId={activityId} />
+          </ButtonGroup>
         </Card>
       </button>
     ),

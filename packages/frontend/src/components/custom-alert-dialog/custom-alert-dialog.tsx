@@ -22,6 +22,28 @@ function CustomAlertDialog(props: {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const cancelRef = React.useRef(null)
 
+  const deleteButton = () => {
+    if (props.activityId) {
+      return (
+        <Button colorScheme="red" variant="outline" onClick={onOpen}>
+          <DeleteIcon />
+        </Button>
+      )
+    }
+    if (!props.activityId) {
+      return (
+        <Button
+          leftIcon={<DeleteIcon />}
+          colorScheme="red"
+          variant="outline"
+          onClick={onOpen}
+        >
+          Borrar
+        </Button>
+      )
+    }
+  }
+
   const deleteTravel = () => {
     if (props.activityId && !props.onDelete) {
       api.deleteActivity(props.activityId, props.travelId)
@@ -34,14 +56,7 @@ function CustomAlertDialog(props: {
 
   return (
     <>
-      <Button
-        leftIcon={<DeleteIcon />}
-        colorScheme="red"
-        variant="outline"
-        onClick={onOpen}
-      >
-        Borrar
-      </Button>
+      {deleteButton()}
 
       <AlertDialog
         isOpen={isOpen}
