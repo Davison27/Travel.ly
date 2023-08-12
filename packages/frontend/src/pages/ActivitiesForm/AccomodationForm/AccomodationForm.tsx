@@ -194,7 +194,12 @@ function AccomodationForm() {
                           variant="filled"
                         ></Field>
                       </FormControl>
-                      <Button type="submit" colorScheme="blue" width="full">
+                      <Button
+                        type="submit"
+                        colorScheme="blue"
+                        width="full"
+                        onClick={onClose}
+                      >
                         Guardar
                       </Button>
                     </VStack>

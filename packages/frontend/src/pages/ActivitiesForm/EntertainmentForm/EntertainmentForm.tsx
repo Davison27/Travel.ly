@@ -23,7 +23,10 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
+import api from 'packages/frontend/src/utils/api/api'
 import React, { useCallback } from 'react'
+import { useParams } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
 
 // import api from '../../../utils/api/api'
 
@@ -32,44 +35,53 @@ interface Values {
   description: string
   documentsUrl: string
   endDate: Date
+  id: string
+  location: string
   name: string
   price: number
   startDate: Date
-  ubication: string
 }
 function EntertainmentForm() {
   const { isOpen, onClose, onOpen } = useDisclosure()
-
+  const { id } = useParams<{ id: string }>()
   const initialRef = React.useRef(null)
   const initialValues: Values = {
     category: 'Entertainment',
     description: '',
     documentsUrl: '',
     endDate: new Date(),
+    id: uuid(),
+    location: '',
     name: '',
     price: 0,
     startDate: new Date(),
-    ubication: '',
   }
 
-  const handleSubmit = useCallback(async (values: Values) => {
-    console.log(values)
-    try {
-      // await api.postTravel(
-      //   values.description,
-      //   values.checkOut,
-      //   values.expenses,
-      //   values.id,
-      //   values.name,
-      //   values.ubication,
-      //   values.checkIn,
-      //   values.rooms,
-      // )
-      console.log('Travel created')
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
+  const handleSubmit = useCallback(
+    async (values: Values) => {
+      console.log(values)
+      try {
+        await api.postActivity(
+          values.id,
+          values.category,
+          values.endDate,
+          values.name,
+          values.startDate,
+          'https://roams.es/images/post/es_ES_telco/companias-telefonicas-movistar-guias-television-fusion-ocio-movistar.jpg',
+          id!,
+          values.description,
+          values.documentsUrl,
+          values.location,
+          values.price,
+          0,
+          '',
+        )
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    [id],
+  )
 
   return (
     <>
@@ -128,10 +140,10 @@ function EntertainmentForm() {
                         />
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="ubication">Ubicación</FormLabel>
+                        <FormLabel htmlFor="location">Ubicación</FormLabel>
                         <Field
-                          id="ubication"
-                          name="ubication"
+                          id="location"
+                          name="location"
                           as={Input}
                           variant="filled"
                         ></Field>
@@ -182,7 +194,12 @@ function EntertainmentForm() {
                           variant="filled"
                         ></Field>
                       </FormControl>
-                      <Button type="submit" colorScheme="blue" width="full">
+                      <Button
+                        type="submit"
+                        colorScheme="blue"
+                        width="full"
+                        onClick={onClose}
+                      >
                         Guardar
                       </Button>
                     </VStack>
