@@ -23,56 +23,66 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
+import api from 'packages/frontend/src/utils/api/api'
 import React, { useCallback } from 'react'
-
-// import api from '../../../utils/api/api'
+import { useParams } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
 
 interface Values {
   category: string
   description: string
   documentsUrl: string
   endDate: Date
+  id: string
+  location: string
   name: string
   price: number
   rooms: number
   startDate: Date
-  ubication: string
 }
 
 function AccomodationForm() {
   const { isOpen, onClose, onOpen } = useDisclosure()
-
+  const { id } = useParams<{ id: string }>()
   const initialRef = React.useRef(null)
   const initialValues: Values = {
     category: 'Accomodation',
     description: '',
     documentsUrl: '',
     endDate: new Date(),
+    id: uuid(),
+    location: '',
     name: '',
     price: 0,
     rooms: 0,
     startDate: new Date(),
-    ubication: '',
   }
 
-  const handleSubmit = useCallback(async (values: Values) => {
-    console.log(values)
-    try {
-      // await api.postTravel(
-      //   values.description,
-      //   values.checkOut,
-      //   values.expenses,
-      //   values.id,
-      //   values.name,
-      //   values.ubication,
-      //   values.checkIn,
-      //   values.rooms,
-      // )
-      console.log('Travel created')
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
+  const handleSubmit = useCallback(
+    async (values: Values) => {
+      console.log(values)
+      try {
+        await api.postActivity(
+          values.id,
+          values.category,
+          values.endDate,
+          values.name,
+          values.startDate,
+          'https://www.cuboshomes.com/blog/wp-content/uploads/2022/06/5-razones-para-convertir-tu-propiedad-en-un-alojamiento-turistico-1280x720.jpg',
+          id!,
+          values.description,
+          values.documentsUrl,
+          values.location,
+          values.price,
+          values.rooms,
+          '',
+        )
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    [id],
+  )
 
   return (
     <>
@@ -131,10 +141,10 @@ function AccomodationForm() {
                         />
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="ubication">Ubicación</FormLabel>
+                        <FormLabel htmlFor="location">Ubicación</FormLabel>
                         <Field
-                          id="ubication"
-                          name="ubication"
+                          id="location"
+                          name="location"
                           as={Input}
                           variant="filled"
                         ></Field>

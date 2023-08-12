@@ -28,8 +28,6 @@ import React, { useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
-// import api from '../../../utils/api/api'
-
 interface Values {
   category: string
   description: string
