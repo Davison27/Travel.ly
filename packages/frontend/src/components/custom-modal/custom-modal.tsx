@@ -29,18 +29,6 @@ export default function CustomModal() {
 
   const initialRef = React.useRef(null)
 
-  // const activitiesData = props.activities.map((activity: any) => (
-  //   <div>
-  //     <h1>{activity.name}</h1>
-  //     <h1>{activity.description}</h1>
-  //     <h1>{activity.startDate}</h1>
-  //     <h1>{activity.endDate}</h1>
-  //     <h1>{activity.expenses}</h1>
-  //     <h1>{activity.travelers}</h1>
-  //     <h1>{activity.shared}</h1>
-  //   </div>
-  // ))
-
   return (
     <>
       <Card maxW="sm" backgroundColor={'#DCDCDC'}>

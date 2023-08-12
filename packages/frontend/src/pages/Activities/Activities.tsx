@@ -29,13 +29,17 @@ import api from '../../utils/api/api'
 import { formatDate, formatHour } from '../../utils/functions/globalFunctions'
 import { Activities } from '../../utils/interfaces/Activities'
 import { Travel } from '../../utils/interfaces/Travel'
+import FoodForm from '../ActivitiesForm/FoodForm/FoodForm'
 
 function ActivitiesPage() {
   const [travel, setTravel] = useState<Travel>()
+  const [activities, setActivities] = useState<Activities[]>([])
+  const [activityToModify, setActivityToModify] = useState('')
+
   const { id } = useParams<{ id: string }>()
   useEffect(() => {
     api.getTravel(id!).then((response) => setTravel(response))
-  }, [id])
+  }, [id, activityToModify])
   const navigate = useNavigate()
 
   const travelTitle = travel?.name
@@ -68,15 +72,41 @@ function ActivitiesPage() {
                 <ViewIcon />
               </Button>
             </Link>
-            <Button variant="outline" colorScheme="green">
+            <Button
+              variant="outline"
+              colorScheme="green"
+              onClick={() => setActivityToModify(activityId)}
+            >
               <EditIcon />
             </Button>
-            <CustomAlertDialog travelId={travel.id} activityId={activityId} />
+            <CustomAlertDialog
+              travelId={travel.id}
+              activityId={activityId}
+              onDelete={() => {
+                setActivities(
+                  activities.filter(
+                    (activity) => activity.activityId !== activityId,
+                  ),
+                )
+              }}
+            />
           </ButtonGroup>
         </Card>
       </button>
     ),
   )
+
+  if (activityToModify) {
+    const activity = travel?.activities.find(
+      (acti) => acti.activityId === activityToModify,
+    )
+    return (
+      <FoodForm
+      // activity={activity!}
+      // setActivityToModify={setActivityToModify}
+      />
+    )
+  }
 
   return (
     <div>

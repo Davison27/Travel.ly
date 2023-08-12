@@ -26,7 +26,7 @@ import {
 import { Field, Formik } from 'formik'
 import api from 'packages/frontend/src/utils/api/api'
 import React, { useCallback } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 interface Values {
@@ -44,7 +44,6 @@ interface Values {
 function FoodForm() {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { id } = useParams<{ id: string }>()
-  const navigate = useNavigate()
   const initialRef = React.useRef(null)
   const initialValues: Values = {
     category: 'Food',
@@ -77,12 +76,11 @@ function FoodForm() {
           0,
           '',
         )
-        navigate(`/travel/${id}`)
       } catch (error) {
         console.log(error)
       }
     },
-    [id, navigate],
+    [id],
   )
 
   return (
@@ -196,7 +194,12 @@ function FoodForm() {
                           variant="filled"
                         ></Field>
                       </FormControl>
-                      <Button type="submit" colorScheme="blue" width="full">
+                      <Button
+                        type="submit"
+                        colorScheme="blue"
+                        width="full"
+                        onClick={onClose}
+                      >
                         Guardar
                       </Button>
                     </VStack>
