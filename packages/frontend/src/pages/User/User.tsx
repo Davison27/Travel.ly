@@ -11,21 +11,20 @@ import {
   Stack,
 } from '@chakra-ui/react'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { userData } from '../../Data/user-data'
 
 function User() {
+  const navigate = useNavigate()
   const user = userData.map((data: any) => (
     <>
       {' '}
       <div className="backButton">
-        <Link to="/travels">
-          <Button>
-            <Icon as={ChevronLeftIcon} boxSize={5} />
-            <div style={{ paddingLeft: '0.7rem' }}>Volver</div>
-          </Button>
-        </Link>
+        <Button onClick={() => navigate(-1)}>
+          <Icon as={ChevronLeftIcon} boxSize={5} />
+          <div style={{ paddingLeft: '0.7rem' }}>Volver</div>
+        </Button>
       </div>
       <div className="wrapper">
         <div className="avatarImage">

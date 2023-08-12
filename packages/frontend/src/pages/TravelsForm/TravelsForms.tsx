@@ -97,7 +97,7 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
   return (
     <>
       <div className="backButton2">
-        <Button onClick={() => navigate(-1)}>
+        <Button onClick={() => navigate('/travels')}>
           <Icon as={ChevronLeftIcon} boxSize={5} />
           <div style={{ paddingLeft: '0.7rem' }}>Volver</div>
         </Button>
