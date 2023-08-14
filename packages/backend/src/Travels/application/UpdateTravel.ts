@@ -16,10 +16,10 @@ export class UpdateTravel {
       travel.ownerId,
       travel.startDate,
       travel.endDate,
-      travel.activities,
-      travel.expenses,
+      oldTravel.activities,
+      oldTravel.expenses,
       travel.description,
-      travel.shared,
+      oldTravel.shared,
       travel.travelers,
       travel.imageUrl,
     )
