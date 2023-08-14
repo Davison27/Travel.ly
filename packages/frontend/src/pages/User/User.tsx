@@ -10,10 +10,17 @@ import {
   InputLeftAddon,
   Stack,
 } from '@chakra-ui/react'
+import { googleLogout } from '@react-oauth/google'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { userData } from '../../Data/user-data'
+import { storage } from '../../utils/functions/storage'
+
+const logOut = () => {
+  googleLogout()
+  storage.remove('token')
+}
 
 function User() {
   const navigate = useNavigate()
@@ -48,9 +55,11 @@ function User() {
             <Input type="tel" placeholder={data.email} />
           </InputGroup>
         </Stack>
-        <Button colorScheme="red" size="sm">
-          Cerrar Sesión
-        </Button>
+        <Link to="/">
+          <Button colorScheme="red" size="sm" onClick={() => logOut()}>
+            Cerrar Sesión
+          </Button>
+        </Link>
       </div>
     </>
   ))
