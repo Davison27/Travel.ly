@@ -11,10 +11,11 @@ import {
   Stack,
 } from '@chakra-ui/react'
 import { googleLogout } from '@react-oauth/google'
-import React from 'react'
+import { TokenPayload } from 'google-auth-library'
+// eslint-disable-next-line camelcase
+import jwt_decode from 'jwt-decode'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { userData } from '../../Data/user-data'
 import { storage } from '../../utils/functions/storage'
 
 const logOut = () => {
@@ -24,7 +25,8 @@ const logOut = () => {
 
 function User() {
   const navigate = useNavigate()
-  const user = userData.map((data: any) => (
+  const data: TokenPayload = jwt_decode(storage.get('token'))
+  const user = (
     <>
       {' '}
       <div className="backButton">
@@ -35,24 +37,24 @@ function User() {
       </div>
       <div className="wrapper">
         <div className="avatarImage">
-          <Avatar size="2xl" name="Segun Adebayo" src={data.img} />
+          <Avatar size="2xl" name="Segun Adebayo" src={data.picture} />
         </div>
         <Stack spacing={4}>
           <InputGroup>
             <InputLeftAddon children="😀 Nombre" />
-            <Input type="tel" placeholder={data.name} />
+            <Input type="tel" value={data.given_name} />
           </InputGroup>
           <InputGroup>
             <InputLeftAddon children="😀 Apellidos" />
-            <Input type="tel" placeholder={data.lastName} />
+            <Input type="tel" value={data.family_name} />
           </InputGroup>
           <InputGroup>
             <InputLeftAddon children="📍Ubicación" />
-            <Input type="tel" placeholder={data.ubication} />
+            <Input type="tel" value={data.locale} />
           </InputGroup>
           <InputGroup>
             <InputLeftAddon children="📧 Correo" />
-            <Input type="tel" placeholder={data.email} />
+            <Input type="tel" value={data.email} />
           </InputGroup>
         </Stack>
         <Link to="/">
@@ -62,7 +64,7 @@ function User() {
         </Link>
       </div>
     </>
-  ))
+  )
 
   return <>{user}</>
 }

@@ -3,8 +3,6 @@
 import './SignIn.scss'
 
 import { GoogleLogin } from '@react-oauth/google'
-// eslint-disable-next-line camelcase
-import jwt_decode from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
 
 import Logo from '../../components/Logo/Logo'
