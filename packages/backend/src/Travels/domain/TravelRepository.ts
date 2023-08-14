@@ -4,7 +4,7 @@ import { Travel } from './Travel'
 export interface TravelRepository {
   delete(travel: Travel): Promise<void>
   deleteActivity(activity: Activity[], travelId: string): Promise<void>
-  findAll(): Promise<Travel[]>
+  findAll(ownerId: string): Promise<Travel[]>
   findById(id: string): Promise<Travel>
   save(travel: Travel): Promise<void>
   saveActivity(activity: Activity, travel: Travel): Promise<void>

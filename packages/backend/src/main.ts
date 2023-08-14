@@ -47,7 +47,7 @@ router.post('/api/travels', async (req, res) => {
 
 const buildListTravelsView = new BuildListTravelsView(travelRepository)
 const getTravelsController = new GetTravelsController(buildListTravelsView)
-router.get('/api/travels', async (req, res) =>
+router.get('/api/travels/:ownerId', async (req, res) =>
   getTravelsController.handle(req, res),
 )
 

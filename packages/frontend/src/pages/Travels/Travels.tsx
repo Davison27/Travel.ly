@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable react/jsx-no-bind */
@@ -16,6 +17,8 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
+import { TokenPayload } from 'google-auth-library'
+import jwt_decode from 'jwt-decode'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -23,16 +26,18 @@ import CustomAlertDialog from '../../components/custom-alert-dialog/custom-alert
 import Emoji from '../../components/Emoji/emoji'
 import api from '../../utils/api/api'
 import { formatDate } from '../../utils/functions/globalFunctions'
+import { storage } from '../../utils/functions/storage'
 import { Travels } from '../../utils/interfaces/Travels'
 import TravelsForm from '../TravelsForm/TravelsForms'
 
 export default function TravelsView() {
   const [travels, setTravels] = useState<Travels[]>([])
   const [travelToModify, settravelToModify] = useState(null)
+  const ownerId: TokenPayload = jwt_decode(storage.get('token'))
 
   useEffect(() => {
-    api.getTravels().then((result) => setTravels(result.travels))
-  }, [travelToModify])
+    api.getTravels(ownerId.sub!).then((result) => setTravels(result.travels))
+  }, [travelToModify, ownerId.sub])
 
   const travelsData = travels.map((travel: Travels) => (
     <Card key={travel.id} maxW="sm" backgroundColor={'#DCDCDC'}>

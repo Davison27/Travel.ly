@@ -4,8 +4,8 @@ import { ListTravelsView } from './ListTravelsView'
 export class BuildListTravelsView {
   constructor(private travelRepository: TravelRepository) {}
 
-  async run(): Promise<ListTravelsView> {
-    const travels = await this.travelRepository.findAll()
+  async run(ownerId: string): Promise<ListTravelsView> {
+    const travels = await this.travelRepository.findAll(ownerId)
     if (!travels) {
       console.log('No travels found')
       return null

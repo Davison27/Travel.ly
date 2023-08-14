@@ -16,12 +16,16 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
+import { TokenPayload } from 'google-auth-library'
+// eslint-disable-next-line camelcase
+import jwt_decode from 'jwt-decode'
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import api from '../../utils/api/api'
 import { travelFormValidation } from '../../utils/functions/formsValidations'
+import { storage } from '../../utils/functions/storage'
 
 interface Values {
   budget: number
@@ -36,6 +40,8 @@ interface Values {
 }
 
 function TravelsForm(props?: Values & { onFinish?: () => void }) {
+  const ownerId: TokenPayload = jwt_decode(storage.get('token'))
+  console.log(ownerId)
   const navigate = useNavigate()
   const initialValues: Values = {
     budget: props?.budget || 0,
@@ -66,10 +72,12 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
             },
             values.id,
             values.name,
+
             values.shared,
             values.startDate,
             values.travelers,
             values.imageUrl,
+            ownerId.sub!,
           )
         } else {
           await api.postTravel(
@@ -82,16 +90,17 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
             values.startDate,
             values.travelers,
             values.imageUrl,
+            ownerId.sub!,
           )
         }
-        navigate('/travel')
+        navigate('/travels')
       } catch (error) {
         console.log(error)
       } finally {
         props?.onFinish?.()
       }
     },
-    [navigate, props],
+    [navigate, props, ownerId.sub],
   )
 
   return (

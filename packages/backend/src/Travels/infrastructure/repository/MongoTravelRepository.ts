@@ -13,8 +13,8 @@ export class MongoTravelRepository implements TravelRepository {
     this.model = require('./travelSchema')
   }
 
-  async findAll(): Promise<Travel[]> {
-    const travels = await this.model.find({})
+  async findAll(ownerId: string): Promise<Travel[]> {
+    const travels = await this.model.find({ ownerId: ownerId })
     if (!travels) {
       return null
     }

@@ -15,8 +15,8 @@ const getStatus = async () => {
   return response.data
 }
 
-const getTravels = async () => {
-  const response = await axios.get(`${myApi}/travels`)
+const getTravels = async (ownerId: string) => {
+  const response = await axios.get(`${myApi}/travels/${ownerId}`)
   return response.data
 }
 
@@ -35,6 +35,7 @@ const postTravel = async (
   startDate: Date,
   travelers: number,
   imageUrl: string,
+  ownerId: string,
 ) => {
   const request = await axios.post(`${myApi}/travels`, {
     budget,
@@ -43,6 +44,7 @@ const postTravel = async (
     id,
     imageUrl,
     name,
+    ownerId,
     shared,
     startDate,
     travelers,
@@ -61,6 +63,7 @@ const updateTravel = async (
   startDate: Date,
   travelers: number,
   imageUrl: string,
+  ownerId: string,
 ) => {
   const request = await axios.put(`${myApi}/travels/${id}`, {
     activities,
@@ -70,6 +73,7 @@ const updateTravel = async (
     id,
     imageUrl,
     name,
+    ownerId,
     shared,
     startDate,
     travelers,
