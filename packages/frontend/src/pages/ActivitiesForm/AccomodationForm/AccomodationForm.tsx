@@ -172,8 +172,8 @@ function AccomodationForm() {
                       <FormControl isRequired>
                         <FormLabel htmlFor="rooms">Habitaciones</FormLabel>
                         <Field
-                          id="travelers"
-                          name="travelers"
+                          id="rooms"
+                          name="rooms"
                           as={Input}
                           variant="filled"
                         ></Field>

@@ -28,7 +28,11 @@ const activityFormValidation = Yup.object().shape({
   name: Yup.string()
     .min(2, '¡Nombre muy corto!')
     .required('Es necesario asignar un nombre'),
+  rooms: Yup.number().min(1, 'Debe haber al menos una habitación'),
   startDate: Yup.date().required('Es necesario asignar una fecha de inicio'),
+  transportType: Yup.string().required(
+    'Es necesario asignar un tipo de transporte',
+  ),
 })
 
 export { activityFormValidation, travelFormValidation }
