@@ -21,7 +21,7 @@ const getTravels = async (ownerId: string) => {
 }
 
 const getTravel = async (id: string) => {
-  const response = await axios.get(`${myApi}/travels/${id}`)
+  const response = await axios.get(`${myApi}/travel/${id}`)
   return response.data as Travel
 }
 

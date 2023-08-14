@@ -54,7 +54,7 @@ router.get('/api/travels/:ownerId', async (req, res) =>
 const getTravelById = new GetTravelByIdController(
   new GetTravelById(travelRepository),
 )
-router.get('/api/travels/:id', async (req, res) =>
+router.get('/api/travel/:id', async (req, res) =>
   getTravelById.handle(req, res),
 )
 
