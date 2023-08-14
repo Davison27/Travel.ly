@@ -8,7 +8,10 @@
     "prepare": "husky install",
     "backend": "npx nx run backend:serve",
     "frontend": "npx nx run frontend:serve",
-    "serve": "npx nx run-many --target=serve -p frontend backend"
+    "serve": "npx nx run-many --target=serve -p frontend backend",
+    "test:frontend": "npx jest frontend/tests",
+    "test:backend": "npx jest backend/tests",
+    "test:backend:watch": "npx jest --watch"
   },
   "private": true,
   "dependencies": {
@@ -50,6 +53,7 @@
     "@nrwl/webpack": "^16.6.0",
     "@nrwl/workspace": "^16.6.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.7",
+    "@react-pdf/renderer": "^3.1.12",
     "@svgr/webpack": "6.1.2",
     "@testing-library/react": "14.0.0",
     "@types/cors": "^2.8.13",

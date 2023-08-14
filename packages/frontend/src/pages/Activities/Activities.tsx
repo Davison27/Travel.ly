@@ -124,7 +124,7 @@ function ActivitiesPage() {
           </div>
         </div>
         <div className="sharedButton">
-          <Button>
+          <Button onClick={() => navigate(`/travel/${id}/pdf`)}>
             <div style={{ paddingRight: '0.7rem' }}>Compartir</div>
             <Icon as={ExternalLinkIcon} boxSize={5} />
           </Button>
