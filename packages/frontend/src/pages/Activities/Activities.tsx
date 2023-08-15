@@ -29,7 +29,6 @@ import api from '../../utils/api/api'
 import { formatDate, formatHour } from '../../utils/functions/globalFunctions'
 import { Activities } from '../../utils/interfaces/Activities'
 import { Travel } from '../../utils/interfaces/Travel'
-import FoodForm from '../ActivitiesForm/FoodForm/FoodForm'
 
 function ActivitiesPage() {
   const [travel, setTravel] = useState<Travel>()
@@ -49,64 +48,62 @@ function ActivitiesPage() {
 
   const travelData = travel?.activities.map(
     ({ activityId, category, endDate, imageUrl, startDate }: Activities) => (
-      <button key={activityId}>
-        <Card maxW="sm" backgroundColor={'#DCDCDC'}>
-          <CardBody>
-            <Img
-              src={imageUrl}
-              alt="Green double couch with wooden legs"
-              borderRadius="lg"
-            />
-            <Stack mt="6" spacing="3">
-              <Heading size="md" className="messageGrid">
-                {category}
-              </Heading>
-              <Heading size="md" className="messageGrid">
-                {formatHour(startDate)} - {formatHour(endDate)}
-              </Heading>
-            </Stack>
-          </CardBody>
-          <ButtonGroup spacing="3" className="buttonGrid">
-            <Link to={`/travel/${travel.id}`}>
-              <Button variant="outline" colorScheme="blue">
-                <ViewIcon />
-              </Button>
-            </Link>
-            <Button
-              variant="outline"
-              colorScheme="green"
-              onClick={() => setActivityToModify(activityId)}
-            >
-              <EditIcon />
+      <Card maxW="sm" backgroundColor={'#DCDCDC'} key={activityId}>
+        <CardBody>
+          <Img
+            src={imageUrl}
+            alt="Green double couch with wooden legs"
+            borderRadius="lg"
+          />
+          <Stack mt="6" spacing="3">
+            <Heading size="md" className="messageGrid">
+              {category}
+            </Heading>
+            <Heading size="md" className="messageGrid">
+              {formatHour(startDate)} - {formatHour(endDate)}
+            </Heading>
+          </Stack>
+        </CardBody>
+        <ButtonGroup spacing="3" className="buttonGrid">
+          <Link to={`/travel/${travel.id}`}>
+            <Button variant="outline" colorScheme="blue">
+              <ViewIcon />
             </Button>
-            <CustomAlertDialog
-              travelId={travel.id}
-              activityId={activityId}
-              onDelete={() => {
-                setActivities(
-                  activities.filter(
-                    (activity) => activity.activityId !== activityId,
-                  ),
-                )
-              }}
-            />
-          </ButtonGroup>
-        </Card>
-      </button>
+          </Link>
+          <Button
+            variant="outline"
+            colorScheme="green"
+            onClick={() => setActivityToModify(activityId)}
+          >
+            <EditIcon />
+          </Button>
+          <CustomAlertDialog
+            travelId={travel.id}
+            activityId={activityId}
+            onDelete={() => {
+              setActivities(
+                activities.filter(
+                  (activity) => activity.activityId !== activityId,
+                ),
+              )
+            }}
+          />
+        </ButtonGroup>
+      </Card>
     ),
   )
 
-  if (activityToModify) {
-    const activity = travel?.activities.find(
-      (acti) => acti.activityId === activityToModify,
-    )
-    return (
-      <FoodForm
-      // activity={activity!}
-      // setActivityToModify={setActivityToModify}
-      />
-    )
-  }
+  // if (activityToModify) {
+  //   const activity = travel?.activities.find(
+  //     (acti) => acti.activityId === activityToModify,
+  //   )
+  //   return (
+  //     <FoodForm
+  //     // activity={activity!}
+  //     // setActivityToModify={setActivityToModify}
+  //     />
+  //   )
+  // }
 
   return (
     <div>
@@ -124,10 +121,12 @@ function ActivitiesPage() {
           </div>
         </div>
         <div className="sharedButton">
-          <Button onClick={() => navigate(`/travel/${id}/pdf`)}>
-            <div style={{ paddingRight: '0.7rem' }}>Compartir</div>
-            <Icon as={ExternalLinkIcon} boxSize={5} />
-          </Button>
+          <Link to={`/travel/shared/${travelId}`}>
+            <Button>
+              <div style={{ paddingRight: '0.7rem' }}>Compartir</div>
+              <Icon as={ExternalLinkIcon} boxSize={5} />
+            </Button>
+          </Link>
         </div>
       </div>
       <SimpleGrid
