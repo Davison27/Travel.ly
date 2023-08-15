@@ -10,10 +10,16 @@ const formatHour = (newDate: Date | undefined) => {
   return formattedDate
 }
 
+const formatDateAndHour = (newDate: Date | undefined) => {
+  const date = new Date(newDate!)
+  const formattedDate = `${date.getDate()}/${date.getMonth()}/${date.getHours()}:${date.getMinutes()}`
+  return formattedDate
+}
+
 const formatZ = (newDate: Date | undefined) => {
   const date = new Date(newDate!)
   const formattedDate = date.toISOString().replace('Z', '')
   return formattedDate
 }
 
-export { formatDate, formatHour, formatZ }
+export { formatDate, formatDateAndHour, formatHour, formatZ }

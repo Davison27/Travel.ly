@@ -26,7 +26,11 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import CustomAlertDialog from '../../components/custom-alert-dialog/custom-alert-dialog'
 import CustomModal from '../../components/custom-modal/custom-modal'
 import api from '../../utils/api/api'
-import { formatDate, formatHour } from '../../utils/functions/globalFunctions'
+import {
+  formatDate,
+  formatDateAndHour,
+  formatHour,
+} from '../../utils/functions/globalFunctions'
 import { Activities } from '../../utils/interfaces/Activities'
 import { Travel } from '../../utils/interfaces/Travel'
 
@@ -46,52 +50,62 @@ function ActivitiesPage() {
   const travelEndDate = travel?.endDate
   const travelId = travel?.id
 
-  const travelData = travel?.activities.map(
-    ({ activityId, category, endDate, imageUrl, startDate }: Activities) => (
-      <Card maxW="sm" backgroundColor={'#DCDCDC'} key={activityId}>
-        <CardBody>
-          <Img
-            src={imageUrl}
-            alt="Green double couch with wooden legs"
-            borderRadius="lg"
-          />
-          <Stack mt="6" spacing="3">
-            <Heading size="md" className="messageGrid">
-              {category}
-            </Heading>
-            <Heading size="md" className="messageGrid">
-              {formatHour(startDate)} - {formatHour(endDate)}
-            </Heading>
-          </Stack>
-        </CardBody>
-        <ButtonGroup spacing="3" className="buttonGrid">
-          <Link to={`/travel/${travel.id}`}>
-            <Button variant="outline" colorScheme="blue">
-              <ViewIcon />
+  const travelData = travel?.activities
+    .sort((a, b) => {
+      if (a.startDate > b.startDate) {
+        return 1
+      }
+      if (a.startDate < b.startDate) {
+        return -1
+      }
+      return 0
+    })
+    .map(
+      ({ activityId, category, endDate, imageUrl, startDate }: Activities) => (
+        <Card maxW="sm" backgroundColor={'#DCDCDC'} key={activityId}>
+          <CardBody>
+            <Img
+              src={imageUrl}
+              alt="Green double couch with wooden legs"
+              borderRadius="lg"
+            />
+            <Stack mt="6" spacing="3">
+              <Heading size="md" className="messageGrid">
+                {category}
+              </Heading>
+              <Heading size="md" className="messageGrid">
+                {formatDateAndHour(startDate)} - {formatDateAndHour(endDate)}
+              </Heading>
+            </Stack>
+          </CardBody>
+          <ButtonGroup spacing="3" className="buttonGrid">
+            <Link to={`/travel/${travel.id}`}>
+              <Button variant="outline" colorScheme="blue">
+                <ViewIcon />
+              </Button>
+            </Link>
+            <Button
+              variant="outline"
+              colorScheme="green"
+              onClick={() => setActivityToModify(activityId)}
+            >
+              <EditIcon />
             </Button>
-          </Link>
-          <Button
-            variant="outline"
-            colorScheme="green"
-            onClick={() => setActivityToModify(activityId)}
-          >
-            <EditIcon />
-          </Button>
-          <CustomAlertDialog
-            travelId={travel.id}
-            activityId={activityId}
-            onDelete={() => {
-              setActivities(
-                activities.filter(
-                  (activity) => activity.activityId !== activityId,
-                ),
-              )
-            }}
-          />
-        </ButtonGroup>
-      </Card>
-    ),
-  )
+            <CustomAlertDialog
+              travelId={travel.id}
+              activityId={activityId}
+              onDelete={() => {
+                setActivities(
+                  activities.filter(
+                    (activity) => activity.activityId !== activityId,
+                  ),
+                )
+              }}
+            />
+          </ButtonGroup>
+        </Card>
+      ),
+    )
 
   // if (activityToModify) {
   //   const activity = travel?.activities.find(

@@ -36,7 +36,7 @@ const Navbar = () => {
           </Wrap>
         </Link>
         <div id="logo">
-          <Link to="/">
+          <Link to="/travels">
             <Logo />
           </Link>
         </div>
