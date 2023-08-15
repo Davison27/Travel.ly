@@ -17,6 +17,12 @@ import {
   Heading,
   Icon,
   Img,
+  Link as ChakraLink,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
   SimpleGrid,
   Stack,
 } from '@chakra-ui/react'
@@ -29,7 +35,6 @@ import api from '../../utils/api/api'
 import {
   formatDate,
   formatDateAndHour,
-  formatHour,
 } from '../../utils/functions/globalFunctions'
 import { Activities } from '../../utils/interfaces/Activities'
 import { Travel } from '../../utils/interfaces/Travel'
@@ -49,6 +54,7 @@ function ActivitiesPage() {
   const travelStartDate = travel?.startDate
   const travelEndDate = travel?.endDate
   const travelId = travel?.id
+  const travelSharedLink = `http://localhost:4200/travel/shared/${travelId}`
 
   const travelData = travel?.activities
     .sort((a, b) => {
@@ -135,12 +141,24 @@ function ActivitiesPage() {
           </div>
         </div>
         <div className="sharedButton">
-          <Link to={`/travel/shared/${travelId}`}>
-            <Button>
-              <div style={{ paddingRight: '0.7rem' }}>Compartir</div>
-              <Icon as={ExternalLinkIcon} boxSize={5} />
-            </Button>
-          </Link>
+          <Popover placement="left-start">
+            <PopoverTrigger>
+              <Button>
+                <div style={{ paddingRight: '0.7rem' }}>Compartir</div>
+                <Icon as={ExternalLinkIcon} boxSize={5} />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverArrow />
+              <PopoverBody>
+                <div>Aquí tienes el enlace para compartir tu viaje 😄</div>
+                <br></br>
+                <ChakraLink href={travelSharedLink} isExternal color="blue.500">
+                  {travelSharedLink}
+                </ChakraLink>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
       <SimpleGrid
