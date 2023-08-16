@@ -4,4 +4,6 @@ export interface ExpensesDTO {
   entertainmentPrice: number
   foodPrice: number
   transportPrice: number
+  travelers: number
+  travelId: string
 }

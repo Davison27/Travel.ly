@@ -3,14 +3,14 @@ import { Model } from 'mongoose'
 import { Activity } from '../../domain/Activity'
 import { Travel } from '../../domain/Travel'
 import { TravelRepository } from '../../domain/TravelRepository'
-import { travelModel } from '../travelDocument'
-import { travelMapper } from './travelMapper'
+import { TravelDocument } from '../TravelDocument'
+import { TravelMapper } from './TravelMapper'
 
 export class MongoTravelRepository implements TravelRepository {
-  private model: Model<travelModel>
+  private model: Model<TravelDocument>
 
   constructor() {
-    this.model = require('./travelSchema')
+    this.model = require('./TravelSchema')
   }
 
   async findAll(ownerId: string): Promise<Travel[]> {
@@ -18,25 +18,28 @@ export class MongoTravelRepository implements TravelRepository {
     if (!travels) {
       return null
     }
-    return travelMapper.travelDocumentToTravels(travels)
+    return TravelMapper.travelDocumentToTravels(travels)
   }
 
   async findById(id: string): Promise<Travel> {
     const travel = await this.model.find({ id: id })
     const travelFound = travel[0]
-    return travelMapper.travelDocumentToTravel(travelFound)
+    return TravelMapper.travelDocumentToTravel(travelFound)
   }
 
   async save(travel: Travel): Promise<void> {
-    await new this.model(travel).save()
+    await this.model.create(TravelMapper.travelToTravelDocument(travel))
   }
 
   async delete(travel: Travel): Promise<void> {
-    return await this.model.findOneAndRemove(travel)
+    await this.model.deleteOne({ id: travel.id })
   }
 
   async update(oldTravel: Travel, newTravel: Travel): Promise<void> {
-    return await this.model.findOneAndReplace(oldTravel, newTravel)
+    await this.model.updateOne(
+      { id: newTravel.id },
+      { $set: TravelMapper.travelToTravelDocument(newTravel) },
+    )
   }
 
   async saveActivity(activity: Activity, travel: Travel): Promise<void> {

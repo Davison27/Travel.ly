@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const mongoose = require('mongoose')
 
-const travelSchema = new mongoose.Schema(
+export const TravelSchema = new mongoose.Schema(
   {
     activities: [
       {
@@ -30,7 +30,7 @@ const travelSchema = new mongoose.Schema(
           type: String,
         },
         price: {
-          type: String,
+          type: Number,
         },
         rooms: {
           type: String,
@@ -46,28 +46,14 @@ const travelSchema = new mongoose.Schema(
         },
       },
     ],
+    budget: {
+      type: Number,
+    },
     description: {
       type: String,
     },
     endDate: {
       type: Date,
-    },
-    expenses: {
-      accomodationPrice: {
-        type: Number,
-      },
-      budget: {
-        type: Number,
-      },
-      entertainmentPrice: {
-        type: Number,
-      },
-      foodPrice: {
-        type: Number,
-      },
-      transportPrice: {
-        type: Number,
-      },
     },
     id: {
       type: String,
@@ -96,4 +82,4 @@ const travelSchema = new mongoose.Schema(
   },
 )
 
-module.exports = mongoose.model('Travel', travelSchema)
+module.exports = mongoose.model('Travel', TravelSchema)
