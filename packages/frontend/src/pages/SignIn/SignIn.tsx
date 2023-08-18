@@ -21,10 +21,16 @@ function SignIn() {
 
   return (
     <>
-      <div className="logo">
-        <Logo />
-        <div id="description">Organice your travels and have fun</div>
-        <GoogleLogin onSuccess={response} onError={error} />
+      <div className="claseDelDiv">
+        <div className="signInWrapper">
+          <div className="logo">
+            <Logo />
+            <div id="description">Organice your travels and have fun</div>
+            <div className="googleLogin">
+              <GoogleLogin onSuccess={response} onError={error} />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )
