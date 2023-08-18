@@ -1,14 +1,13 @@
 version: '3'
 
 services:
-  travel.ly:
-    extends:
-      file: docker-compose.base.yml
-      service: nx-app-base
-    command: npx nx run frontend:serve && npx nx run backend:serve
+  mongo:
+    image: mongo:latest
+    container_name: travelly-mongodb
     ports:
-      - 4200:4200
-      - 3333:3333
+      - 27017:27017
+    volumes:
+      - db_data:/data/db
 
 volumes:
-  node-modules: null
+  db_data:

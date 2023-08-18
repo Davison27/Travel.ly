@@ -11,7 +11,8 @@
     "serve": "npx nx run-many --target=serve -p frontend backend",
     "test:frontend": "npx jest frontend/tests",
     "test:backend": "npx jest backend/tests",
-    "test:backend:watch": "npx jest --watch"
+    "test:backend:watch": "npx jest --watch",
+    "test:all": "npx jest --watch frontend/tests backend/tests"
   },
   "private": true,
   "dependencies": {
