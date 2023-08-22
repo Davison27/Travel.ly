@@ -21,6 +21,7 @@ describe('DeleteTravel', () => {
 
     await deleteTravelById.run('travel-id')
 
-    expect(travelRepository.delete).toHaveBeenCalledWith(expectedTravel)
+    await expect(travelRepository.delete).toHaveBeenCalledTimes(1)
+    await expect(travelRepository.delete).toHaveBeenCalledWith(expectedTravel)
   })
 })

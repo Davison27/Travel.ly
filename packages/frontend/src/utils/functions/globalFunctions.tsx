@@ -1,25 +1,39 @@
 const formatDate = (newDate: Date | undefined) => {
   const date = new Date(newDate!)
-  const formattedDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`
-  return formattedDate
+  let minutes = ''
+  if (date.getMinutes() < 10) {
+    minutes = '0' + date.getMinutes()
+  } else {
+    minutes = date.getMinutes().toString()
+  }
+  return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${minutes}`
 }
 
 const formatHour = (newDate: Date | undefined) => {
   const date = new Date(newDate!)
-  const formattedDate = `${date.getHours()}:${date.getMinutes()}`
-  return formattedDate
+  let minutes = ''
+  if (date.getMinutes() < 10) {
+    minutes = '0' + date.getMinutes()
+  } else {
+    minutes = date.getMinutes().toString()
+  }
+  return `${date.getHours()}:${minutes}`
 }
 
 const formatDateAndHour = (newDate: Date | undefined) => {
   const date = new Date(newDate!)
-  const formattedDate = `${date.getDate()}/${date.getMonth()}/${date.getHours()}:${date.getMinutes()}`
-  return formattedDate
+  let minutes = ''
+  if (date.getMinutes() < 10) {
+    minutes = '0' + date.getMinutes()
+  } else {
+    minutes = date.getMinutes().toString()
+  }
+  return `${date.getDate()}/${date.getMonth()}/${date.getHours()}:${minutes}`
 }
 
 const formatZ = (newDate: Date | undefined) => {
   const date = new Date(newDate!)
-  const formattedDate = date.toISOString().replace('Z', '')
-  return formattedDate
+  return date.toISOString().replace('Z', '')
 }
 
 export { formatDate, formatDateAndHour, formatHour, formatZ }
