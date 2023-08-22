@@ -3,12 +3,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import './Activities.scss'
 
-import {
-  ChevronLeftIcon,
-  EditIcon,
-  ExternalLinkIcon,
-  ViewIcon,
-} from '@chakra-ui/icons'
+import { ChevronLeftIcon, EditIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import {
   Button,
   ButtonGroup,
@@ -31,6 +26,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import CustomAlertDialog from '../../components/custom-alert-dialog/custom-alert-dialog'
 import CustomModal from '../../components/custom-modal/custom-modal'
+import ViewActivityModal from '../../components/view-activity-modal/view-activity-modal'
 import api from '../../utils/api/api'
 import {
   formatDate,
@@ -85,11 +81,7 @@ function ActivitiesPage() {
             </Stack>
           </CardBody>
           <ButtonGroup spacing="3" className="buttonGrid">
-            <Link to={`/travel/${travel.id}`}>
-              <Button variant="outline" colorScheme="blue">
-                <ViewIcon />
-              </Button>
-            </Link>
+            <ViewActivityModal activity={activityId} />
             <Button
               variant="outline"
               colorScheme="green"

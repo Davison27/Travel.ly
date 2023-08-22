@@ -1,0 +1,9 @@
+.emojiModalSize {
+  font-size: 8rem;
+}
+
+.alignCards {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 25rem);
+}
