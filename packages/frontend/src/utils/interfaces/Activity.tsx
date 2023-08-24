@@ -1,4 +1,4 @@
-export interface Activities {
+export interface Activity {
   activityId: string
   category: string
   description?: string

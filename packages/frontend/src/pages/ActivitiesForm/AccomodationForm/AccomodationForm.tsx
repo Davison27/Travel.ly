@@ -54,7 +54,7 @@ function AccomodationForm() {
     location: '',
     name: '',
     price: 0,
-    rooms: 0,
+    rooms: 1,
     startDate: new Date(),
   }
 
@@ -75,7 +75,7 @@ function AccomodationForm() {
           values.location,
           values.price,
           values.rooms,
-          '',
+          '-',
         )
       } catch (error) {
         console.log(error)

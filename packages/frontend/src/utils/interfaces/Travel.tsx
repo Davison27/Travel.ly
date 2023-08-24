@@ -1,8 +1,8 @@
-import { Activities } from './Activities'
+import { Activity } from './Activity'
 import { Expenses } from './Expenses'
 
 export interface Travel {
-  activities: Activities[]
+  activities: Activity[]
   description: string
   endDate: Date
   expenses: Expenses

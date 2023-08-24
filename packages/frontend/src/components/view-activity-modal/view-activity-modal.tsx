@@ -3,8 +3,12 @@ import './view-activity-modal.scss'
 
 import { ViewIcon } from '@chakra-ui/icons'
 import {
+  Box,
   Button,
-  ListItem,
+  Card,
+  CardBody,
+  CardHeader,
+  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -12,7 +16,9 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  UnorderedList,
+  Stack,
+  StackDivider,
+  Text,
   useDisclosure,
 } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
@@ -31,27 +37,98 @@ export default function ViewActivityModal(props: any) {
   }, [id])
 
   const travelData = travel?.activities.find(
-    (activity) => activity.id === props.activityId,
+    (activity) => activity.activityId === props.activityId,
   )
 
   const activityInfo = (
     <>
       <ModalOverlay />
-      <ModalContent maxW="60rem">
-        <ModalHeader>{travelData?.category}</ModalHeader>
+      <ModalContent>
+        <ModalHeader></ModalHeader>
         <ModalCloseButton />
-        <ModalBody className="alignCards">
-          <UnorderedList>
-            <ListItem>Name: {travelData?.name}</ListItem>
-            <ListItem>Description: {travelData?.description}</ListItem>
-            <ListItem>Start date: {formatDate(travelData?.startDate)}</ListItem>
-            <ListItem>End date: {formatDate(travelData?.endDate)}</ListItem>
-            <ListItem>Price: {travelData?.price}</ListItem>
-            <ListItem>Location: {travelData?.location}</ListItem>
-            <ListItem>Rooms: {travelData?.rooms}</ListItem>
-            <ListItem>Transport type: {travelData?.transportType}</ListItem>
-            <ListItem>Documents: {travelData?.documentsUrl}</ListItem>
-          </UnorderedList>
+        <ModalBody>
+          <Card>
+            <CardHeader>
+              <Heading size="lg">{travelData?.category}</Heading>
+            </CardHeader>
+
+            <CardBody>
+              <Stack divider={<StackDivider />} spacing="4">
+                <Box>
+                  <Heading size="xs" textTransform="uppercase">
+                    Nombre
+                  </Heading>
+                  <Text pt="2" fontSize="sm">
+                    {travelData?.name}
+                  </Text>
+                </Box>
+                <Box>
+                  <Heading size="xs" textTransform="uppercase">
+                    Descripción
+                  </Heading>
+                  <Text pt="2" fontSize="sm">
+                    {travelData?.description}
+                  </Text>
+                </Box>
+                <Box>
+                  <Heading size="xs" textTransform="uppercase">
+                    Fecha de inicio
+                  </Heading>
+                  <Text pt="2" fontSize="sm">
+                    {formatDate(travelData?.startDate)}
+                  </Text>
+                </Box>
+                <Box>
+                  <Heading size="xs" textTransform="uppercase">
+                    Fecha de fin
+                  </Heading>
+                  <Text pt="2" fontSize="sm">
+                    {formatDate(travelData?.endDate)}
+                  </Text>
+                </Box>
+                <Box>
+                  <Heading size="xs" textTransform="uppercase">
+                    Precio
+                  </Heading>
+                  <Text pt="2" fontSize="sm">
+                    {travelData?.price}
+                  </Text>
+                </Box>
+                <Box>
+                  <Heading size="xs" textTransform="uppercase">
+                    Localización
+                  </Heading>
+                  <Text pt="2" fontSize="sm">
+                    {travelData?.location}
+                  </Text>
+                </Box>
+                <Box>
+                  <Heading size="xs" textTransform="uppercase">
+                    Habitaciones
+                  </Heading>
+                  <Text pt="2" fontSize="sm">
+                    {travelData?.rooms}
+                  </Text>
+                </Box>
+                <Box>
+                  <Heading size="xs" textTransform="uppercase">
+                    Tipo de transporte
+                  </Heading>
+                  <Text pt="2" fontSize="sm">
+                    {travelData?.transportType}
+                  </Text>
+                </Box>
+                <Box>
+                  <Heading size="xs" textTransform="uppercase">
+                    Documentos
+                  </Heading>
+                  <Text pt="2" fontSize="sm">
+                    {travelData?.documentsUrl}
+                  </Text>
+                </Box>
+              </Stack>
+            </CardBody>
+          </Card>
         </ModalBody>
         <ModalFooter>
           <Button onClick={onClose}>Cancelar</Button>

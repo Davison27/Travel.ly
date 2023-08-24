@@ -32,18 +32,20 @@ import {
   formatDate,
   formatDateAndHour,
 } from '../../utils/functions/globalFunctions'
-import { Activities } from '../../utils/interfaces/Activities'
+import { Activity } from '../../utils/interfaces/Activity'
 import { Travel } from '../../utils/interfaces/Travel'
 
 function ActivitiesPage() {
   const [travel, setTravel] = useState<Travel>()
-  const [activities, setActivities] = useState<Activities[]>([])
+  const [activities, setActivities] = useState<Activity[]>([])
   const [activityToModify, setActivityToModify] = useState('')
 
   const { id } = useParams<{ id: string }>()
   useEffect(() => {
     api.getTravel(id!).then((response) => setTravel(response))
   }, [id, activityToModify])
+
+  console.log(travel)
   const navigate = useNavigate()
 
   const travelTitle = travel?.name
@@ -62,48 +64,47 @@ function ActivitiesPage() {
       }
       return 0
     })
-    .map(
-      ({ activityId, category, endDate, imageUrl, startDate }: Activities) => (
-        <Card maxW="sm" backgroundColor={'#DCDCDC'} key={activityId}>
-          <CardBody>
-            <Img
-              src={imageUrl}
-              alt="Green double couch with wooden legs"
-              borderRadius="lg"
-            />
-            <Stack mt="6" spacing="3">
-              <Heading size="md" className="messageGrid">
-                {category}
-              </Heading>
-              <Heading size="md" className="messageGrid">
-                {formatDateAndHour(startDate)} - {formatDateAndHour(endDate)}
-              </Heading>
-            </Stack>
-          </CardBody>
-          <ButtonGroup spacing="3" className="buttonGrid">
-            <ViewActivityModal activity={activityId} />
-            <Button
-              variant="outline"
-              colorScheme="green"
-              onClick={() => setActivityToModify(activityId)}
-            >
-              <EditIcon />
-            </Button>
-            <CustomAlertDialog
-              travelId={travel.id}
-              activityId={activityId}
-              onDelete={() => {
-                setActivities(
-                  activities.filter(
-                    (activity) => activity.activityId !== activityId,
-                  ),
-                )
-              }}
-            />
-          </ButtonGroup>
-        </Card>
-      ),
-    )
+    .map(({ activityId, category, endDate, imageUrl, startDate }: Activity) => (
+      <Card maxW="sm" backgroundColor={'#DCDCDC'} key={activityId}>
+        <CardBody>
+          <Img
+            src={imageUrl}
+            alt="Green double couch with wooden legs"
+            borderRadius="lg"
+          />
+          <Stack mt="6" spacing="3">
+            <Heading size="md" className="messageGrid">
+              {category}
+            </Heading>
+            <Heading size="md" className="messageGrid">
+              {formatDateAndHour(startDate)} - {formatDateAndHour(endDate)}
+            </Heading>
+          </Stack>
+        </CardBody>
+        <ButtonGroup spacing="3" className="buttonGrid">
+          <ViewActivityModal activityId={activityId} />
+          <Button
+            variant="outline"
+            colorScheme="green"
+            onClick={() => setActivityToModify(activityId)}
+          >
+            <EditIcon />
+          </Button>
+          <CustomAlertDialog
+            travelId={travel.id}
+            activityId={activityId}
+            onDelete={() => {
+              setTravel({
+                ...travel,
+                activities: travel.activities.filter(
+                  (acti) => acti.activityId !== activityId,
+                ),
+              })
+            }}
+          />
+        </ButtonGroup>
+      </Card>
+    ))
 
   // if (activityToModify) {
   //   const activity = travel?.activities.find(

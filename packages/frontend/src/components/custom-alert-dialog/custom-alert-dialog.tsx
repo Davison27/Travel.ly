@@ -47,11 +47,10 @@ function CustomAlertDialog(props: {
   const deleteTravel = () => {
     if (props.activityId) {
       api.deleteActivity(props.activityId, props.travelId)
-      props.onDelete!()
     } else {
       api.deleteTravel(props.travelId)
-      props.onDelete!()
     }
+    props.onDelete!()
     onClose()
   }
 

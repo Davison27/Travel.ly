@@ -56,7 +56,7 @@ function Budget() {
           <div className="messageGrid">
             <div>Has gastado {totalExpenses} €</div>
             <div>
-              Has superado el presupuesto en{' '}
+              Has superado el presupuesto{' '}
               {totalExpenses - budget?.expenses.budget!} € 😥
             </div>
           </div>
