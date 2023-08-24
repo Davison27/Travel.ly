@@ -60,7 +60,6 @@ function TransportForm() {
 
   const handleSubmit = useCallback(
     async (values: Values) => {
-      console.log(values)
       try {
         await api.postActivity(
           values.id,
@@ -152,7 +151,7 @@ function TransportForm() {
                         ></Field>
                       </FormControl>
                       <FormControl isRequired>
-                        <FormLabel htmlFor="startDate">Llegada</FormLabel>
+                        <FormLabel htmlFor="startDate">Inicio</FormLabel>
                         <Field
                           id="startaDate"
                           name="startDate"
@@ -162,7 +161,7 @@ function TransportForm() {
                         />
                       </FormControl>
                       <FormControl isRequired>
-                        <FormLabel htmlFor="endDate">Salida</FormLabel>
+                        <FormLabel htmlFor="endDate">Fin</FormLabel>
                         <Field
                           id="endDate"
                           name="endDate"

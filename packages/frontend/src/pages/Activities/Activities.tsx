@@ -44,15 +44,9 @@ function ActivitiesPage() {
   useEffect(() => {
     api.getTravel(id!).then((response) => setTravel(response))
   }, [id, activityToModify])
-
-  console.log(travel)
   const navigate = useNavigate()
 
-  const travelTitle = travel?.name
-  const travelStartDate = travel?.startDate
-  const travelEndDate = travel?.endDate
   const travelId = travel?.id
-  const travelSharedLink = `http://localhost:4200/travel/shared/${travelId}`
 
   const travelData = travel?.activities
     .sort((a, b) => {
@@ -128,9 +122,9 @@ function ActivitiesPage() {
           </Button>
         </div>
         <div>
-          <div className="ActivitiesTitle">{travelTitle}</div>
+          <div className="ActivitiesTitle">{travel?.name}</div>
           <div className="ActivitiesDate">
-            [{formatDate(travelStartDate)} - {formatDate(travelEndDate)}]
+            [{formatDate(travel?.startDate)} - {formatDate(travel?.endDate)}]
           </div>
         </div>
         <div className="sharedButton">
@@ -146,8 +140,12 @@ function ActivitiesPage() {
               <PopoverBody>
                 <div>Aquí tienes el enlace para compartir tu viaje 😄</div>
                 <br></br>
-                <ChakraLink href={travelSharedLink} isExternal color="blue.500">
-                  {travelSharedLink}
+                <ChakraLink
+                  href={`http://localhost:4200/travel/shared/${travelId}`}
+                  isExternal
+                  color="blue.500"
+                >
+                  {`http://localhost:4200/travel/shared/${travelId}`}
                 </ChakraLink>
               </PopoverBody>
             </PopoverContent>

@@ -12,7 +12,6 @@ export class DeleteActivityById {
     travel.activities = travel.activities.filter(
       (activity) => activity.activityId !== activityId,
     )
-    console.log(travel.activities)
     await this.travelRepository.deleteActivity(travel.activities, travelId)
   }
 }

@@ -29,7 +29,6 @@ function Budget() {
   useEffect(() => {
     api.getTravel(id!).then((response) => {
       setBudget(response)
-      console.log(response)
     })
   }, [id])
   const navigate = useNavigate()

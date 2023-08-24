@@ -41,7 +41,6 @@ interface Values {
 
 function TravelsForm(props?: Values & { onFinish?: () => void }) {
   const ownerId: TokenPayload = jwt_decode(storage.get('token'))
-  console.log(ownerId)
   const navigate = useNavigate()
   const initialValues: Values = {
     budget: props?.budget || 0,
