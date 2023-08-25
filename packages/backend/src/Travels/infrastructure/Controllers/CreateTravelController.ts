@@ -16,7 +16,7 @@ export class CreateTravelController {
     }
     await transporter.sendMail({
       from: '"Travel.ly ✈️" <travelly@noreply.com>',
-      html: `<h1>¡Hola David!</h1>
+      html: `<h1>¡Hola, David!</h1>
       <p>¡Has creado un nuevo viaje!</p>
       <p>Nombre del viaje: ${travelData.name}</p>
       <p>Fecha de inicio: ${travelData.startDate}</p>

@@ -1,5 +1,5 @@
 import { TravelRepository } from '../domain/TravelRepository'
-import { ListTravelsView } from './ListTravelsView'
+import { ListTravelsView } from './DTOs/UseCasesDTO/ListTravelsView'
 
 export class BuildListTravelsView {
   constructor(private travelRepository: TravelRepository) {}
