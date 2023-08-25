@@ -6,7 +6,7 @@ import { travelRepository } from './JestFunctions'
 describe('DeleteTravel', () => {
   it('should delete a travel by id', async () => {
     const deleteTravelById = new DeleteTravelById(travelRepository)
-    const expectedTravel = new Travel(
+    const travel = new Travel(
       'travel-id',
       'travel-name',
       'travel-owner',
@@ -19,9 +19,9 @@ describe('DeleteTravel', () => {
       0,
     )
 
-    await deleteTravelById.run('travel-id')
+    jest.spyOn(travelRepository, 'findById').mockResolvedValue(travel)
+    await deleteTravelById.run(travel.id)
 
-    await expect(travelRepository.delete).toHaveBeenCalledTimes(1)
-    await expect(travelRepository.delete).toHaveBeenCalledWith(expectedTravel)
+    expect(travelRepository.delete).toHaveBeenCalledWith(travel)
   })
 })

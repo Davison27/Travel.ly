@@ -6,7 +6,7 @@ import { travelRepository } from './JestFunctions'
 describe('CreateTravel', () => {
   it('should create a travel', async () => {
     const createTravel = new CreateTravel(travelRepository)
-    const expectedTravel = new Travel(
+    const travel = new Travel(
       'travel-id',
       'travel-name',
       'travel-owner',
@@ -30,6 +30,6 @@ describe('CreateTravel', () => {
       travelers: 0,
     })
 
-    expect(travelRepository.save).toHaveBeenCalledWith(expectedTravel)
+    expect(travelRepository.save).toHaveBeenCalledWith(travel)
   })
 })
