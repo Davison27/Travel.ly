@@ -66,7 +66,7 @@ function CustomAlertDialog(props: {
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Borrar viaje
+              Borrar {props.activityId ? 'actividad' : 'viaje'}
             </AlertDialogHeader>
 
             <AlertDialogBody>
