@@ -4,7 +4,7 @@ import { Expenses } from '../../../src/Travels/domain/Expenses'
 import { Travel } from '../../../src/Travels/domain/Travel'
 import { travelRepository } from './JestFunctions'
 
-describe('UpdateActivity', () => {
+describe('UpdateActivityById', () => {
   afterEach(() => {
     jest.restoreAllMocks()
   })
