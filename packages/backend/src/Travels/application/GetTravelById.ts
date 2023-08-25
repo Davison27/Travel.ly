@@ -7,7 +7,6 @@ export class GetTravelById {
   async run(travelId: string): Promise<TravelDTO> {
     const travel = await this.travelRepository.findById(travelId)
     if (!travel) {
-      console.log('No travel found')
       return null
     }
     return {
