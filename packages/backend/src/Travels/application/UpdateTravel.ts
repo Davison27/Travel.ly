@@ -17,9 +17,9 @@ export class UpdateTravel {
       travel.startDate,
       travel.endDate,
       oldTravel.activities,
-      oldTravel.expenses,
+      travel.expenses,
       travel.description,
-      oldTravel.shared,
+      travel.shared,
       travel.travelers,
       travel.imageUrl,
     )
