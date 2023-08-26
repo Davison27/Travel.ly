@@ -1,34 +1,51 @@
+const minutes = (number: number) => {
+  if (number < 10) {
+    return '0' + number
+  } else {
+    return number.toString()
+  }
+}
+const hours = (number: number) => {
+  if (number < 10) {
+    return '0' + number
+  } else {
+    return number.toString()
+  }
+}
+
+const month = (number: number) => {
+  if (number < 10) {
+    return '0' + number
+  } else {
+    return number.toString()
+  }
+}
+
+const day = (number: number) => {
+  if (number < 10) {
+    return '0' + number
+  } else {
+    return number.toString()
+  }
+}
+
 const formatDate = (newDate: Date | undefined) => {
   const date = new Date(newDate!)
-  let minutes = ''
-  if (date.getMinutes() < 10) {
-    minutes = '0' + date.getMinutes()
-  } else {
-    minutes = date.getMinutes().toString()
-  }
-  return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${minutes}`
+  return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${minutes(
+    date.getMinutes(),
+  )}`
 }
 
 const formatHour = (newDate: Date | undefined) => {
   const date = new Date(newDate!)
-  let minutes = ''
-  if (date.getMinutes() < 10) {
-    minutes = '0' + date.getMinutes()
-  } else {
-    minutes = date.getMinutes().toString()
-  }
-  return `${date.getHours()}:${minutes}`
+  return `${date.getHours()}:${minutes(date.getMinutes())}`
 }
 
 const formatDateAndHour = (newDate: Date | undefined) => {
   const date = new Date(newDate!)
-  let minutes = ''
-  if (date.getMinutes() < 10) {
-    minutes = '0' + date.getMinutes()
-  } else {
-    minutes = date.getMinutes().toString()
-  }
-  return `${date.getDate()}/${date.getMonth()}/${date.getHours()}:${minutes}`
+  return `${date.getDate()}/${date.getMonth()}/${date.getHours()}:${minutes(
+    date.getMinutes(),
+  )}`
 }
 
 const formatZ = (newDate: Date | undefined) => {
@@ -36,4 +53,11 @@ const formatZ = (newDate: Date | undefined) => {
   return date.toISOString().replace('Z', '')
 }
 
-export { formatDate, formatDateAndHour, formatHour, formatZ }
+const formatFormsDate = (newDate: Date | undefined) => {
+  const date = new Date(newDate!)
+  return `${date.getFullYear()}-${month(date.getMonth())}-${day(
+    date.getDate(),
+  )}T${hours(date.getHours())}:${minutes(date.getMinutes())}`
+}
+
+export { formatDate, formatDateAndHour, formatFormsDate, formatHour, formatZ }

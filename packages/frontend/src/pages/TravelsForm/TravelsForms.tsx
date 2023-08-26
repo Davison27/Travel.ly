@@ -25,17 +25,18 @@ import { v4 as uuid } from 'uuid'
 
 import api from '../../utils/api/api'
 import { travelFormValidation } from '../../utils/functions/formsValidations'
+import { formatFormsDate } from '../../utils/functions/globalFunctions'
 import { storage } from '../../utils/functions/storage'
 
 interface Values {
   budget: number
   description: string
-  endDate: Date
+  endDate: any
   id: string
   imageUrl: string
   name: string
   shared: boolean
-  startDate: Date
+  startDate: any
   travelers: number
 }
 
@@ -45,12 +46,12 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
   const initialValues: Values = {
     budget: props?.budget || 0,
     description: props?.description || '',
-    endDate: props?.endDate || new Date(),
+    endDate: formatFormsDate(props?.endDate)! || formatFormsDate(new Date()),
     id: props?.id || uuid(),
     imageUrl: props?.imageUrl || '',
     name: props?.name || '',
     shared: props?.shared || false,
-    startDate: props?.startDate || new Date(),
+    startDate: formatFormsDate(props?.startDate) || formatFormsDate(new Date()),
     travelers: props?.travelers || 1,
   }
 
