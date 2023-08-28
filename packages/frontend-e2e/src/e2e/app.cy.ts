@@ -87,12 +87,36 @@ describe('Create activity', () => {
 
 describe('Delete activity', () => {
   it('should delete an activity inside a travel', () => {
-    it('Add a new activity', () => {
-      cy.setLocalStorage('token', JSON.stringify('token'))
-      cy.visit('http://localhost:4200/travels')
-      cy.contains('Ver').click()
-      cy.contains('chakra-button css-10dk087').click()
-      cy.contains('Cancelar').click()
-    })
+    cy.setLocalStorage('token', JSON.stringify('token'))
+    cy.visit('http://localhost:4200/travels')
+    cy.contains('Ver').click()
+    cy.get('button[class*="css-1cgr9ws"]').first().click()
+    cy.contains('Borrar').click({ force: true })
+  })
+})
+
+describe('View activity', () => {
+  it('should enter into one activity inside a travel', () => {
+    cy.setLocalStorage('token', JSON.stringify('token'))
+    cy.visit('http://localhost:4200/travels')
+    cy.contains('Ver').click()
+    cy.get('button[class*="css-10dk087"]').first().click()
+    cy.contains('Cancelar').click()
+  })
+})
+
+describe('Edit activity', () => {
+  it('should edit an activity inside a travel', () => {
+    cy.setLocalStorage('token', JSON.stringify('token'))
+    cy.visit('http://localhost:4200/travels')
+    cy.contains('Ver').click()
+    cy.get('button[class*="css-jji50e"]').first().click()
+    cy.contains('Ocio').click()
+    cy.get('input[name="name"]').type('Prueba actividad')
+    cy.get('input[name="description"]').type('Prueba de actividad')
+    cy.get('input[name="startDate"]').type('2017-06-01T08:30')
+    cy.get('input[name="endDate"]').type('2017-06-01T08:31')
+    cy.get('input[name="price"]').type('1000')
+    cy.contains('Guardar').click()
   })
 })
