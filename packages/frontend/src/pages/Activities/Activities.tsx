@@ -9,6 +9,7 @@ import {
   ButtonGroup,
   Card,
   CardBody,
+  Divider,
   Heading,
   Icon,
   Img,
@@ -138,14 +139,28 @@ function ActivitiesPage() {
             <PopoverContent>
               <PopoverArrow />
               <PopoverBody>
-                <div>Aquí tienes el enlace para compartir tu viaje 😄</div>
+                <div>Aquí tienes los enlaces para compartir tu viaje 😄</div>
                 <br></br>
+                <div>Ver viaje compartido:</div>
+                <div>
+                  <ChakraLink
+                    href={`http://localhost:4200/travel/shared/${travelId}`}
+                    isExternal
+                    color="blue.500"
+                  >
+                    {`http://localhost:4200/travel/shared/${travelId}`}
+                  </ChakraLink>
+                </div>
+                <br></br>
+                <Divider />
+                <br></br>
+                <div>Editar viaje compartido:</div>
                 <ChakraLink
-                  href={`http://localhost:4200/travel/shared/${travelId}`}
+                  href={`http://localhost:4200/travel/${travelId}`}
                   isExternal
                   color="blue.500"
                 >
-                  {`http://localhost:4200/travel/shared/${travelId}`}
+                  {`http://localhost:4200/travel/${travelId}`}
                 </ChakraLink>
               </PopoverBody>
             </PopoverContent>
