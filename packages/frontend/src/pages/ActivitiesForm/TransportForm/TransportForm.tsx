@@ -24,6 +24,7 @@ import {
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
 import api from 'packages/frontend/src/utils/api/api'
+import { formatFormsDate } from 'packages/frontend/src/utils/functions/globalFunctions'
 import React, { useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
@@ -32,55 +33,75 @@ interface Values {
   category: string
   description: string
   documentsUrl: string
-  endDate: Date
+  endDate: any
   id: string
   location: string
   name: string
   price: number
-  startDate: Date
+  startDate: any
   transportType: string
 }
 
-function TransportForm() {
+function TransportForm(props?: Values & { onFinish?: () => void }) {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { id } = useParams<{ id: string }>()
   const initialRef = React.useRef(null)
   const initialValues: Values = {
-    category: 'Transport',
-    description: '',
-    documentsUrl: '',
-    endDate: new Date(),
-    id: uuid(),
-    location: '',
-    name: '',
-    price: 0,
-    startDate: new Date(),
-    transportType: '',
+    category: props?.category || 'Transport',
+    description: props?.description || '',
+    documentsUrl: props?.documentsUrl || '',
+    endDate: formatFormsDate(props?.endDate) || new Date(),
+    id: props?.id || uuid(),
+    location: props?.location || '',
+    name: props?.name || '',
+    price: props?.price || 0,
+    startDate: formatFormsDate(props?.startDate) || new Date(),
+    transportType: props?.transportType || '',
   }
 
   const handleSubmit = useCallback(
     async (values: Values) => {
       try {
-        await api.postActivity(
-          values.id,
-          values.category,
-          values.endDate,
-          values.name,
-          values.startDate,
-          'https://fotografias.antena3.com/clipping/cmsimages01/2022/12/02/2E2B162A-7CAB-4EF6-AE09-1019C51E4E81/coche_98.jpg?crop=1066,600,x68,y0&width=1900&height=1069&optimize=low&format=webply',
-          id!,
-          values.description,
-          values.documentsUrl,
-          values.location,
-          values.price,
-          0,
-          values.transportType,
-        )
+        if (props?.id) {
+          await api.updateActivity(
+            values.id,
+            values.category,
+            values.endDate,
+            values.name,
+            values.startDate,
+            'https://fotografias.antena3.com/clipping/cmsimages01/2022/12/02/2E2B162A-7CAB-4EF6-AE09-1019C51E4E81/coche_98.jpg?crop=1066,600,x68,y0&width=1900&height=1069&optimize=low&format=webply',
+            id!,
+            values.description,
+            values.documentsUrl,
+            values.location,
+            values.price,
+            0,
+            values.transportType,
+          )
+        } else {
+          await api.postActivity(
+            values.id,
+            values.category,
+            values.endDate,
+            values.name,
+            values.startDate,
+            'https://fotografias.antena3.com/clipping/cmsimages01/2022/12/02/2E2B162A-7CAB-4EF6-AE09-1019C51E4E81/coche_98.jpg?crop=1066,600,x68,y0&width=1900&height=1069&optimize=low&format=webply',
+            id!,
+            values.description,
+            values.documentsUrl,
+            values.location,
+            values.price,
+            0,
+            values.transportType,
+          )
+        }
       } catch (error) {
         console.log(error)
+      } finally {
+        props?.onFinish?.()
       }
     },
-    [id],
+    [id, props],
   )
 
   return (
