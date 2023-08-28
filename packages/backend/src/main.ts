@@ -20,7 +20,7 @@ import { DeleteTravelByIdController } from './Travels/infrastructure/Controllers
 import { GetTravelByIdController } from './Travels/infrastructure/Controllers/GetTravelByIdController'
 import { GetTravelsController } from './Travels/infrastructure/Controllers/GetTravelsController'
 import { UpdateActivityByIdController } from './Travels/infrastructure/Controllers/UpdateActivityByIdController'
-import { UpdateTravelController } from './Travels/infrastructure/Controllers/UpdateTravel'
+import { UpdateTravelController } from './Travels/infrastructure/Controllers/UpdateTravelController'
 import { MongoTravelRepository } from './Travels/infrastructure/repository/MongoTravelRepository'
 
 dotenv.config()
@@ -39,12 +39,6 @@ router.get('/api/status', async (req, res) => {
 
 const travelRepository = new MongoTravelRepository()
 
-const travelUseCase = new CreateTravel(travelRepository)
-const createTravelController = new CreateTravelController(travelUseCase)
-router.post('/api/travels', async (req, res) => {
-  return createTravelController.handle(req, res)
-})
-
 const buildListTravelsView = new BuildListTravelsView(travelRepository)
 const getTravelsController = new GetTravelsController(buildListTravelsView)
 router.get('/api/travels/:ownerId', async (req, res) =>
@@ -57,6 +51,12 @@ const getTravelById = new GetTravelByIdController(
 router.get('/api/travel/:id', async (req, res) =>
   getTravelById.handle(req, res),
 )
+
+const travelUseCase = new CreateTravel(travelRepository)
+const createTravelController = new CreateTravelController(travelUseCase)
+router.post('/api/travels', async (req, res) => {
+  return createTravelController.handle(req, res)
+})
 
 const deleteTravelById = new DeleteTravelByIdController(
   new DeleteTravelById(travelRepository),
