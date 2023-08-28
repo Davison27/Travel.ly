@@ -65,7 +65,18 @@ export default function CustomModal() {
           <ModalHeader>Elige el tipo de actividad</ModalHeader>
           <ModalCloseButton />
           <ModalBody className="alignCards">
-            <AccomodationForm />
+            <AccomodationForm
+              id={''}
+              category={''}
+              description={''}
+              documentsUrl={''}
+              endDate={new Date()}
+              location={''}
+              name={''}
+              price={0}
+              rooms={0}
+              startDate={new Date()}
+            />
             <EntertainmentForm />
             <FoodForm />
             <TransportForm />

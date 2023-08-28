@@ -24,6 +24,7 @@ import {
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
 import api from 'packages/frontend/src/utils/api/api'
+import { formatFormsDate } from 'packages/frontend/src/utils/functions/globalFunctions'
 import React, { useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
@@ -32,55 +33,73 @@ interface Values {
   category: string
   description: string
   documentsUrl: string
-  endDate: Date
+  endDate: any
   id: string
   location: string
   name: string
   price: number
   rooms: number
-  startDate: Date
+  startDate: any
 }
 
-function AccomodationForm() {
+function AccomodationForm(props?: Values & { onFinish?: () => void }) {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { id } = useParams<{ id: string }>()
   const initialRef = React.useRef(null)
   const initialValues: Values = {
-    category: 'Accomodation',
-    description: '',
-    documentsUrl: '',
-    endDate: new Date(),
-    id: uuid(),
-    location: '',
-    name: '',
-    price: 0,
-    rooms: 1,
-    startDate: new Date(),
+    category: props?.category || 'Accomodation',
+    description: props?.description || '',
+    documentsUrl: props?.documentsUrl || '',
+    endDate: formatFormsDate(props?.endDate) || new Date(),
+    id: props?.id || uuid(),
+    location: props?.location || '',
+    name: props?.name || '',
+    price: props?.price || 0,
+    rooms: props?.rooms || 1,
+    startDate: formatFormsDate(props?.startDate) || new Date(),
   }
 
   const handleSubmit = useCallback(
     async (values: Values) => {
       try {
-        await api.postActivity(
-          values.id,
-          values.category,
-          values.endDate,
-          values.name,
-          values.startDate,
-          'https://www.cuboshomes.com/blog/wp-content/uploads/2022/06/5-razones-para-convertir-tu-propiedad-en-un-alojamiento-turistico-1280x720.jpg',
-          id!,
-          values.description,
-          values.documentsUrl,
-          values.location,
-          values.price,
-          values.rooms,
-          '-',
-        )
+        if (props?.id) {
+          await api.updateActivity(
+            values.id,
+            values.category,
+            values.endDate,
+            values.name,
+            values.startDate,
+            'https://www.cuboshomes.com/blog/wp-content/uploads/2022/06/5-razones-para-convertir-tu-propiedad-en-un-alojamiento-turistico-1280x720.jpg',
+            id!,
+            values.description,
+            values.documentsUrl,
+            values.location,
+            values.price,
+            values.rooms,
+            '-',
+          )
+        } else {
+          await api.postActivity(
+            values.id,
+            values.category,
+            values.endDate,
+            values.name,
+            values.startDate,
+            'https://www.cuboshomes.com/blog/wp-content/uploads/2022/06/5-razones-para-convertir-tu-propiedad-en-un-alojamiento-turistico-1280x720.jpg',
+            id!,
+            values.description,
+            values.documentsUrl,
+            values.location,
+            values.price,
+            values.rooms,
+            '-',
+          )
+        }
       } catch (error) {
         console.log(error)
       }
     },
-    [id],
+    [id, props?.id],
   )
 
   return (

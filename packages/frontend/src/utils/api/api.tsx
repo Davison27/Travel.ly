@@ -115,6 +115,42 @@ const postActivity = async (
   return request.data
 }
 
+const updateActivity = async (
+  activityId: string,
+  category: string,
+  endDate: Date,
+  name: string,
+  startDate: Date,
+  imageUrl: string,
+  travelId: string,
+  description?: string,
+  documentUrls?: string,
+  location?: string,
+  price?: number,
+  rooms?: number,
+  transportType?: string,
+) => {
+  const request = await axios.put(
+    `${myApi}/travels/${travelId}/activities/${activityId}`,
+    {
+      activityId,
+      category,
+      description,
+      documentUrls,
+      endDate,
+      imageUrl,
+      location,
+      name,
+      price,
+      rooms,
+      startDate,
+      transportType,
+      travelId,
+    },
+  )
+  return request.data
+}
+
 const deleteActivity = async (activityId: string, travelId: string) => {
   const request = await axios.delete(
     `${myApi}/travels/${travelId}/activities/${activityId}`,
@@ -130,5 +166,6 @@ export default {
   getTravels,
   postActivity,
   postTravel,
+  updateActivity,
   updateTravel,
 }

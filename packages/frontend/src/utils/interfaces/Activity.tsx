@@ -1,16 +1,16 @@
 export interface Activity {
   activityId: string
   category: string
-  description?: string
-  documentsUrl?: string
+  description: string
+  documentsUrl: string
   endDate: Date
   id: string
   imageUrl: string
-  location?: string
+  location: string
   name: string
-  price?: number
-  rooms?: number
+  price: number
+  rooms: number
   startDate: Date
-  transportType?: string
+  transportType: string
   travelId: string
 }

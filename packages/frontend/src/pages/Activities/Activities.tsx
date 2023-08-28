@@ -35,16 +35,18 @@ import {
 } from '../../utils/functions/globalFunctions'
 import { Activity } from '../../utils/interfaces/Activity'
 import { Travel } from '../../utils/interfaces/Travel'
+import AccomodationForm from '../ActivitiesForm/AccomodationForm/AccomodationForm'
+import EntertainmentForm from '../ActivitiesForm/EntertainmentForm/EntertainmentForm'
+import FoodForm from '../ActivitiesForm/FoodForm/FoodForm'
+import TransportForm from '../ActivitiesForm/TransportForm/TransportForm'
 
 function ActivitiesPage() {
   const [travel, setTravel] = useState<Travel>()
-  const [activities, setActivities] = useState<Activity[]>([])
-  const [activityToModify, setActivityToModify] = useState('')
-
+  const [travelToModify, settravelToModify] = useState('')
   const { id } = useParams<{ id: string }>()
   useEffect(() => {
     api.getTravel(id!).then((response) => setTravel(response))
-  }, [id, activityToModify])
+  }, [id, travelToModify])
   const navigate = useNavigate()
 
   const travelId = travel?.id
@@ -81,7 +83,7 @@ function ActivitiesPage() {
           <Button
             variant="outline"
             colorScheme="green"
-            onClick={() => setActivityToModify(activityId)}
+            onClick={() => settravelToModify(activityId)}
           >
             <EditIcon />
           </Button>
@@ -101,17 +103,37 @@ function ActivitiesPage() {
       </Card>
     ))
 
-  // if (activityToModify) {
-  //   const activity = travel?.activities.find(
-  //     (acti) => acti.activityId === activityToModify,
-  //   )
-  //   return (
-  //     <FoodForm
-  //     // activity={activity!}
-  //     // setActivityToModify={setActivityToModify}
-  //     />
-  //   )
-  // }
+  if (travelToModify) {
+    const activity = travel?.activities.find(
+      (activities) => activities.activityId === travelToModify,
+    )
+    switch (activity?.category) {
+      case 'Accomodation':
+        return (
+          <AccomodationForm
+            id={activity.activityId}
+            category={activity.category}
+            description={activity.description}
+            documentsUrl={activity.documentsUrl}
+            endDate={activity.endDate}
+            location={activity.location}
+            name={activity.name}
+            price={activity.price}
+            rooms={activity.rooms}
+            startDate={activity.startDate}
+            onFinish={() => settravelToModify('')}
+          />
+        )
+      case 'Food':
+        return <FoodForm />
+      case 'Transport':
+        return <TransportForm />
+      case 'Entertainment':
+        return <EntertainmentForm />
+      default:
+        return <div>error</div>
+    }
+  }
 
   return (
     <div>
