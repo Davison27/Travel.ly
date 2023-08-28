@@ -24,6 +24,7 @@ import {
 } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
 import api from 'packages/frontend/src/utils/api/api'
+import { formatFormsDate } from 'packages/frontend/src/utils/functions/globalFunctions'
 import React, { useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
@@ -32,52 +33,72 @@ interface Values {
   category: string
   description: string
   documentsUrl: string
-  endDate: Date
+  endDate: any
   id: string
   location: string
   name: string
   price: number
-  startDate: Date
+  startDate: any
 }
-function EntertainmentForm() {
+function EntertainmentForm(props?: Values & { onFinish?: () => void }) {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { id } = useParams<{ id: string }>()
   const initialRef = React.useRef(null)
   const initialValues: Values = {
-    category: 'Entertainment',
-    description: '',
-    documentsUrl: '',
-    endDate: new Date(),
-    id: uuid(),
-    location: '',
-    name: '',
-    price: 0,
-    startDate: new Date(),
+    category: props?.category || 'Entertainment',
+    description: props?.description || '',
+    documentsUrl: props?.documentsUrl || '',
+    endDate: formatFormsDate(props?.endDate) || new Date(),
+    id: props?.id || uuid(),
+    location: props?.location || '',
+    name: props?.name || '',
+    price: props?.price || 0,
+    startDate: formatFormsDate(props?.startDate) || new Date(),
   }
 
   const handleSubmit = useCallback(
     async (values: Values) => {
       try {
-        await api.postActivity(
-          values.id,
-          values.category,
-          values.endDate,
-          values.name,
-          values.startDate,
-          'https://roams.es/images/post/es_ES_telco/companias-telefonicas-movistar-guias-television-fusion-ocio-movistar.jpg',
-          id!,
-          values.description,
-          values.documentsUrl,
-          values.location,
-          values.price,
-          0,
-          '-',
-        )
+        if (props?.id) {
+          await api.updateActivity(
+            values.id,
+            values.category,
+            values.endDate,
+            values.name,
+            values.startDate,
+            'https://roams.es/images/post/es_ES_telco/companias-telefonicas-movistar-guias-television-fusion-ocio-movistar.jpg',
+            id!,
+            values.description,
+            values.documentsUrl,
+            values.location,
+            values.price,
+            0,
+            '-',
+          )
+        } else {
+          await api.postActivity(
+            values.id,
+            values.category,
+            values.endDate,
+            values.name,
+            values.startDate,
+            'https://roams.es/images/post/es_ES_telco/companias-telefonicas-movistar-guias-television-fusion-ocio-movistar.jpg',
+            id!,
+            values.description,
+            values.documentsUrl,
+            values.location,
+            values.price,
+            0,
+            '-',
+          )
+        }
       } catch (error) {
         console.log(error)
+      } finally {
+        props?.onFinish?.()
       }
     },
-    [id],
+    [id, props],
   )
 
   return (

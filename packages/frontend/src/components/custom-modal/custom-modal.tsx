@@ -77,9 +77,40 @@ export default function CustomModal() {
               rooms={0}
               startDate={new Date()}
             />
-            <EntertainmentForm />
-            <FoodForm />
-            <TransportForm />
+            <EntertainmentForm
+              id={''}
+              category={''}
+              description={''}
+              documentsUrl={''}
+              endDate={new Date()}
+              location={''}
+              name={''}
+              price={0}
+              startDate={new Date()}
+            />
+            <FoodForm
+              id={''}
+              category={''}
+              description={''}
+              documentsUrl={''}
+              endDate={new Date()}
+              location={''}
+              name={''}
+              price={0}
+              startDate={new Date()}
+            />
+            <TransportForm
+              id={''}
+              category={''}
+              description={''}
+              documentsUrl={''}
+              endDate={new Date()}
+              location={''}
+              name={''}
+              price={0}
+              transportType={''}
+              startDate={new Date()}
+            />
           </ModalBody>
           <ModalFooter>
             <Button onClick={onClose}>Cancelar</Button>

@@ -125,11 +125,51 @@ function ActivitiesPage() {
           />
         )
       case 'Food':
-        return <FoodForm />
+        return (
+          <FoodForm
+            id={activity.activityId}
+            category={activity.category}
+            description={activity.description}
+            documentsUrl={activity.documentsUrl}
+            endDate={activity.endDate}
+            location={activity.location}
+            name={activity.name}
+            price={activity.price}
+            startDate={activity.startDate}
+            onFinish={() => settravelToModify('')}
+          />
+        )
       case 'Transport':
-        return <TransportForm />
+        return (
+          <TransportForm
+            id={activity.activityId}
+            category={activity.category}
+            description={activity.description}
+            documentsUrl={activity.documentsUrl}
+            endDate={activity.endDate}
+            location={activity.location}
+            name={activity.name}
+            price={activity.price}
+            startDate={activity.startDate}
+            transportType={activity.transportType}
+            onFinish={() => settravelToModify('')}
+          />
+        )
       case 'Entertainment':
-        return <EntertainmentForm />
+        return (
+          <EntertainmentForm
+            id={activity.activityId}
+            category={activity.category}
+            description={activity.description}
+            documentsUrl={activity.documentsUrl}
+            endDate={activity.endDate}
+            location={activity.location}
+            name={activity.name}
+            price={activity.price}
+            startDate={activity.startDate}
+            onFinish={() => settravelToModify('')}
+          />
+        )
       default:
         return <div>error</div>
     }

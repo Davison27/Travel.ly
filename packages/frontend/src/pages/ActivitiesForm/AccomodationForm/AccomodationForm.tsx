@@ -97,9 +97,11 @@ function AccomodationForm(props?: Values & { onFinish?: () => void }) {
         }
       } catch (error) {
         console.log(error)
+      } finally {
+        props?.onFinish?.()
       }
     },
-    [id, props?.id],
+    [id, props],
   )
 
   return (
