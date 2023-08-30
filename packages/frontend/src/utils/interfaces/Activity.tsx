@@ -2,7 +2,7 @@ export interface Activity {
   activityId: string
   category: string
   description: string
-  documentsUrl: string
+  documentUrls: string
   endDate: Date
   id: string
   imageUrl: string

@@ -34,7 +34,7 @@ import { v4 as uuid } from 'uuid'
 interface Values {
   category: string
   description: string
-  documentsUrl: string
+  documentUrls: string
   endDate: any
   id: string
   location: string
@@ -62,7 +62,7 @@ function FoodForm(
   const initialValues: Values = {
     category: props?.category || 'Food',
     description: props?.description || '',
-    documentsUrl: props?.documentsUrl || '',
+    documentUrls: props?.documentUrls || '',
     endDate: formatFormsDate(props?.endDate) || new Date(),
     id: props?.id || uuid(),
     location: props?.location || '',
@@ -84,7 +84,7 @@ function FoodForm(
             'https://fotografias.larazon.es/clipping/cmsimages02/2022/04/01/BE78C788-5591-428B-A83A-FF2CDAF27C65/98.jpg?crop=4200,2363,x0,y218&width=1900&height=1069&optimize=low&format=webply',
             id!,
             values.description,
-            values.documentsUrl,
+            values.documentUrls,
             values.location,
             values.price,
             0,
@@ -100,7 +100,7 @@ function FoodForm(
             'https://fotografias.larazon.es/clipping/cmsimages02/2022/04/01/BE78C788-5591-428B-A83A-FF2CDAF27C65/98.jpg?crop=4200,2363,x0,y218&width=1900&height=1069&optimize=low&format=webply',
             id!,
             values.description,
-            values.documentsUrl,
+            values.documentUrls,
             values.location,
             values.price,
             0,
@@ -114,7 +114,7 @@ function FoodForm(
                 activityId: values.id,
                 category: values.category,
                 description: values.description,
-                documentsUrl: values.documentsUrl,
+                documentUrls: values.documentUrls,
                 endDate: values.endDate,
                 id: values.id,
                 imageUrl:
@@ -244,10 +244,10 @@ function FoodForm(
                         </InputGroup>
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="documentsUrl">Documentos</FormLabel>
+                        <FormLabel htmlFor="documentUrls">Documentos</FormLabel>
                         <Field
-                          id="documentsUrl"
-                          name="documentsUrl"
+                          id="documentUrls"
+                          name="documentUrls"
                           as={Input}
                           variant="filled"
                         ></Field>

@@ -33,7 +33,7 @@ import { v4 as uuid } from 'uuid'
 interface Values {
   category: string
   description: string
-  documentsUrl: string
+  documentUrls: string
   endDate: any
   id: string
   location: string
@@ -62,7 +62,7 @@ function TransportForm(
   const initialValues: Values = {
     category: props?.category || 'Transport',
     description: props?.description || '',
-    documentsUrl: props?.documentsUrl || '',
+    documentUrls: props?.documentUrls || '',
     endDate: formatFormsDate(props?.endDate) || new Date(),
     id: props?.id || uuid(),
     location: props?.location || '',
@@ -85,7 +85,7 @@ function TransportForm(
             'https://fotografias.antena3.com/clipping/cmsimages01/2022/12/02/2E2B162A-7CAB-4EF6-AE09-1019C51E4E81/coche_98.jpg?crop=1066,600,x68,y0&width=1900&height=1069&optimize=low&format=webply',
             id!,
             values.description,
-            values.documentsUrl,
+            values.documentUrls,
             values.location,
             values.price,
             0,
@@ -101,7 +101,7 @@ function TransportForm(
             'https://fotografias.antena3.com/clipping/cmsimages01/2022/12/02/2E2B162A-7CAB-4EF6-AE09-1019C51E4E81/coche_98.jpg?crop=1066,600,x68,y0&width=1900&height=1069&optimize=low&format=webply',
             id!,
             values.description,
-            values.documentsUrl,
+            values.documentUrls,
             values.location,
             values.price,
             0,
@@ -115,7 +115,7 @@ function TransportForm(
                 activityId: values.id,
                 category: values.category,
                 description: values.description,
-                documentsUrl: values.documentsUrl,
+                documentUrls: values.documentUrls,
                 endDate: values.endDate,
                 id: values.id,
                 imageUrl:
@@ -247,10 +247,10 @@ function TransportForm(
                         </InputGroup>
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="documentsUrl">Documentos</FormLabel>
+                        <FormLabel htmlFor="documentUrls">Documentos</FormLabel>
                         <Field
-                          id="documentsUrl"
-                          name="documentsUrl"
+                          id="documentUrls"
+                          name="documentUrls"
                           as={Input}
                           variant="filled"
                         ></Field>

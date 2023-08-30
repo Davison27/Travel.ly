@@ -34,7 +34,7 @@ import { v4 as uuid } from 'uuid'
 interface Values {
   category: string
   description: string
-  documentsUrl: string
+  documentUrls: string
   endDate: any
   id: string
   location: string
@@ -63,7 +63,7 @@ function AccomodationForm(
   const initialValues: Values = {
     category: props?.category || 'Accomodation',
     description: props?.description || '',
-    documentsUrl: props?.documentsUrl || '',
+    documentUrls: props?.documentUrls || '',
     endDate: formatFormsDate(props?.endDate) || new Date(),
     id: props?.id || uuid(),
     location: props?.location || '',
@@ -86,7 +86,7 @@ function AccomodationForm(
             'https://www.cuboshomes.com/blog/wp-content/uploads/2022/06/5-razones-para-convertir-tu-propiedad-en-un-alojamiento-turistico-1280x720.jpg',
             id!,
             values.description,
-            values.documentsUrl,
+            values.documentUrls,
             values.location,
             values.price,
             values.rooms,
@@ -102,7 +102,7 @@ function AccomodationForm(
             'https://www.cuboshomes.com/blog/wp-content/uploads/2022/06/5-razones-para-convertir-tu-propiedad-en-un-alojamiento-turistico-1280x720.jpg',
             id!,
             values.description,
-            values.documentsUrl,
+            values.documentUrls,
             values.location,
             values.price,
             values.rooms,
@@ -116,7 +116,7 @@ function AccomodationForm(
                 activityId: values.id,
                 category: values.category,
                 description: values.description,
-                documentsUrl: values.documentsUrl,
+                documentUrls: values.documentUrls,
                 endDate: values.endDate,
                 id: values.id,
                 imageUrl:
@@ -255,10 +255,10 @@ function AccomodationForm(
                         </InputGroup>
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="documentsUrl">Documentos</FormLabel>
+                        <FormLabel htmlFor="documentUrls">Documentos</FormLabel>
                         <Field
-                          id="documentsUrl"
-                          name="documentsUrl"
+                          id="documentUrls"
+                          name="documentUrls"
                           as={Input}
                           variant="filled"
                         ></Field>

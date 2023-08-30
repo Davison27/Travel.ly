@@ -33,7 +33,7 @@ import { v4 as uuid } from 'uuid'
 interface Values {
   category: string
   description: string
-  documentsUrl: string
+  documentUrls: string
   endDate: any
   id: string
   location: string
@@ -60,7 +60,7 @@ function EntertainmentForm(
   const initialValues: Values = {
     category: props?.category || 'Entertainment',
     description: props?.description || '',
-    documentsUrl: props?.documentsUrl || '',
+    documentUrls: props?.documentUrls || '',
     endDate: formatFormsDate(props?.endDate) || new Date(),
     id: props?.id || uuid(),
     location: props?.location || '',
@@ -82,7 +82,7 @@ function EntertainmentForm(
             'https://roams.es/images/post/es_ES_telco/companias-telefonicas-movistar-guias-television-fusion-ocio-movistar.jpg',
             id!,
             values.description,
-            values.documentsUrl,
+            values.documentUrls,
             values.location,
             values.price,
             0,
@@ -98,7 +98,7 @@ function EntertainmentForm(
             'https://roams.es/images/post/es_ES_telco/companias-telefonicas-movistar-guias-television-fusion-ocio-movistar.jpg',
             id!,
             values.description,
-            values.documentsUrl,
+            values.documentUrls,
             values.location,
             values.price,
             0,
@@ -112,7 +112,7 @@ function EntertainmentForm(
                 activityId: values.id,
                 category: values.category,
                 description: values.description,
-                documentsUrl: values.documentsUrl,
+                documentUrls: values.documentUrls,
                 endDate: values.endDate,
                 id: values.id,
                 imageUrl:
@@ -242,10 +242,10 @@ function EntertainmentForm(
                         </InputGroup>
                       </FormControl>
                       <FormControl>
-                        <FormLabel htmlFor="documentsUrl">Documentos</FormLabel>
+                        <FormLabel htmlFor="documentUrls">Documentos</FormLabel>
                         <Field
-                          id="documentsUrl"
-                          name="documentsUrl"
+                          id="documentUrls"
+                          name="documentUrls"
                           as={Input}
                           variant="filled"
                         ></Field>

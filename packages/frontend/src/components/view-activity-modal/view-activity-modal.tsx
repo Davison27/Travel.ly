@@ -9,6 +9,7 @@ import {
   CardBody,
   CardHeader,
   Heading,
+  Link as ChakraLink,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -35,7 +36,6 @@ export default function ViewActivityModal(props: any) {
   useEffect(() => {
     api.getTravel(id!).then((response) => setTravel(response))
   }, [id])
-
   const travelData = travel?.activities.find(
     (activity) => activity.activityId === props.activityId,
   )
@@ -122,9 +122,13 @@ export default function ViewActivityModal(props: any) {
                   <Heading size="xs" textTransform="uppercase">
                     Documentos
                   </Heading>
-                  <Text pt="2" fontSize="sm">
-                    {travelData?.documentsUrl}
-                  </Text>
+                  <ChakraLink
+                    href={travelData?.documentUrls}
+                    isExternal
+                    color="blue.500"
+                  >
+                    {travelData?.documentUrls}
+                  </ChakraLink>
                 </Box>
               </Stack>
             </CardBody>

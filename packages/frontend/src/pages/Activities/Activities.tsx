@@ -114,7 +114,7 @@ function ActivitiesPage() {
             id={activity.activityId}
             category={activity.category}
             description={activity.description}
-            documentsUrl={activity.documentsUrl}
+            documentUrls={activity.documentUrls}
             endDate={activity.endDate}
             location={activity.location}
             name={activity.name}
@@ -132,7 +132,7 @@ function ActivitiesPage() {
             id={activity.activityId}
             category={activity.category}
             description={activity.description}
-            documentsUrl={activity.documentsUrl}
+            documentUrls={activity.documentUrls}
             endDate={activity.endDate}
             location={activity.location}
             name={activity.name}
@@ -149,7 +149,7 @@ function ActivitiesPage() {
             id={activity.activityId}
             category={activity.category}
             description={activity.description}
-            documentsUrl={activity.documentsUrl}
+            documentUrls={activity.documentUrls}
             endDate={activity.endDate}
             location={activity.location}
             name={activity.name}
@@ -167,7 +167,7 @@ function ActivitiesPage() {
             id={activity.activityId}
             category={activity.category}
             description={activity.description}
-            documentsUrl={activity.documentsUrl}
+            documentUrls={activity.documentUrls}
             endDate={activity.endDate}
             location={activity.location}
             name={activity.name}

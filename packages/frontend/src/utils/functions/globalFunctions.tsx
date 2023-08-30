@@ -43,7 +43,7 @@ const formatHour = (newDate: Date | undefined) => {
 
 const formatDateAndHour = (newDate: Date | undefined) => {
   const date = new Date(newDate!)
-  return `${date.getDate()}/${date.getMonth()}/${date.getHours()}:${minutes(
+  return `${date.getDate()}/${date.getMonth()} ${date.getHours()}:${minutes(
     date.getMinutes(),
   )}`
 }

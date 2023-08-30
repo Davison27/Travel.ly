@@ -73,7 +73,7 @@ export default function CustomModal(props: {
               id={''}
               category={''}
               description={''}
-              documentsUrl={''}
+              documentUrls={''}
               endDate={new Date()}
               location={''}
               name={''}
@@ -87,7 +87,7 @@ export default function CustomModal(props: {
               id={''}
               category={''}
               description={''}
-              documentsUrl={''}
+              documentUrls={''}
               endDate={new Date()}
               location={''}
               name={''}
@@ -100,7 +100,7 @@ export default function CustomModal(props: {
               id={''}
               category={''}
               description={''}
-              documentsUrl={''}
+              documentUrls={''}
               endDate={new Date()}
               location={''}
               name={''}
@@ -113,7 +113,7 @@ export default function CustomModal(props: {
               id={''}
               category={''}
               description={''}
-              documentsUrl={''}
+              documentUrls={''}
               endDate={new Date()}
               location={''}
               name={''}
