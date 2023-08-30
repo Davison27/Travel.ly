@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 import { UpdateTravel } from '../../application/UpdateTravel'
-import { transporter } from '../repository/NodemailerTravelRepository'
+import { transporter } from '../Repository/NodemailerTravelRepository'
 
 export class UpdateTravelController {
   constructor(private useCase: UpdateTravel) {}

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 import { DeleteTravelById } from '../../application/DeleteTravelById'
-import { transporter } from '../repository/NodemailerTravelRepository'
+import { transporter } from '../Repository/NodemailerTravelRepository'
 
 export class DeleteTravelByIdController {
   constructor(private travel: DeleteTravelById) {}

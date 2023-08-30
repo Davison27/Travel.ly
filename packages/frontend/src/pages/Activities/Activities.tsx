@@ -122,6 +122,8 @@ function ActivitiesPage() {
             rooms={activity.rooms}
             startDate={activity.startDate}
             onFinish={() => settravelToModify('')}
+            setTravel={setTravel}
+            travel={travel}
           />
         )
       case 'Food':
@@ -137,6 +139,8 @@ function ActivitiesPage() {
             price={activity.price}
             startDate={activity.startDate}
             onFinish={() => settravelToModify('')}
+            setTravel={setTravel}
+            travel={travel}
           />
         )
       case 'Transport':
@@ -153,6 +157,8 @@ function ActivitiesPage() {
             startDate={activity.startDate}
             transportType={activity.transportType}
             onFinish={() => settravelToModify('')}
+            setTravel={setTravel}
+            travel={travel}
           />
         )
       case 'Entertainment':
@@ -168,6 +174,8 @@ function ActivitiesPage() {
             price={activity.price}
             startDate={activity.startDate}
             onFinish={() => settravelToModify('')}
+            setTravel={setTravel}
+            travel={travel}
           />
         )
       default:
@@ -235,7 +243,7 @@ function ActivitiesPage() {
         templateColumns="repeat(auto-fill, minmax(250px, 1rem))"
       >
         {travelData}
-        <CustomModal />
+        <CustomModal setTravel={setTravel} travel={travel} />
       </SimpleGrid>
       <div className="budgetButton">
         <Link to={`/budget/${travelId}`}>

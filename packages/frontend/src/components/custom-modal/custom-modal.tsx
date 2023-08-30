@@ -23,9 +23,13 @@ import AccomodationForm from '../../pages/ActivitiesForm/AccomodationForm/Accomo
 import EntertainmentForm from '../../pages/ActivitiesForm/EntertainmentForm/EntertainmentForm'
 import FoodForm from '../../pages/ActivitiesForm/FoodForm/FoodForm'
 import TransportForm from '../../pages/ActivitiesForm/TransportForm/TransportForm'
+import { Travel } from '../../utils/interfaces/Travel'
 import Emoji from '../Emoji/emoji'
 
-export default function CustomModal() {
+export default function CustomModal(props: {
+  setTravel: (travel: Travel) => void
+  travel: Travel | undefined
+}) {
   const { isOpen, onClose, onOpen } = useDisclosure()
 
   const initialRef = React.useRef(null)
@@ -76,6 +80,8 @@ export default function CustomModal() {
               price={0}
               rooms={0}
               startDate={new Date()}
+              travel={props.travel}
+              setTravel={props.setTravel}
             />
             <EntertainmentForm
               id={''}
@@ -87,6 +93,8 @@ export default function CustomModal() {
               name={''}
               price={0}
               startDate={new Date()}
+              travel={props.travel}
+              setTravel={props.setTravel}
             />
             <FoodForm
               id={''}
@@ -98,6 +106,8 @@ export default function CustomModal() {
               name={''}
               price={0}
               startDate={new Date()}
+              travel={props.travel}
+              setTravel={props.setTravel}
             />
             <TransportForm
               id={''}
@@ -110,6 +120,8 @@ export default function CustomModal() {
               price={0}
               transportType={''}
               startDate={new Date()}
+              travel={props.travel}
+              setTravel={props.setTravel}
             />
           </ModalBody>
           <ModalFooter>

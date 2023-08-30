@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 
 import { CreateTravel } from '../../application/CreateTravel'
 import { CreateTravelDTO } from '../../application/DTOs/UseCasesDTO/CreateTravelDTO'
-import { transporter } from '../repository/NodemailerTravelRepository'
+import { transporter } from '../Repository/NodemailerTravelRepository'
 
 export class CreateTravelController {
   constructor(private useCase: CreateTravel) {}

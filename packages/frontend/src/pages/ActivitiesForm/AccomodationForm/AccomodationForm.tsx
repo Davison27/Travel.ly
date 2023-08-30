@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-shadow */
 import './AccomodationForm.scss'
 
@@ -25,7 +26,8 @@ import {
 import { Field, Formik } from 'formik'
 import api from 'packages/frontend/src/utils/api/api'
 import { formatFormsDate } from 'packages/frontend/src/utils/functions/globalFunctions'
-import React, { useCallback } from 'react'
+import { Travel } from 'packages/frontend/src/utils/interfaces/Travel'
+import React, { useCallback, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -42,9 +44,21 @@ interface Values {
   startDate: any
 }
 
-function AccomodationForm(props?: Values & { onFinish?: () => void }) {
+function AccomodationForm(
+  props?: Values & { onFinish?: () => void } & {
+    setTravel: (travel: Travel) => void
+    travel: Travel | undefined
+  },
+) {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { id } = useParams<{ id: string }>()
+
+  useEffect(() => {
+    if (props?.id) {
+      onOpen()
+    }
+  }, [props?.id, onOpen])
+
   const initialRef = React.useRef(null)
   const initialValues: Values = {
     category: props?.category || 'Accomodation',
@@ -94,6 +108,29 @@ function AccomodationForm(props?: Values & { onFinish?: () => void }) {
             values.rooms,
             '-',
           )
+          props?.setTravel({
+            ...props?.travel!,
+            activities: [
+              ...props?.travel!.activities,
+              {
+                activityId: values.id,
+                category: values.category,
+                description: values.description,
+                documentsUrl: values.documentsUrl,
+                endDate: values.endDate,
+                id: values.id,
+                imageUrl:
+                  'https://www.cuboshomes.com/blog/wp-content/uploads/2022/06/5-razones-para-convertir-tu-propiedad-en-un-alojamiento-turistico-1280x720.jpg',
+                location: values.location,
+                name: values.name,
+                price: values.price,
+                rooms: values.rooms,
+                startDate: values.startDate,
+                transportType: '-',
+                travelId: id!,
+              },
+            ],
+          })
         }
       } catch (error) {
         console.log(error)
@@ -107,24 +144,26 @@ function AccomodationForm(props?: Values & { onFinish?: () => void }) {
   return (
     <>
       {' '}
-      <button onClick={onOpen}>
-        <Card maxW="sm" backgroundColor={'#DCDCDC'}>
-          <CardBody>
-            <Img
-              src={
-                'https://www.cuboshomes.com/blog/wp-content/uploads/2022/06/5-razones-para-convertir-tu-propiedad-en-un-alojamiento-turistico-1280x720.jpg'
-              }
-              alt="Green double couch with wooden legs"
-              borderRadius="lg"
-            />
-            <Stack mt="6" spacing="3">
-              <Heading size="md" className="messageGrid">
-                Alojamiento
-              </Heading>
-            </Stack>
-          </CardBody>
-        </Card>
-      </button>
+      {!props?.id && (
+        <button onClick={onOpen}>
+          <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+            <CardBody>
+              <Img
+                src={
+                  'https://www.cuboshomes.com/blog/wp-content/uploads/2022/06/5-razones-para-convertir-tu-propiedad-en-un-alojamiento-turistico-1280x720.jpg'
+                }
+                alt="Green double couch with wooden legs"
+                borderRadius="lg"
+              />
+              <Stack mt="6" spacing="3">
+                <Heading size="md" className="messageGrid">
+                  Alojamiento
+                </Heading>
+              </Stack>
+            </CardBody>
+          </Card>
+        </button>
+      )}
       <Modal
         initialFocusRef={initialRef}
         isOpen={isOpen}

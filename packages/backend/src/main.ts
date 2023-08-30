@@ -21,7 +21,7 @@ import { GetTravelByIdController } from './Travels/infrastructure/Controllers/Ge
 import { GetTravelsController } from './Travels/infrastructure/Controllers/GetTravelsController'
 import { UpdateActivityByIdController } from './Travels/infrastructure/Controllers/UpdateActivityByIdController'
 import { UpdateTravelController } from './Travels/infrastructure/Controllers/UpdateTravelController'
-import { MongoTravelRepository } from './Travels/infrastructure/repository/MongoTravelRepository'
+import { MongoTravelRepository } from './Travels/infrastructure/Repository/MongoTravelRepository'
 
 dotenv.config()
 const app = express()
