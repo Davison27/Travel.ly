@@ -4,6 +4,9 @@ import { Travel } from '../../../src/Travels/domain/Travel'
 import { travelRepository } from './JestFunctions'
 
 describe('CreateTravel', () => {
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
   it('should create a travel', async () => {
     const createTravel = new CreateTravel(travelRepository)
     const travel = new Travel(

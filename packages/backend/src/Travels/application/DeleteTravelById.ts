@@ -5,6 +5,9 @@ export class DeleteTravelById {
 
   async run(travelId: string) {
     const travel = await this.travelRepository.findById(travelId)
+    if (!travel) {
+      return null
+    }
     await this.travelRepository.delete(travel)
   }
 }

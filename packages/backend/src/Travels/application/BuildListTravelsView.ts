@@ -7,7 +7,6 @@ export class BuildListTravelsView {
   async run(ownerId: string): Promise<ListTravelsView> {
     const travels = await this.travelRepository.findAll(ownerId)
     if (!travels) {
-      console.log('No travels found')
       return null
     }
     return {

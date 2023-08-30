@@ -7,7 +7,6 @@ export class UpdateTravel {
   async run(travelId: string, travel: Travel): Promise<void> {
     const oldTravel = await this.travelRepository.findById(travelId)
     if (!oldTravel) {
-      console.log('No travel found')
       return null
     }
     const updateTravel = new Travel(

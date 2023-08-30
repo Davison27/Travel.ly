@@ -9,6 +9,9 @@ export class CreateActivity {
     const travel = await this.travelRepository.findById(
       createActivityDTO.travelId,
     )
+    if (!travel) {
+      return null
+    }
     const activity = new Activity(
       createActivityDTO.travelId,
       createActivityDTO.activityId,

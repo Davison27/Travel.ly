@@ -6,7 +6,6 @@ export class DeleteActivityById {
   async run(travelId: string, activityId: string): Promise<void> {
     const travel = await this.travelRepository.findById(travelId)
     if (!travel) {
-      console.log('No travel found')
       return null
     }
     travel.activities = travel.activities.filter(

@@ -11,7 +11,6 @@ export class UpdateActivityById {
   ): Promise<void> {
     const travel = await this.travelRepository.findById(travelId)
     if (!travel) {
-      console.log('No travel found')
       return null
     }
     const activityUpdated = new Activity(
