@@ -39,7 +39,7 @@ function Budget() {
     budget?.expenses.entertainmentPrice! +
     budget?.expenses.foodPrice! +
     budget?.expenses.transportPrice!
-  const travelerSpent = totalExpenses / budget?.travelers!
+  const travelerSpent = (totalExpenses / budget?.travelers!).toFixed(2)
 
   const spent = () => {
     if (budget?.expenses.budget === 0) {

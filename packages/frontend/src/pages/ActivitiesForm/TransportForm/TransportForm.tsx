@@ -25,7 +25,8 @@ import {
 import { Field, Formik } from 'formik'
 import api from 'packages/frontend/src/utils/api/api'
 import { formatFormsDate } from 'packages/frontend/src/utils/functions/globalFunctions'
-import React, { useCallback } from 'react'
+import { Travel } from 'packages/frontend/src/utils/interfaces/Travel'
+import React, { useCallback, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -42,9 +43,21 @@ interface Values {
   transportType: string
 }
 
-function TransportForm(props?: Values & { onFinish?: () => void }) {
+function TransportForm(
+  props?: Values & { onFinish?: () => void } & {
+    setTravel: (travel: Travel) => void
+    travel: Travel | undefined
+  },
+) {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { id } = useParams<{ id: string }>()
+
+  useEffect(() => {
+    if (props?.id) {
+      onOpen()
+    }
+  }, [props?.id, onOpen])
+
   const initialRef = React.useRef(null)
   const initialValues: Values = {
     category: props?.category || 'Transport',
@@ -94,6 +107,29 @@ function TransportForm(props?: Values & { onFinish?: () => void }) {
             0,
             values.transportType,
           )
+          props?.setTravel({
+            ...props?.travel!,
+            activities: [
+              ...props?.travel!.activities,
+              {
+                activityId: values.id,
+                category: values.category,
+                description: values.description,
+                documentsUrl: values.documentsUrl,
+                endDate: values.endDate,
+                id: values.id,
+                imageUrl:
+                  'https://fotografias.antena3.com/clipping/cmsimages01/2022/12/02/2E2B162A-7CAB-4EF6-AE09-1019C51E4E81/coche_98.jpg?crop=1066,600,x68,y0&width=1900&height=1069&optimize=low&format=webply',
+                location: values.location,
+                name: values.name,
+                price: values.price,
+                rooms: 0,
+                startDate: values.startDate,
+                transportType: values.transportType,
+                travelId: id!,
+              },
+            ],
+          })
         }
       } catch (error) {
         console.log(error)
@@ -107,24 +143,26 @@ function TransportForm(props?: Values & { onFinish?: () => void }) {
   return (
     <>
       {' '}
-      <button onClick={onOpen} style={{ paddingTop: '1rem' }}>
-        <Card maxW="sm" backgroundColor={'#DCDCDC'}>
-          <CardBody>
-            <Img
-              src={
-                'https://fotografias.antena3.com/clipping/cmsimages01/2022/12/02/2E2B162A-7CAB-4EF6-AE09-1019C51E4E81/coche_98.jpg?crop=1066,600,x68,y0&width=1900&height=1069&optimize=low&format=webply'
-              }
-              alt="Green double couch with wooden legs"
-              borderRadius="lg"
-            />
-            <Stack mt="6" spacing="3">
-              <Heading size="md" className="messageGrid">
-                Transporte
-              </Heading>
-            </Stack>
-          </CardBody>
-        </Card>
-      </button>
+      {!props?.id && (
+        <button onClick={onOpen} style={{ paddingTop: '1rem' }}>
+          <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+            <CardBody>
+              <Img
+                src={
+                  'https://fotografias.antena3.com/clipping/cmsimages01/2022/12/02/2E2B162A-7CAB-4EF6-AE09-1019C51E4E81/coche_98.jpg?crop=1066,600,x68,y0&width=1900&height=1069&optimize=low&format=webply'
+                }
+                alt="Green double couch with wooden legs"
+                borderRadius="lg"
+              />
+              <Stack mt="6" spacing="3">
+                <Heading size="md" className="messageGrid">
+                  Transporte
+                </Heading>
+              </Stack>
+            </CardBody>
+          </Card>
+        </button>
+      )}
       <Modal
         initialFocusRef={initialRef}
         isOpen={isOpen}

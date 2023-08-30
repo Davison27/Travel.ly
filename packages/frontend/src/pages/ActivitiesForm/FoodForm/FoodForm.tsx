@@ -26,7 +26,8 @@ import {
 import { Field, Formik } from 'formik'
 import api from 'packages/frontend/src/utils/api/api'
 import { formatFormsDate } from 'packages/frontend/src/utils/functions/globalFunctions'
-import React, { useCallback } from 'react'
+import { Travel } from 'packages/frontend/src/utils/interfaces/Travel'
+import React, { useCallback, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -42,9 +43,21 @@ interface Values {
   startDate: any
 }
 
-function FoodForm(props?: Values & { onFinish?: () => void }) {
+function FoodForm(
+  props?: Values & { onFinish?: () => void } & {
+    setTravel: (travel: Travel) => void
+    travel: Travel | undefined
+  },
+) {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { id } = useParams<{ id: string }>()
+
+  useEffect(() => {
+    if (props?.id) {
+      onOpen()
+    }
+  }, [props?.id, onOpen])
+
   const initialRef = React.useRef(null)
   const initialValues: Values = {
     category: props?.category || 'Food',
@@ -93,6 +106,29 @@ function FoodForm(props?: Values & { onFinish?: () => void }) {
             0,
             '-',
           )
+          props?.setTravel({
+            ...props?.travel!,
+            activities: [
+              ...props?.travel!.activities,
+              {
+                activityId: values.id,
+                category: values.category,
+                description: values.description,
+                documentsUrl: values.documentsUrl,
+                endDate: values.endDate,
+                id: values.id,
+                imageUrl:
+                  'https://fotografias.larazon.es/clipping/cmsimages02/2022/04/01/BE78C788-5591-428B-A83A-FF2CDAF27C65/98.jpg?crop=4200,2363,x0,y218&width=1900&height=1069&optimize=low&format=webply',
+                location: values.location,
+                name: values.name,
+                price: values.price,
+                rooms: 0,
+                startDate: values.startDate,
+                transportType: '-',
+                travelId: id!,
+              },
+            ],
+          })
         }
       } catch (error) {
         console.log(error)
@@ -106,24 +142,26 @@ function FoodForm(props?: Values & { onFinish?: () => void }) {
   return (
     <>
       {' '}
-      <button onClick={onOpen} style={{ paddingTop: '1rem' }}>
-        <Card maxW="sm" backgroundColor={'#DCDCDC'}>
-          <CardBody>
-            <Img
-              src={
-                'https://fotografias.larazon.es/clipping/cmsimages02/2022/04/01/BE78C788-5591-428B-A83A-FF2CDAF27C65/98.jpg?crop=4200,2363,x0,y218&width=1900&height=1069&optimize=low&format=webply'
-              }
-              alt="Green double couch with wooden legs"
-              borderRadius="lg"
-            />
-            <Stack mt="6" spacing="3">
-              <Heading size="md" className="messageGrid">
-                Comida
-              </Heading>
-            </Stack>
-          </CardBody>
-        </Card>
-      </button>
+      {!props?.id && (
+        <button onClick={onOpen} style={{ paddingTop: '1rem' }}>
+          <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+            <CardBody>
+              <Img
+                src={
+                  'https://fotografias.larazon.es/clipping/cmsimages02/2022/04/01/BE78C788-5591-428B-A83A-FF2CDAF27C65/98.jpg?crop=4200,2363,x0,y218&width=1900&height=1069&optimize=low&format=webply'
+                }
+                alt="Green double couch with wooden legs"
+                borderRadius="lg"
+              />
+              <Stack mt="6" spacing="3">
+                <Heading size="md" className="messageGrid">
+                  Comida
+                </Heading>
+              </Stack>
+            </CardBody>
+          </Card>
+        </button>
+      )}
       <Modal
         initialFocusRef={initialRef}
         isOpen={isOpen}

@@ -25,7 +25,8 @@ import {
 import { Field, Formik } from 'formik'
 import api from 'packages/frontend/src/utils/api/api'
 import { formatFormsDate } from 'packages/frontend/src/utils/functions/globalFunctions'
-import React, { useCallback } from 'react'
+import { Travel } from 'packages/frontend/src/utils/interfaces/Travel'
+import React, { useCallback, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -40,9 +41,21 @@ interface Values {
   price: number
   startDate: any
 }
-function EntertainmentForm(props?: Values & { onFinish?: () => void }) {
+function EntertainmentForm(
+  props?: Values & { onFinish?: () => void } & {
+    setTravel: (travel: Travel) => void
+    travel: Travel | undefined
+  },
+) {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { id } = useParams<{ id: string }>()
+
+  useEffect(() => {
+    if (props?.id) {
+      onOpen()
+    }
+  }, [props?.id, onOpen])
+
   const initialRef = React.useRef(null)
   const initialValues: Values = {
     category: props?.category || 'Entertainment',
@@ -91,6 +104,29 @@ function EntertainmentForm(props?: Values & { onFinish?: () => void }) {
             0,
             '-',
           )
+          props?.setTravel({
+            ...props?.travel!,
+            activities: [
+              ...props?.travel!.activities,
+              {
+                activityId: values.id,
+                category: values.category,
+                description: values.description,
+                documentsUrl: values.documentsUrl,
+                endDate: values.endDate,
+                id: values.id,
+                imageUrl:
+                  'https://roams.es/images/post/es_ES_telco/companias-telefonicas-movistar-guias-television-fusion-ocio-movistar.jpg',
+                location: values.location,
+                name: values.name,
+                price: values.price,
+                rooms: 0,
+                startDate: values.startDate,
+                transportType: '-',
+                travelId: id!,
+              },
+            ],
+          })
         }
       } catch (error) {
         console.log(error)
@@ -104,24 +140,26 @@ function EntertainmentForm(props?: Values & { onFinish?: () => void }) {
   return (
     <>
       {' '}
-      <button onClick={onOpen}>
-        <Card maxW="sm" backgroundColor={'#DCDCDC'}>
-          <CardBody>
-            <Img
-              src={
-                'https://roams.es/images/post/es_ES_telco/companias-telefonicas-movistar-guias-television-fusion-ocio-movistar.jpg'
-              }
-              alt="Green double couch with wooden legs"
-              borderRadius="lg"
-            />
-            <Stack mt="6" spacing="3">
-              <Heading size="md" className="messageGrid">
-                Ocio
-              </Heading>
-            </Stack>
-          </CardBody>
-        </Card>
-      </button>
+      {!props?.id && (
+        <button onClick={onOpen}>
+          <Card maxW="sm" backgroundColor={'#DCDCDC'}>
+            <CardBody>
+              <Img
+                src={
+                  'https://roams.es/images/post/es_ES_telco/companias-telefonicas-movistar-guias-television-fusion-ocio-movistar.jpg'
+                }
+                alt="Green double couch with wooden legs"
+                borderRadius="lg"
+              />
+              <Stack mt="6" spacing="3">
+                <Heading size="md" className="messageGrid">
+                  Ocio
+                </Heading>
+              </Stack>
+            </CardBody>
+          </Card>
+        </button>
+      )}
       <Modal
         initialFocusRef={initialRef}
         isOpen={isOpen}
