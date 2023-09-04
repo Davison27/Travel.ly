@@ -28,7 +28,7 @@ const app = express()
 const router = Router()
 
 app.use(cors())
-app.use(bodyParser.json())
+app.use(bodyParser.json({ limit: '10mb' }))
 app.use(router)
 
 const port = process.env.PORT || 3333

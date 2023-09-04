@@ -118,7 +118,7 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
           onSubmit={handleSubmit}
           validationSchema={travelFormValidation}
         >
-          {({ errors, handleSubmit, touched }) => (
+          {({ errors, handleSubmit, setFieldValue, touched }) => (
             <form onSubmit={handleSubmit}>
               <VStack spacing={4} align="flex-start">
                 <FormControl isRequired>
@@ -205,12 +205,21 @@ function TravelsForm(props?: Values & { onFinish?: () => void }) {
                 </FormControl>
                 <FormControl>
                   <FormLabel htmlFor="imageUrl">Imagen</FormLabel>
-                  <Field
+                  <Input
+                    type="file"
                     id="imageUrl"
                     name="imageUrl"
                     as={Input}
                     variant="filled"
-                  ></Field>
+                    onChange={(event: any) => {
+                      const file = event.target.files[0]
+                      const reader = new FileReader()
+                      reader.readAsDataURL(file)
+                      reader.onload = () => {
+                        setFieldValue('imageUrl', reader.result as string)
+                      }
+                    }}
+                  />
                 </FormControl>
                 <Button type="submit" colorScheme="blue" width="full">
                   Guardar viaje

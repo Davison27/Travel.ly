@@ -9,7 +9,6 @@ import {
   CardBody,
   CardHeader,
   Heading,
-  Link as ChakraLink,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -39,6 +38,20 @@ export default function ViewActivityModal(props: any) {
   const travelData = travel?.activities.find(
     (activity) => activity.activityId === props.activityId,
   )
+
+  const hasDocuments = () => {
+    if (travelData?.documentUrls !== '') {
+      return (
+        <a href={travelData?.documentUrls} download="Mi_archivo">
+          <Button colorScheme="blue">
+            <Text>Click para descargar los documentos</Text>
+          </Button>
+        </a>
+      )
+    } else {
+      return <Text>No hay documentos</Text>
+    }
+  }
 
   const activityInfo = (
     <>
@@ -122,13 +135,8 @@ export default function ViewActivityModal(props: any) {
                   <Heading size="xs" textTransform="uppercase">
                     Documentos
                   </Heading>
-                  <ChakraLink
-                    href={travelData?.documentUrls}
-                    isExternal
-                    color="blue.500"
-                  >
-                    {travelData?.documentUrls}
-                  </ChakraLink>
+                  <br></br>
+                  {hasDocuments()}
                 </Box>
               </Stack>
             </CardBody>

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-shadow */
 import './AccomodationForm.scss'
@@ -177,7 +178,7 @@ function AccomodationForm(
             <div className="travelsTitle">Alojamiento</div>
             <Box bg="white" p={6} h={800} rounded="md">
               <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-                {({ handleSubmit }) => (
+                {({ handleSubmit, setFieldValue }) => (
                   <form onSubmit={handleSubmit}>
                     <VStack spacing={4} align="flex-start">
                       <FormControl isRequired>
@@ -256,12 +257,24 @@ function AccomodationForm(
                       </FormControl>
                       <FormControl>
                         <FormLabel htmlFor="documentUrls">Documentos</FormLabel>
-                        <Field
+                        <Input
+                          type="file"
                           id="documentUrls"
                           name="documentUrls"
                           as={Input}
                           variant="filled"
-                        ></Field>
+                          onChange={(event: any) => {
+                            const file = event.target.files[0]
+                            const reader = new FileReader()
+                            reader.readAsDataURL(file)
+                            reader.onload = () => {
+                              setFieldValue(
+                                'documentUrls',
+                                reader.result as string,
+                              )
+                            }
+                          }}
+                        />
                       </FormControl>
                       <Button
                         type="submit"
