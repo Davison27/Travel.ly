@@ -8,30 +8,30 @@ describe('UpdateActivityById', () => {
   afterEach(() => {
     jest.restoreAllMocks()
   })
-
+  const travel = new Travel(
+    'travel-id',
+    'travel-name',
+    'travel-owner',
+    new Date('1970-01-01T00:00:00.000Z'),
+    new Date('1970-01-01T00:00:00.000Z'),
+    [],
+    new Expenses(0, 0, 0, 0, 0),
+    'travel-description',
+    false,
+    0,
+  )
+  const oldActivity = new Activity(
+    travel.id,
+    'activity-id',
+    'activity-name',
+    new Date('1970-01-01T00:00:00.000Z'),
+    new Date('1970-01-01T00:00:00.000Z'),
+    'Accomodation',
+    'activity-image-url',
+  )
   it('should update an activity', async () => {
     const updateActivityById = new UpdateActivityById(travelRepository)
-    const travel = new Travel(
-      'travel-id',
-      'travel-name',
-      'travel-owner',
-      new Date('1970-01-01T00:00:00.000Z'),
-      new Date('1970-01-01T00:00:00.000Z'),
-      [],
-      new Expenses(0, 0, 0, 0, 0),
-      'travel-description',
-      false,
-      0,
-    )
-    const oldActivity = new Activity(
-      travel.id,
-      'activity-id',
-      'activity-name',
-      new Date('1970-01-01T00:00:00.000Z'),
-      new Date('1970-01-01T00:00:00.000Z'),
-      'Accomodation',
-      'activity-image-url',
-    )
+
     const updatedActivity = new Activity(
       oldActivity.travelId,
       oldActivity.activityId,
@@ -63,27 +63,7 @@ describe('UpdateActivityById', () => {
   })
   it('should not update an activity if travel does not exist', async () => {
     const updateActivityById = new UpdateActivityById(travelRepository)
-    const travel = new Travel(
-      'travel-id',
-      'travel-name',
-      'travel-owner',
-      new Date('1970-01-01T00:00:00.000Z'),
-      new Date('1970-01-01T00:00:00.000Z'),
-      [],
-      new Expenses(0, 0, 0, 0, 0),
-      'travel-description',
-      false,
-      0,
-    )
-    const oldActivity = new Activity(
-      travel.id,
-      'activity-id',
-      'activity-name',
-      new Date('1970-01-01T00:00:00.000Z'),
-      new Date('1970-01-01T00:00:00.000Z'),
-      'Accomodation',
-      'activity-image-url',
-    )
+
     const updatedActivity = new Activity(
       oldActivity.travelId,
       oldActivity.activityId,

@@ -1,37 +1,36 @@
 import { UpdateTravel } from '../../../src/Travels/application/UpdateTravel'
 import { Expenses } from '../../../src/Travels/domain/Expenses'
 import { Travel } from '../../../src/Travels/domain/Travel'
-import { travelRepository } from './JestFunctions'
+import { notifier, travelRepository } from './JestFunctions'
 
 describe('UpdateTravel', () => {
   afterEach(() => {
     jest.restoreAllMocks()
   })
-
+  const oldTravel = new Travel(
+    'travel-id',
+    'travel-name',
+    'travel-owner',
+    new Date('1970-01-01T00:00:00.000Z'),
+    new Date('1970-01-01T00:00:00.000Z'),
+    [],
+    new Expenses(0, 0, 0, 0, 0),
+    'travel-description',
+  )
+  const updatedTravel = new Travel(
+    oldTravel.id,
+    'travel-name-updated',
+    'travel-owner',
+    new Date('1970-01-01T00:00:00.000Z'),
+    new Date('1970-01-01T00:00:00.000Z'),
+    oldTravel.activities,
+    new Expenses(0, 0, 0, 0, 0),
+    'travel-description-updated',
+    false,
+    2,
+  )
   it('should update a travel', async () => {
-    const updateTravel = new UpdateTravel(travelRepository)
-    const oldTravel = new Travel(
-      'travel-id',
-      'travel-name',
-      'travel-owner',
-      new Date('1970-01-01T00:00:00.000Z'),
-      new Date('1970-01-01T00:00:00.000Z'),
-      [],
-      new Expenses(0, 0, 0, 0, 0),
-      'travel-description',
-    )
-    const updatedTravel = new Travel(
-      oldTravel.id,
-      'travel-name-updated',
-      'travel-owner',
-      new Date('1970-01-01T00:00:00.000Z'),
-      new Date('1970-01-01T00:00:00.000Z'),
-      oldTravel.activities,
-      new Expenses(0, 0, 0, 0, 0),
-      'travel-description-updated',
-      false,
-      2,
-    )
+    const updateTravel = new UpdateTravel(travelRepository, notifier)
 
     jest.spyOn(travelRepository, 'findById').mockResolvedValue(oldTravel)
     await updateTravel.run(oldTravel.id, updatedTravel)
@@ -50,33 +49,19 @@ describe('UpdateTravel', () => {
     )
   })
   it('should not update a travel if travel does not exist', async () => {
-    const updateTravel = new UpdateTravel(travelRepository)
-    const oldTravel = new Travel(
-      'travel-id',
-      'travel-name',
-      'travel-owner',
-      new Date('1970-01-01T00:00:00.000Z'),
-      new Date('1970-01-01T00:00:00.000Z'),
-      [],
-      new Expenses(0, 0, 0, 0, 0),
-      'travel-description',
-    )
-    const updatedTravel = new Travel(
-      oldTravel.id,
-      'travel-name-updated',
-      'travel-owner',
-      new Date('1970-01-01T00:00:00.000Z'),
-      new Date('1970-01-01T00:00:00.000Z'),
-      oldTravel.activities,
-      new Expenses(0, 0, 0, 0, 0),
-      'travel-description-updated',
-      false,
-      2,
-    )
+    const updateTravel = new UpdateTravel(travelRepository, notifier)
 
     jest.spyOn(travelRepository, 'findById').mockResolvedValue(null)
     await updateTravel.run(oldTravel.id, updatedTravel)
 
     expect(travelRepository.update).not.toHaveBeenCalled()
+  })
+  it('should notify the update of a travel', async () => {
+    const updateTravel = new UpdateTravel(travelRepository, notifier)
+
+    jest.spyOn(travelRepository, 'findById').mockResolvedValue(oldTravel)
+    await updateTravel.run(oldTravel.id, updatedTravel)
+
+    expect(notifier.updateTravelNotification).toHaveBeenCalled()
   })
 })
