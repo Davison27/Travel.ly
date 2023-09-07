@@ -1,8 +1,12 @@
+import { Notifier } from '../domain/Notifier'
 import { Travel } from '../domain/Travel'
 import { TravelRepository } from '../domain/TravelRepository'
 
 export class UpdateTravel {
-  constructor(private travelRepository: TravelRepository) {}
+  constructor(
+    private travelRepository: TravelRepository,
+    private notifier: Notifier,
+  ) {}
 
   async run(travelId: string, travel: Travel): Promise<void> {
     const oldTravel = await this.travelRepository.findById(travelId)
@@ -24,5 +28,6 @@ export class UpdateTravel {
     )
 
     await this.travelRepository.update(oldTravel, updateTravel)
+    await this.notifier.updateTravelNotification(updateTravel)
   }
 }

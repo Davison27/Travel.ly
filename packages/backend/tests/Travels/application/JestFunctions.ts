@@ -8,3 +8,9 @@ export const travelRepository = {
   update: jest.fn(),
   updateActivity: jest.fn(),
 }
+
+export const notifier = {
+  createTravelNotification: jest.fn(),
+  deleteTravelNotification: jest.fn(),
+  updateTravelNotification: jest.fn(),
+}

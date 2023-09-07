@@ -1,13 +1,16 @@
 import { Expenses } from '../domain/Expenses'
+import { Notifier } from '../domain/Notifier'
 import { Travel } from '../domain/Travel'
 import { TravelRepository } from '../domain/TravelRepository'
 import { CreateTravelDTO } from './DTOs/UseCasesDTO/CreateTravelDTO'
 
 export class CreateTravel {
-  constructor(private travelRepository: TravelRepository) {}
+  constructor(
+    private travelRepository: TravelRepository,
+    private notifier: Notifier,
+  ) {}
 
   async run(createTravelDTO: CreateTravelDTO): Promise<void> {
-    console.log(createTravelDTO.imageUrl)
     if (createTravelDTO.imageUrl === '') {
       createTravelDTO.imageUrl =
         'https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/07/31141652/vacaciones-1920-1.jpg'
@@ -28,5 +31,6 @@ export class CreateTravel {
       createTravelDTO.imageUrl,
     )
     await this.travelRepository.save(travel)
+    await this.notifier.createTravelNotification(travel)
   }
 }
