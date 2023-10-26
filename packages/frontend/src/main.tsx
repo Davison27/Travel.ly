@@ -32,8 +32,6 @@ const ProtectedRoute = () => {
     !token ||
     token.length < 1209 ||
     decodedToken.exp < Date.now() / 1000 ||
-    decodedToken.aud !==
-      '595893208689-gv86l7uf26umoekg5rcabpo4dj43fj7r.apps.googleusercontent.com' ||
     decodedToken.iss !== 'https://accounts.google.com'
   ) {
     return <Navigate to="/" replace />
@@ -43,7 +41,7 @@ const ProtectedRoute = () => {
 }
 
 root.render(
-  <GoogleOAuthProvider clientId="595893208689-gv86l7uf26umoekg5rcabpo4dj43fj7r.apps.googleusercontent.com">
+  <GoogleOAuthProvider clientId="">
     <StrictMode>
       <BrowserRouter>
         <Routes>
